@@ -20,7 +20,7 @@ public class FragmentAboutAllUsers extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        about = inflater.inflate(R.layout.layout_about_all_users, container, false);
+        about = inflater.inflate(R.layout.layout_about_users, container, false);
         return about;
     }
 }

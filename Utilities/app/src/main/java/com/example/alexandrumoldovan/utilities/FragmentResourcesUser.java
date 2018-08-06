@@ -23,7 +23,7 @@ public class FragmentResourcesUser extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         resources = inflater.inflate(R.layout.layout_resources_user, container, false);
-        String[] values = {"1", "2", "3", "4", "5", "6", "7", "8", "8", "9", "10"};
+        String[] values = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "8", "9", "10"};
         Spinner spinner = resources.findViewById(R.id.numberPersonsSpinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);

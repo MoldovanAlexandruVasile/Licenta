@@ -187,9 +187,12 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="194dp"
             android:layout_toEndOf="@+id/gastext"
-            android:text="Cleaning:"
+            android:text="Cleaning*:"
             android:textColor="@android:color/darker_gray"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="showCleaningInfo"/>
 
         <TextView
             android:id="@+id/cleaningCostUser"
@@ -208,9 +211,12 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="158dp"
             android:layout_toEndOf="@+id/gastext"
-            android:text="Reparations:"
+            android:text="Reparations*:"
             android:textColor="@android:color/darker_gray"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="showReparationsInfo"/>
 
         <TextView
             android:id="@+id/reparationCostUser"
@@ -219,17 +225,6 @@
             android:layout_alignEnd="@+id/textView11"
             android:layout_alignTop="@+id/textView13"
             android:text="0"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="89dp"
-            android:layout_toEndOf="@+id/gastext"
-            android:text="Other:"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp" />
 
@@ -250,22 +245,12 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="124dp"
             android:layout_toEndOf="@+id/gastext"
-            android:text="Garage care*"
+            android:text="Garage*"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp"
             android:clickable="true"
             android:focusable="true"
             android:onClick="showGarageCareInfo"/>
-
-        <TextView
-            android:id="@+id/otherCostsUser"
-            android:layout_width="63dp"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/cleaningCostUser"
-            android:layout_alignTop="@+id/textView18"
-            android:text="0"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="18sp" />
 
         <Button
             android:id="@+id/sendResourcesButton"

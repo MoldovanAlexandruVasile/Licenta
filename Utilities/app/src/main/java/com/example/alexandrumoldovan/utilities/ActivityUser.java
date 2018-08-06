@@ -69,16 +69,12 @@ public class ActivityUser extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.user, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         FragmentManager fragmentManager = getFragmentManager();
@@ -92,7 +88,6 @@ public class ActivityUser extends AppCompatActivity
                     replace(R.id.content_frame, new FragmentAboutAllUsers())
                     .commit();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -100,7 +95,6 @@ public class ActivityUser extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-
 
         if (id == R.id.nav_history_user) {
             fragmentManager.beginTransaction().
@@ -124,7 +118,7 @@ public class ActivityUser extends AppCompatActivity
                     .commit();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -163,7 +157,35 @@ public class ActivityUser extends AppCompatActivity
 
     public void showGarageCareInfo(View view) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
-        builder.setMessage("If you are using a parking spot in the garage you will be charged for keeping the garage clean.");
+        builder.setMessage("You will be charged for keeping the garage clean if you are using a parking spot in the garage.");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public void showCleaningInfo(View view) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
+        builder.setMessage("You will be charged for the cleaning of the apartment building each month.");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public void showReparationsInfo(View view) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
+        builder.setMessage("You will be charged if the apartment building needs any reparations.");
         builder.setCancelable(true);
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
