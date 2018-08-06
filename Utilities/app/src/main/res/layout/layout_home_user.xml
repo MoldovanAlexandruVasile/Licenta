@@ -12,18 +12,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="54dp"
-        android:text="Family name:"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/address"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/familyNameTextViewUser"
-        android:layout_width="132dp"
+        android:id="@+id/addressTextViewUser"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/textView8"
-        android:layout_marginEnd="14dp"
+        android:layout_marginEnd="17dp"
         android:text="TBD"
         android:textSize="18sp" />
 
@@ -34,15 +34,15 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView8"
         android:layout_marginTop="114dp"
-        android:text="Apartment number:"
+        android:text="@string/apartment_number"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/aartamentTextViewUser"
+        android:id="@+id/apartamentTextViewUser"
         android:layout_width="129dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textview"
-        android:layout_alignStart="@+id/familyNameTextViewUser"
+        android:layout_alignStart="@+id/addressTextViewUser"
         android:text="TBD"
         android:textSize="18sp" />
 
@@ -61,7 +61,7 @@
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView9"
-        android:layout_alignStart="@+id/familyNameTextViewUser"
+        android:layout_alignStart="@+id/addressTextViewUser"
         android:text="TBD"
         android:textSize="18sp" />
 
@@ -72,16 +72,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="27dp"
-        app:srcCompat="@drawable/img6" />
-
-    <TextView
-        android:id="@+id/addressUserTextView"
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/familyNameTextViewUser"
-        android:layout_alignTop="@+id/textView10"
-        android:text="TBD"
-        android:textSize="18sp" />
+        app:srcCompat="@drawable/home_icon" />
 
     <TextView
         android:id="@+id/textView10"
@@ -90,6 +81,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView8"
         android:layout_marginTop="223dp"
-        android:text="Address"
+        android:text="Family name"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/familyNameUserTextView"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/addressTextViewUser"
+        android:layout_alignTop="@+id/textView10"
+        android:text="TBD"
+        android:textSize="18sp" />
+
 </RelativeLayout>

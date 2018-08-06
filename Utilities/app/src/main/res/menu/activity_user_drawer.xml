@@ -3,12 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <item android:title="@string/nav_home_user">
+        <menu>
+            <item
+                android:id="@+id/nav_home_user"
+                android:icon="@drawable/ic_home"
+                android:title="@string/app_home_all_users" />
+        </menu>
+    </item>
+
     <item android:title="@string/app_menu_resource_user">
     <menu>
-        <item
-            android:id="@+id/nav_home_user"
-            android:icon="@drawable/ic_home"
-            android:title="@string/app_home_all_users" />
 
         <item
             android:id="@+id/nav_payment_user"

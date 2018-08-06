@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -33,13 +34,13 @@ public class ActivityUser extends AppCompatActivity
                 replace(R.id.content_frame, new FragmentHomeUser())
                 .commit();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -58,13 +59,12 @@ public class ActivityUser extends AppCompatActivity
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-               finish();
+                finish();
             }
         });
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
     }
 
     @Override
@@ -83,7 +83,11 @@ public class ActivityUser extends AppCompatActivity
 
         FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.action_about_all_users) {
+        if (id == R.id.action_information_all_users) {
+            fragmentManager.beginTransaction().
+                    replace(R.id.content_frame, new FragmentInfoAllUsers())
+                    .commit();
+        } else if (id == R.id.action_about_all_users) {
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentAboutAllUsers())
                     .commit();
@@ -140,5 +144,43 @@ public class ActivityUser extends AppCompatActivity
         } catch (NullPointerException e) {
             Log.d("STATE", e.toString());
         }
+    }
+
+    public void showNoOfPplInfo(View view) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
+        builder.setMessage("Please choose the number of people that lived in the house more than 20 days a month.");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public void showGarageCareInfo(View view) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
+        builder.setMessage("If you are using a parking spot in the garage you will be charged for keeping the garage clean.");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public void redirectToMail(View view) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"qamytesting@yahoo.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Utilities");
+
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent, "Choose application"));
     }
 }

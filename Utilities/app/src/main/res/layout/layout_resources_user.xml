@@ -141,21 +141,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/textView11"
+            android:layout_alignStart="@+id/imageView5"
             android:layout_marginTop="172dp"
-            android:text="Number of people:"
-            android:textColor="@android:color/black"
-            android:textSize="25sp"
-            android:onClick="showNoOfPplInfo"
             android:clickable="true"
-            android:focusable="true" />
+            android:focusable="true"
+            android:onClick="showNoOfPplInfo"
+            android:text="Number of people*:"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
 
         <Spinner
             android:id="@+id/numberPersonsSpinner"
-            android:layout_width="56dp"
+            android:layout_width="46dp"
             android:layout_height="32dp"
             android:layout_alignEnd="@+id/textView11"
             android:layout_alignTop="@+id/noOfPplTextView"
+            android:layout_marginEnd="10dp"
             android:background="@color/white" />
 
         <ImageView
@@ -249,9 +250,12 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="124dp"
             android:layout_toEndOf="@+id/gastext"
-            android:text="Garage care"
+            android:text="Garage care*"
             android:textColor="@android:color/darker_gray"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="showGarageCareInfo"/>
 
         <TextView
             android:id="@+id/otherCostsUser"
