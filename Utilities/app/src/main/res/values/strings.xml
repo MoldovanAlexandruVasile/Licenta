@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Utilities</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Utilities</string>
+    <string name="nav_header_subtitle">Users name and apartment number</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="app_home_all_users">Home</string>
+    <string name="app_bar_about_all_users">About</string>
+    <string name="app_menu_history_user">History</string>
+    <string name="app_menu_resources_report_user">Resources report</string>
+    <string name="app_menu_settings_user">Settings</string>
+    <string name="app_menu_predict_user">Predict</string>
+    <string name="app_menu_resource_user">Resources</string>
+    <string name="app_bar_settings_user">User settings</string>
+    <string name="authors_name">Moldovan Alexandru-Vasile</string>
+    <string name="title_activity_admin">ActivityAdmin</string>
+    <string name="action_settings">Settings</string>
+    <string name="cubicMetter">m³</string>
+</resources>

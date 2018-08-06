@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="@string/app_menu_resource_user">
+    <menu>
+        <item
+            android:id="@+id/nav_home_user"
+            android:icon="@drawable/ic_home"
+            android:title="@string/app_home_all_users" />
+
+        <item
+            android:id="@+id/nav_payment_user"
+            android:icon="@drawable/ic_calendar"
+            android:title="@string/app_menu_resources_report_user" />
+
+        <item
+            android:id="@+id/nav_history_user"
+            android:icon="@drawable/ic_history"
+            android:title="@string/app_menu_history_user" />
+
+        <item
+            android:id="@+id/nav_predict_user"
+            android:icon="@drawable/ic_prediction"
+            android:title="@string/app_menu_predict_user" />
+
+    </menu>
+    </item>
+    <item android:title="@string/app_menu_settings_user">
+        <menu>
+            <item
+                android:id="@+id/nav_settings_user"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/app_menu_settings_user" />
+        </menu>
+    </item>
+
+</menu>
