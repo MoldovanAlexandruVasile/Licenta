@@ -16,7 +16,7 @@ public class FragmentResourcesUser extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((ActivityUser) getActivity()).setActionBarTitle("Resources used");
+        ((ActivityUser) getActivity()).setActionBarTitle("Resources report");
     }
 
     @Nullable
