@@ -10,5 +10,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="151dp"
-        android:text="Predict layout" />
+        android:text="     Here it will be an AI which will predict the consumption of resources for the next month"
+        android:textColor="@color/white" />
 </RelativeLayout>
