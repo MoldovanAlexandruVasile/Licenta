@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:background="#4D000000">
 
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,8 +45,8 @@
             android:id="@+id/waterUserTextInput"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/sendResourcesButton"
             android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/textView12"
             android:ems="10"
             android:inputType="numberDecimal"
             android:textColor="@color/white"
@@ -59,9 +57,9 @@
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/watertext"
+            android:layout_alignBottom="@+id/imageView5"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="70dp"
+            android:layout_marginEnd="56dp"
             android:text="@string/cubicMetter"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -137,7 +135,7 @@
             android:inputType="numberDecimal"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:visibility="visible" 
+            android:visibility="visible"
             android:backgroundTint="@color/white"/>
 
         <TextView
@@ -267,18 +265,17 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/sendResourcesButton"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="169dp"
+            android:id="@+id/submitButtonSettingsUser"
+            android:layout_width="156dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="35dp"
             android:background="@color/blueTransparent"
-            android:text="Send resources"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:text="Submit changes"
+            android:textColor="@color/white"
+            />
+
     </RelativeLayout>
 
 </RelativeLayout>
