@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4D000000">
 
     <TextView
         android:id="@+id/textView2"
@@ -10,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-186dp"
         android:text="This program was created to obtain "
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -20,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/authors_name"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -32,7 +34,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="186dp"
         android:text="bachelor's degree."
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -43,7 +45,7 @@
         android:layout_centerVertical="true"
         android:layout_toStartOf="@+id/textView4"
         android:text="©"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold" />
 </RelativeLayout>

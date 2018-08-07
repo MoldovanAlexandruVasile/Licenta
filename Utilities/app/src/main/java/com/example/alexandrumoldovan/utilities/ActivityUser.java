@@ -157,7 +157,7 @@ public class ActivityUser extends AppCompatActivity
 
     public void showGarageCareInfo(View view) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
-        builder.setMessage("You will be charged for keeping the garage clean if you are using a parking spot in the garage.");
+        builder.setMessage("You will be charged for keeping the garage clean if you are using a parking spot in it.");
         builder.setCancelable(true);
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override

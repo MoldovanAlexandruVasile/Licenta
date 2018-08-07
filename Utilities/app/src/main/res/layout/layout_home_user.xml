@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/familyNameTextViewUser"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#4D000000">
 
     <TextView
         android:id="@+id/textView8"
@@ -15,6 +16,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="52dp"
         android:text="@string/address"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
@@ -25,6 +27,7 @@
         android:layout_alignTop="@+id/textView8"
         android:layout_marginEnd="17dp"
         android:text="TBD"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
@@ -35,6 +38,7 @@
         android:layout_alignStart="@+id/textView8"
         android:layout_marginTop="114dp"
         android:text="@string/apartment_number"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
@@ -44,6 +48,7 @@
         android:layout_alignBottom="@+id/textview"
         android:layout_alignStart="@+id/addressTextViewUser"
         android:text="TBD"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
@@ -54,6 +59,7 @@
         android:layout_alignStart="@+id/textView8"
         android:layout_marginTop="170dp"
         android:text="Floor:"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
@@ -63,6 +69,7 @@
         android:layout_alignBottom="@+id/textView9"
         android:layout_alignStart="@+id/addressTextViewUser"
         android:text="TBD"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <ImageView
@@ -82,6 +89,7 @@
         android:layout_alignStart="@+id/textView8"
         android:layout_marginTop="223dp"
         android:text="Family name"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
@@ -91,6 +99,7 @@
         android:layout_alignStart="@+id/addressTextViewUser"
         android:layout_alignTop="@+id/textView10"
         android:text="TBD"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
 </RelativeLayout>

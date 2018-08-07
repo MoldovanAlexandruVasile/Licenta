@@ -22,4 +22,5 @@
     <string name="nav_home_user">Home</string>
     <string name="app_home_price_tag_user">Price tags</string>
     <string name="action_info_user">Information</string>
+    <string name="electricity">Electricity:</string>
 </resources>
