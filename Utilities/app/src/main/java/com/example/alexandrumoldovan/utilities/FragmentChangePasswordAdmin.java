@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentChangePasswordUser extends Fragment {
+public class FragmentChangePasswordAdmin extends Fragment {
 
     View changePass;
 
@@ -20,7 +20,7 @@ public class FragmentChangePasswordUser extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        changePass = inflater.inflate(R.layout.layout_change_password_user, container, false);
+        changePass = inflater.inflate(R.layout.layout_change_password_admin, container, false);
         return changePass;
     }
 }

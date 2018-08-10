@@ -18,7 +18,7 @@
             <item
                 android:id="@+id/nav_payment_status_admin"
                 android:icon="@drawable/ic_calendar"
-                android:title="@string/app_menu_resources_report_user" />
+                android:title="@string/app_menu_resource_reports_admin" />
 
             <item
                 android:id="@+id/nav_archive_admin"
@@ -36,7 +36,7 @@
                 android:title="@string/app_menu_settings_user" />
 
             <item
-                android:id="@+id/nav_create_account_admin"
+                android:id="@+id/nav_account_management_admin"
                 android:icon="@drawable/ic_account"
                 android:title="@string/app_bar_accounts_management_admin" />
 

@@ -10,6 +10,7 @@
     <string name="app_menu_history_user">History</string>
     <string name="app_menu_archive_admin">Archive</string>
     <string name="app_menu_resources_report_user">Resources report</string>
+    <string name="app_menu_resource_reports_admin">Resource reports</string>
     <string name="app_menu_settings_user">Settings</string>
     <string name="app_menu_predict_user">Predict</string>
     <string name="app_menu_resource_user">Resources</string>
@@ -33,4 +34,5 @@
     <string name="new_password">New password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="change_password">Change password</string>
+    <string name="pass_admin_role">Pass admin role</string>
 </resources>

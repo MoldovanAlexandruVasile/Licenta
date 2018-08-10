@@ -1,11 +1,8 @@
 package com.example.alexandrumoldovan.utilities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -18,7 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,8 +22,6 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.Objects;
 
@@ -135,9 +129,7 @@ public class ActivityUser extends AppCompatActivity
                     replace(R.id.content_frame, new FragmentHomeUser())
                     .commit();
         } else if (id == R.id.nav_logoff_user) {
-            finish();
-            Intent intent = new Intent(this, ActivityLogIn.class);
-            startActivity(intent);
+            confirmLogOut();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -160,6 +152,39 @@ public class ActivityUser extends AppCompatActivity
         } catch (NullPointerException e) {
             Log.d("STATE", e.toString());
         }
+    }
+
+    public void confirmLogOut() {
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_exit_pop_up);
+        TextView textView = customDialog.findViewById(R.id.exitPopupTextView);
+        textView.setText("Are you sure you want to log out?");
+        CardView yesCardView = customDialog.findViewById(R.id.yesPopUpCardView);
+
+        yesCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                exitFromApp();
+            }
+        });
+
+        CardView noCardView = customDialog.findViewById(R.id.noPopUpCardView);
+        noCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
+    }
+
+    private void exitFromApp(){
+        Intent intent = new Intent(this, ActivityLogIn.class);
+        startActivity(intent);
     }
 
     public void showNoOfPplInfo(View view) {
