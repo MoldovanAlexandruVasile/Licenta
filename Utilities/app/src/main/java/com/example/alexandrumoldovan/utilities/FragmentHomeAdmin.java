@@ -7,20 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentAboutAllUsers extends Fragment {
+public class FragmentHomeAdmin extends Fragment {
 
-    View about;
+    View admin;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle("About");
+        getActivity().setTitle("Home");
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        about = inflater.inflate(R.layout.layout_about_users, container, false);
-        return about;
+        admin = inflater.inflate(R.layout.layout_home_admin, container, false);
+        return admin;
     }
 }

@@ -8,11 +8,13 @@
     <string name="app_home_all_users">Home</string>
     <string name="app_bar_about_all_users">About</string>
     <string name="app_menu_history_user">History</string>
+    <string name="app_menu_archive_admin">Archive</string>
     <string name="app_menu_resources_report_user">Resources report</string>
     <string name="app_menu_settings_user">Settings</string>
     <string name="app_menu_predict_user">Predict</string>
     <string name="app_menu_resource_user">Resources</string>
     <string name="app_bar_settings_user">User settings</string>
+    <string name="app_bar_accounts_management_admin">Accounts management</string>
     <string name="authors_name">Moldovan Alexandru-Vasile</string>
     <string name="title_activity_admin">ActivityAdmin</string>
     <string name="action_settings">Settings</string>
@@ -23,4 +25,12 @@
     <string name="app_home_price_tag_user">Price tags</string>
     <string name="action_info_user">Information</string>
     <string name="electricity">Electricity:</string>
+    <string name="omni_speech">\t\t\t\tOh, hello !\n\t\t\t\tIt looks like you need more information about what is going on here.\n\t\t\t\tWell, lets start. My name is Omni, cool name, right? Hehe, I knew it ! I am a robot programmed to predict your usage for the next month of water, gas and electricity based on how the weather will be in next month and the resources used by you in the past. If you do not have any past reports, I will predict the usage of the resources depending on the weather. \n\t\t\t\tHmmm...I think that is all. Thank you for dropping by. Have a nice day !</string>
+    <string name="kw">kW</string>
+    <string name="prediction_of_resurces_future">\t\t\t\tPrediction of resources that will be used next month:</string>
+    <string name="app_menu_log_off">Log out</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="change_password">Change password</string>
 </resources>

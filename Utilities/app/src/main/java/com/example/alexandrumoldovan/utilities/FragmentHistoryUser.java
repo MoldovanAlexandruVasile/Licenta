@@ -1,10 +1,9 @@
 package com.example.alexandrumoldovan.utilities;
 
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,10 +32,10 @@ public class FragmentHistoryUser extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         history = inflater.inflate(R.layout.layout_history_user, container, false);
 
-        final ListView listView =  history.findViewById(R.id.monthsList);
+        final ListView listView = history.findViewById(R.id.monthsList);
 
         // Initializing a new String Array
-        String[] values = new String[] {
+        String[] values = new String[]{
                 "January", "February", "March", "April",
                 "May", "June", "July", "August",
                 "September", "October", "November", "December"};
@@ -45,14 +44,15 @@ public class FragmentHistoryUser extends Fragment {
         List<String> monthsList = new ArrayList<>(Arrays.asList(values));
 
         // Create an ArrayAdapter from List
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, monthsList){
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, monthsList) {
+            @NonNull
             @Override
-            public View getView(int position, View convertView, ViewGroup parent){
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
                 // Get the Item from ListView
                 View view = super.getView(position, convertView, parent);
 
                 // Initialize a TextView for ListView each Item
-                TextView tv =  view.findViewById(android.R.id.text1);
+                TextView tv = view.findViewById(android.R.id.text1);
 
                 // Set the text color of TextView (ListView Item)
                 tv.setTextColor(Color.WHITE);
@@ -69,152 +69,45 @@ public class FragmentHistoryUser extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("January \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("January");
                 } else if (i == 1) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("February \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("February");
                 } else if (i == 2) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("March \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("March");
                 } else if (i == 3) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("April \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("April");
                 } else if (i == 4) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("May \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("May");
                 } else if (i == 5) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("June \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("June");
                 } else if (i == 6) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("July \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("July");
                 } else if (i == 7) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("August \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("August");
                 } else if (i == 8) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("September \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("September");
                 } else if (i == 9) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("Octomber \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("October");
                 } else if (i == 10) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("November \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("November");
                 } else if (i == 11) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("December \nYaaaa");
-                    builder.setCancelable(true);
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    sendToTheInfoFragment("December");
                 }
             }
         });
         return history;
+    }
+
+    private void sendToTheInfoFragment(String s) {
+        FragmentHistoryInfoUser fragmentHistoryInfoUser = new FragmentHistoryInfoUser();
+        Bundle args = new Bundle();
+        args.putString("Month", s);
+        fragmentHistoryInfoUser.setArguments(args);
+        getActivity().getFragmentManager().
+                beginTransaction().
+                setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right).
+                add(R.id.content_frame, fragmentHistoryInfoUser).
+                replace(R.id.content_frame, fragmentHistoryInfoUser).
+                commit();
     }
 }

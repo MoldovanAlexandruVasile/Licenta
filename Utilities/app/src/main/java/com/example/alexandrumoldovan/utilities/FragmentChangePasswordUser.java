@@ -7,20 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentAboutAllUsers extends Fragment {
+public class FragmentChangePasswordUser extends Fragment {
 
-    View about;
+    View changePass;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle("About");
+        ((ActivityUser) getActivity()).setActionBarTitle("Change password");
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        about = inflater.inflate(R.layout.layout_about_users, container, false);
-        return about;
+        changePass = inflater.inflate(R.layout.layout_change_password_user, container, false);
+        return changePass;
     }
 }

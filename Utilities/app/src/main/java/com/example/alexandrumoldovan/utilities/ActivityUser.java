@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,13 +15,21 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.Objects;
 
 public class ActivityUser extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,25 +59,30 @@ public class ActivityUser extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
-        builder.setMessage("Are you sure you want to exit?");
-        builder.setCancelable(true);
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_exit_pop_up);
+        TextView textView = customDialog.findViewById(R.id.exitPopupTextView);
+        textView.setText("Are you sure you want to exit?");
+        CardView yesCardView = customDialog.findViewById(R.id.yesPopUpCardView);
 
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        yesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(View v) {
                 finish();
             }
         });
 
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        CardView noCardView = customDialog.findViewById(R.id.noPopUpCardView);
+        noCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
     }
 
     @Override
@@ -120,6 +134,10 @@ public class ActivityUser extends AppCompatActivity
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentHomeUser())
                     .commit();
+        } else if (id == R.id.nav_logoff_user) {
+            finish();
+            Intent intent = new Intent(this, ActivityLogIn.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -145,60 +163,83 @@ public class ActivityUser extends AppCompatActivity
     }
 
     public void showNoOfPplInfo(View view) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
-        builder.setMessage("Please choose the number of people that lived in the house more than 20 days a month.");
-        builder.setCancelable(true);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText("Please choose the number of people that lived in the house more than 20 days a month.");
+        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
+            public void onClick(View v) {
+                customDialog.dismiss();
             }
         });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
     }
 
     public void showGarageCareInfo(View view) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
-        builder.setMessage("You will be charged for keeping the garage clean if you are using a parking spot in it.");
-        builder.setCancelable(true);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText("You will be charged for keeping the garage clean if you are using a parking spot in it.");
+        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
+            public void onClick(View v) {
+                customDialog.dismiss();
             }
         });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
     }
 
     public void showCleaningInfo(View view) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
-        builder.setMessage("You will be charged for the cleaning of the apartment building each month.");
-        builder.setCancelable(true);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText("You will be charged for the cleaning of the apartment building each month.");
+        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
+            public void onClick(View v) {
+                customDialog.dismiss();
             }
         });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
     }
 
     public void showReparationsInfo(View view) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityUser.this);
-        builder.setMessage("You will be charged if the apartment building needs any reparations.");
-        builder.setCancelable(true);
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText("You will be charged if the apartment building needs any reparations.");
+        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
+            public void onClick(View v) {
+                customDialog.dismiss();
             }
         });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
     }
+
 
     public void redirectToMail(View view) {
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -207,5 +248,116 @@ public class ActivityUser extends AppCompatActivity
 
         intent.setType("message/rfc822");
         startActivity(Intent.createChooser(intent, "Choose application"));
+    }
+
+    public void goToHistoryFragment(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentHistoryUser())
+                .commit();
+    }
+
+    public void goToPredictFragment(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentPredictUser())
+                .commit();
+    }
+
+    public void infoAI(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentInfoOmniUser())
+                .commit();
+    }
+
+    public void checkPasswords(View view) {
+        //TODO: check if the old password it's correct too
+        EditText newPassEditText = findViewById(R.id.newPasswordTextInputUser);
+        EditText confirmPassEditText = findViewById(R.id.confirmPasswordTextInputUser);
+        String newPass = newPassEditText.getText().toString();
+        String confirmPass = confirmPassEditText.getText().toString();
+        //TODO: Old Password field must be filled
+        if (newPass.compareTo("") == 0 || confirmPass.compareTo("") == 0) {
+            this.completePasswordFields();
+        } else {
+            if (newPass.compareTo(confirmPass) == 0) {
+                this.changePasswordSuccess();
+            } else {
+                this.changePasswordFailed();
+            }
+        }
+    }
+
+    private void completePasswordFields() {
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText("Please complete all the fields !");
+        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
+    }
+
+    private void changePasswordSuccess() {
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText("The password was changed with success !");
+        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+                goToSettings();
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
+    }
+
+    private void changePasswordFailed() {
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText("Passwords do not match !");
+        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
+    }
+
+    public void goToSettings() {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentSettingsUser())
+                .commit();
+    }
+
+    public void goToChangePassFragment(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentChangePasswordUser())
+                .commit();
     }
 }

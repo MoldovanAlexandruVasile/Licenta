@@ -30,4 +30,5 @@ public class FragmentResourcesUser extends Fragment {
         spinner.setAdapter(adapter);
         return resources;
     }
+
 }

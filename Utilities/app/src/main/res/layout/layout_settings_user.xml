@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="New name"
+            android:textColorHint="@color/white"
             android:inputType="textPersonName"
             android:textColor="@color/white" />
 
@@ -40,9 +41,9 @@
         android:id="@+id/homeStatusUserSwitch"
         android:layout_width="307dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="230dp"
+        android:layout_marginBottom="241dp"
         android:checked="true"
         android:text="Are you at home?"
         android:textColor="@color/white"
@@ -55,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="217dp"
+        android:layout_marginBottom="168dp"
         android:checked="false"
         android:text="Garage usage"
         android:textColor="@color/white"
@@ -65,15 +66,42 @@
     <android.support.v7.widget.CardView
         android:layout_width="255dp"
         android:layout_height="41dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="47dp"
-        app:cardBackgroundColor="@color/colorPrimaryDark"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="10dp"
+        android:layout_marginTop="178dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="showNoOfPplInfo">
+        android:onClick="goToChangePassFragment"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/change_password"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="255dp"
+        android:layout_height="41dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        android:clickable="true"
+        android:focusable="true">
 
         <RelativeLayout
             android:layout_width="match_parent"

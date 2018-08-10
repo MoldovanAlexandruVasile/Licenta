@@ -3,35 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
-
-    <item android:title="Communicate">
+    <item android:title="@string/nav_home_user">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_home_user"
+                android:icon="@drawable/ic_home"
+                android:title="@string/app_home_all_users" />
+        </menu>
+    </item>
+
+    <item android:title="@string/app_menu_resource_user">
+        <menu>
+
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_payment_status_admin"
+                android:icon="@drawable/ic_calendar"
+                android:title="@string/app_menu_resources_report_user" />
+
+            <item
+                android:id="@+id/nav_archive_admin"
+                android:icon="@drawable/ic_archive"
+                android:title="@string/app_menu_archive_admin" />
+
+
+        </menu>
+    </item>
+    <item android:title="@string/app_menu_settings_user">
+        <menu>
+            <item
+                android:id="@+id/nav_settings_admin"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/app_menu_settings_user" />
+
+            <item
+                android:id="@+id/nav_create_account_admin"
+                android:icon="@drawable/ic_account"
+                android:title="@string/app_bar_accounts_management_admin" />
+
+            <item
+                android:id="@+id/nav_logoff_admin"
+                android:icon="@drawable/ic_exit"
+                android:title="@string/app_menu_log_off" />
         </menu>
     </item>
 

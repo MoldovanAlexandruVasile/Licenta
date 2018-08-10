@@ -14,13 +14,13 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="24dp"
         android:text="@string/address"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/addressHomeTextView"
+        android:id="@+id/addressHomeTextViewAdmin"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -36,17 +36,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView8"
-        android:layout_marginTop="114dp"
+        android:layout_marginTop="92dp"
         android:text="@string/apartment_number"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/apartamentHomeTextView"
+        android:id="@+id/apartamentHomeTextViewAdmin"
         android:layout_width="129dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textview"
-        android:layout_alignStart="@+id/addressHomeTextView"
+        android:layout_alignStart="@+id/addressHomeTextViewAdmin"
         android:text="TBD"
         android:textColor="@color/white"
         android:textSize="18sp" />
@@ -57,17 +57,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView8"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="157dp"
         android:text="Floor:"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/floorHomeTextView"
+        android:id="@+id/floorHomeTextViewAdmin"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView9"
-        android:layout_alignStart="@+id/addressHomeTextView"
+        android:layout_alignStart="@+id/addressHomeTextViewAdmin"
         android:text="TBD"
         android:textColor="@color/white"
         android:textSize="18sp" />
@@ -87,17 +87,38 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView8"
-        android:layout_marginTop="223dp"
+        android:layout_marginTop="220dp"
         android:text="Family name:"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/familyNameHomeTextView"
+        android:id="@+id/familyNameHomeTextViewAdmin"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/addressHomeTextView"
+        android:layout_alignStart="@+id/addressHomeTextViewAdmin"
         android:layout_alignTop="@+id/textView10"
+        android:text="TBD"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_marginTop="279dp"
+        android:text="Reports received:"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/reportsReceivedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/addressHomeTextViewAdmin"
+        android:layout_alignTop="@+id/textView20"
         android:text="TBD"
         android:textColor="@color/white"
         android:textSize="18sp" />

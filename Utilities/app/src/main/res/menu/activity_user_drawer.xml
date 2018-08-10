@@ -38,6 +38,11 @@
                 android:id="@+id/nav_settings_user"
                 android:icon="@drawable/ic_settings"
                 android:title="@string/app_menu_settings_user" />
+
+            <item
+                android:id="@+id/nav_logoff_user"
+                android:icon="@drawable/ic_exit"
+                android:title="@string/app_menu_log_off" />
         </menu>
     </item>
 
