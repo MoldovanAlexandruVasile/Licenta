@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Objects;
@@ -63,5 +65,20 @@ public class ActivityLogIn extends Activity {
     }
 
     public void checkLogInCredentials(View view) {
+        //TODO: must validate credentials
+        EditText usernameET = findViewById(R.id.usernameEditTextLogIn);
+        EditText passET = findViewById(R.id.passwordEditTextLogIn);
+        String username = usernameET.getText().toString();
+        String pass = passET.getText().toString();
+        if (username.compareTo("admin") == 0){
+            this.finish();
+            Intent intent = new Intent(this, ActivityAdmin.class);
+            startActivity(intent);
+        } else {
+            this.finish();
+            Intent intent = new Intent(this, ActivityUser.class);
+            startActivity(intent);
+        }
+        //TODO: InvalidCredentialsMessage !!!!!!!!!!
     }
 }

@@ -13,7 +13,7 @@ public class FragmentAccountManagementAdmin extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle("Account management");
+        getActivity().setTitle("Accounts management");
     }
 
     @Nullable

@@ -150,17 +150,17 @@ public class ActivityAdmin extends AppCompatActivity
         String confirmPass = confirmPassEditText.getText().toString();
         //TODO: Old Password field must be filled
         if (newPass.compareTo("") == 0 || confirmPass.compareTo("") == 0) {
-            this.completePasswordFields();
+            completeAllFields();
         } else {
             if (newPass.compareTo(confirmPass) == 0) {
-                this.changePasswordSuccess();
+                changePasswordSuccess();
             } else {
-                this.changePasswordFailed();
+                changePasswordFailed();
             }
         }
     }
 
-    private void completePasswordFields() {
+    private void completeAllFields() {
         final Dialog customDialog = new Dialog(ActivityAdmin.this);
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         customDialog.setCanceledOnTouchOutside(false);
@@ -218,20 +218,6 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.show();
     }
 
-    public void goToSettingsAdmin() {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
-                .replace(R.id.content_frame, new FragmentSettingsAdmin())
-                .commit();
-    }
-
-    public void goToChangePassFragment(View view) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
-                .replace(R.id.content_frame, new FragmentChangePasswordAdmin())
-                .commit();
-    }
-
     public void confirmLogOut() {
         final Dialog customDialog = new Dialog(ActivityAdmin.this);
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -260,12 +246,12 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.show();
     }
 
-    private void goToLogInScreen(){
+    private void goToLogInScreen() {
         Intent intent = new Intent(this, ActivityLogIn.class);
         startActivity(intent);
     }
 
-    public void deleteAccountPopUp(View view){
+    public void deleteAccountPopUp(View view) {
         final Dialog customDialog = new Dialog(ActivityAdmin.this);
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         customDialog.setCanceledOnTouchOutside(true);
@@ -282,14 +268,14 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.show();
     }
 
-    private void checkFields(Dialog customDialog){
+    private void checkFields(Dialog customDialog) {
         EditText usernameET = customDialog.findViewById(R.id.usernameEditTextCardView);
         EditText passwordET = customDialog.findViewById(R.id.passwordEditTextCardView);
         String username = usernameET.getText().toString();
         String pass = passwordET.getText().toString();
-        if (username.compareTo("") == 0 || pass.compareTo("") == 0){
-            completePasswordFields();
-        } else{
+        if (username.compareTo("") == 0 || pass.compareTo("") == 0) {
+            completeAllFields();
+        } else {
             confirmDeleteAccountPoUp(customDialog);
         }
     }
@@ -331,4 +317,77 @@ public class ActivityAdmin extends AppCompatActivity
                 .commit();
     }
 
+    public void goToAccountManagement(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentAccountManagementAdmin())
+                .commit();
+    }
+
+    public void goToCreateAccountAdmin(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentCreateAccountAdmin())
+                .commit();
+    }
+
+    private void goToAccountManagementAdmin() {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentAccountManagementAdmin())
+                .commit();
+    }
+
+    public void goToSettingsAdmin() {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentSettingsAdmin())
+                .commit();
+    }
+
+    public void goToChangePassFragment(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentChangePasswordAdmin())
+                .commit();
+    }
+
+    public void createAccountAdmin(View view) {
+        //TODO: check if the username it's available
+        EditText usernameET = findViewById(R.id.usernameTextInputCA);
+        EditText passwordET = findViewById(R.id.passwordTextInputCA);
+        EditText confirmPassET = findViewById(R.id.confirmPasswordTextInputCA);
+        String username = usernameET.getText().toString();
+        String pass = passwordET.getText().toString();
+        String confirmPass = confirmPassET.getText().toString();
+
+        if (username.compareTo("") == 0 || confirmPass.compareTo("") == 0 || pass.compareTo("") == 0) {
+            completeAllFields();
+        } else if (pass.compareTo(confirmPass) != 0) {
+            changePasswordFailed();
+        } else {
+            accountCreatedWithSuccess();
+        }
+    }
+
+    private void accountCreatedWithSuccess() {
+        final Dialog customDialog = new Dialog(ActivityAdmin.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText("The account has been created with success !");
+        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+                goToAccountManagementAdmin();
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
+    }
 }
+

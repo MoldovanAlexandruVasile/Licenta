@@ -39,4 +39,6 @@
     <string name="edit_family_name">Edit family name:</string>
     <string name="create_an_account">Create account</string>
     <string name="delete_account">Delete account</string>
+    <string name="username">Username</string>
+    <string name="create_account">Create account</string>
 </resources>
