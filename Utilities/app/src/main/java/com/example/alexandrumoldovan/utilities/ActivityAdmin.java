@@ -27,6 +27,8 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
+
+//TODO: Based on how many apartments are registered on "Resource reports" and "Archive" screens, they will be displayed there for being selected
 public class ActivityAdmin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -79,19 +81,14 @@ public class ActivityAdmin extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_admin, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_about_all_users) {
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentAboutAllUsers())
@@ -248,7 +245,7 @@ public class ActivityAdmin extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                exitFromApp();
+                goToLogInScreen();
             }
         });
 
@@ -263,8 +260,75 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.show();
     }
 
-    private void exitFromApp(){
+    private void goToLogInScreen(){
         Intent intent = new Intent(this, ActivityLogIn.class);
         startActivity(intent);
     }
+
+    public void deleteAccountPopUp(View view){
+        final Dialog customDialog = new Dialog(ActivityAdmin.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(true);
+        customDialog.setContentView(R.layout.custom_login_pop_up);
+        CardView cardView = customDialog.findViewById(R.id.popupDeleteAccountCardView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkFields(customDialog);
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
+    }
+
+    private void checkFields(Dialog customDialog){
+        EditText usernameET = customDialog.findViewById(R.id.usernameEditTextCardView);
+        EditText passwordET = customDialog.findViewById(R.id.passwordEditTextCardView);
+        String username = usernameET.getText().toString();
+        String pass = passwordET.getText().toString();
+        if (username.compareTo("") == 0 || pass.compareTo("") == 0){
+            completePasswordFields();
+        } else{
+            confirmDeleteAccountPoUp(customDialog);
+        }
+    }
+
+    private void confirmDeleteAccountPoUp(final Dialog prev) {
+        final Dialog customDialog = new Dialog(ActivityAdmin.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_exit_pop_up);
+        TextView textView = customDialog.findViewById(R.id.exitPopupTextView);
+        textView.setText("Are you sure you want to delete the account?");
+        CardView yesCardView = customDialog.findViewById(R.id.yesPopUpCardView);
+
+        yesCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: delete account and close popup
+                customDialog.dismiss();
+                prev.dismiss();
+            }
+        });
+
+        CardView noCardView = customDialog.findViewById(R.id.noPopUpCardView);
+        noCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
+    }
+
+
+    public void goToSettingsAdmin(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentSettingsAdmin())
+                .commit();
+    }
+
 }

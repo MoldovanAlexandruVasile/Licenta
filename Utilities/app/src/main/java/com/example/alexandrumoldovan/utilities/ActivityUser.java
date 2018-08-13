@@ -1,5 +1,6 @@
 package com.example.alexandrumoldovan.utilities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -17,11 +18,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -167,7 +170,7 @@ public class ActivityUser extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                exitFromApp();
+                goToLogInScreen();
             }
         });
 
@@ -182,7 +185,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.show();
     }
 
-    private void exitFromApp(){
+    private void goToLogInScreen() {
         Intent intent = new Intent(this, ActivityLogIn.class);
         startActivity(intent);
     }
@@ -275,6 +278,7 @@ public class ActivityUser extends AppCompatActivity
         startActivity(Intent.createChooser(intent, "Choose application"));
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public void goToHistoryFragment(View view) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
@@ -383,6 +387,13 @@ public class ActivityUser extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.content_frame, new FragmentChangePasswordUser())
+                .commit();
+    }
+
+    public void goToSettingsUser(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentSettingsUser())
                 .commit();
     }
 }

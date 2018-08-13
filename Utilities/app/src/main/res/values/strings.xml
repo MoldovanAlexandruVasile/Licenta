@@ -35,4 +35,8 @@
     <string name="confirm_password">Confirm password</string>
     <string name="change_password">Change password</string>
     <string name="pass_admin_role">Pass admin role</string>
+    <string name="new_name">New name</string>
+    <string name="edit_family_name">Edit family name:</string>
+    <string name="create_an_account">Create account</string>
+    <string name="delete_account">Delete account</string>
 </resources>
