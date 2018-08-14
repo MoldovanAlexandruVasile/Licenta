@@ -57,25 +57,30 @@ public class ActivityAdmin extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ActivityAdmin.this);
-        builder.setMessage("Are you sure you want to exit?");
-        builder.setCancelable(true);
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+        final Dialog customDialog = new Dialog(ActivityAdmin.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_exit_pop_up);
+        TextView textView = customDialog.findViewById(R.id.exitPopupTextView);
+        textView.setText("Are you sure you want to exit?");
+        CardView yesCardView = customDialog.findViewById(R.id.yesPopUpCardView);
+
+        yesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(View v) {
                 finish();
             }
         });
 
-        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+        CardView noCardView = customDialog.findViewById(R.id.noPopUpCardView);
+        noCardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
+            public void onClick(View v) {
+                customDialog.dismiss();
             }
         });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
 
     }
 
