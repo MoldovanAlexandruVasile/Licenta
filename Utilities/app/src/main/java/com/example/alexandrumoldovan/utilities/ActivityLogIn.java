@@ -1,9 +1,7 @@
 package com.example.alexandrumoldovan.utilities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -70,7 +68,7 @@ public class ActivityLogIn extends Activity {
         EditText passET = findViewById(R.id.passwordEditTextLogIn);
         String username = usernameET.getText().toString();
         String pass = passET.getText().toString();
-        if (username.compareTo("admin") == 0){
+        if (username.compareTo("admin") == 0) {
             this.finish();
             Intent intent = new Intent(this, ActivityAdmin.class);
             startActivity(intent);
