@@ -34,35 +34,25 @@ public class FragmentHistoryUser extends Fragment {
 
         final ListView listView = history.findViewById(R.id.monthsList);
 
-        // Initializing a new String Array
         String[] values = new String[]{
                 "January", "February", "March", "April",
                 "May", "June", "July", "August",
                 "September", "October", "November", "December"};
 
-        // Create a List from String Array elements
         List<String> monthsList = new ArrayList<>(Arrays.asList(values));
 
-        // Create an ArrayAdapter from List
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, monthsList) {
             @NonNull
             @Override
             public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-                // Get the Item from ListView
+
                 View view = super.getView(position, convertView, parent);
-
-                // Initialize a TextView for ListView each Item
                 TextView tv = view.findViewById(android.R.id.text1);
-
-                // Set the text color of TextView (ListView Item)
                 tv.setTextColor(Color.WHITE);
-
-                // Generate ListView Item using TextView
                 return view;
             }
         };
 
-        // DataBind ListView with items from ArrayAdapter
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

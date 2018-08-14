@@ -82,7 +82,7 @@ public class ActivityUser extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.user, menu);
+        getMenuInflater().inflate(R.menu.activity_user, menu);
         return true;
     }
 
