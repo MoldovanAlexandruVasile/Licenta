@@ -88,7 +88,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/textView8"
         android:layout_marginTop="223dp"
-        android:text="Family name:"
+        android:text="First name:"
         android:textColor="@color/white"
         android:textSize="18sp" />
 

@@ -223,7 +223,7 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.show();
     }
 
-    public void confirmLogOut() {
+    private void confirmLogOut() {
         final Dialog customDialog = new Dialog(ActivityAdmin.this);
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         customDialog.setCanceledOnTouchOutside(false);
@@ -343,7 +343,7 @@ public class ActivityAdmin extends AppCompatActivity
                 .commit();
     }
 
-    public void goToSettingsAdmin() {
+    private void goToSettingsAdmin() {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
                 .replace(R.id.content_frame, new FragmentSettingsAdmin())

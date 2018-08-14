@@ -13,7 +13,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="205dp"
-        android:text="Edit family name:"
+        android:text="@string/edit_family_name"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
