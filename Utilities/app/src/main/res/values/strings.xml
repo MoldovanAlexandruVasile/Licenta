@@ -25,7 +25,7 @@
     <string name="nav_home_user">Home</string>
     <string name="app_home_price_tag_user">Price tags</string>
     <string name="action_info_user">Information</string>
-    <string name="electricity">Electricity:</string>
+    <string name="electricity">Electricity meter:</string>
     <string name="omni_speech">\t\t\t\tOh, hello !\n\t\t\t\tIt looks like you need more information about what is going on here.\n\t\t\t\tWell, lets start. My name is Omni, cool name, right? Hehe, I knew it ! I am a robot programmed to predict your usage for the next month of water, gas and electricity based on how the weather will be in next month and the resources used by you in the past. If you do not have any past reports, I will predict the usage of the resources depending on the weather. \n\t\t\t\tHmmm...I think that is all. Thank you for dropping by. Have a nice day !</string>
     <string name="kw">kW</string>
     <string name="prediction_of_resurces_future">\t\t\t\tPrediction of resources that will be used next month:</string>
@@ -41,4 +41,5 @@
     <string name="delete_account">Delete account</string>
     <string name="username">Username</string>
     <string name="create_account">Create account</string>
+    <string name="events">Events</string>
 </resources>

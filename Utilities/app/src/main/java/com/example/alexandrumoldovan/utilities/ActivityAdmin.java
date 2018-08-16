@@ -110,6 +110,10 @@ public class ActivityAdmin extends AppCompatActivity
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentHomeAdmin())
                     .commit();
+        } else if (id == R.id.nav_event_admin) {
+            fragmentManager.beginTransaction().
+                    replace(R.id.content_frame, new FragmentEventsAdmin())
+                    .commit();
         } else if (id == R.id.nav_payment_status_admin) {
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentResourcesAdmin())

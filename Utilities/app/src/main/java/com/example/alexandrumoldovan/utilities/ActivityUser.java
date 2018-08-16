@@ -22,14 +22,18 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class ActivityUser extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentManager fragmentManager = getFragmentManager();
+    private Map<String, String> resources = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class ActivityUser extends AppCompatActivity
         setContentView(R.layout.activity_user);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        initializeMap();
 
         fragmentManager.beginTransaction().
                 replace(R.id.content_frame, new FragmentHomeUser())
@@ -50,6 +56,13 @@ public class ActivityUser extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initializeMap(){
+        resources.put("Electricity", "");
+        resources.put("Gas", "");
+        resources.put("Water", "");
+        resources.put("Spinner", "");
     }
 
     @Override
@@ -113,9 +126,13 @@ public class ActivityUser extends AppCompatActivity
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentHistoryUser())
                     .commit();
+        } else if (id == R.id.nav_event_user){
+            fragmentManager.beginTransaction().
+                    replace(R.id.content_frame, new FragmentEventsUser())
+                    .commit();
         } else if (id == R.id.nav_payment_user) {
             fragmentManager.beginTransaction().
-                    replace(R.id.content_frame, new FragmentResourcesUser())
+                    replace(R.id.content_frame, new FragmentResourcesElectricityUser())
                     .commit();
         } else if (id == R.id.nav_settings_user) {
             fragmentManager.beginTransaction().
@@ -394,4 +411,127 @@ public class ActivityUser extends AppCompatActivity
                 .replace(R.id.content_frame, new FragmentSettingsUser())
                 .commit();
     }
+
+    public void goToResourceGas(View view) {
+        EditText electricity = findViewById(R.id.electricityUserTextInput);
+        resources.put("Electricity", electricity.getText().toString());
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentResourcesGasUser())
+                .commit();
+    }
+
+    public void goBackToResourceElectricity(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentResourcesElectricityUser())
+                .commit();
+    }
+
+    public void goToResourceWater(View view) {
+        EditText gas = findViewById(R.id.gasUserTextInput);
+        resources.put("Gas", gas.getText().toString());
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentResourcesWaterUser())
+                .commit();
+    }
+
+    public void goBackToResourceGas(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentResourcesGasUser())
+                .commit();
+    }
+
+    public void goToResourceFinalise(View view) {
+        EditText water = findViewById(R.id.waterUserTextInput);
+        resources.put("Water", water.getText().toString());
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentResourcesLastStepUser())
+                .commit();
+    }
+
+    public void goBackToResourceWater(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentResourcesWaterUser())
+                .commit();
+    }
+
+
+    public void openConfirmPopUpForResources(View view) {
+        Spinner spinner = findViewById(R.id.numberPersonsSpinner);
+        resources.put("Spinner", spinner.getSelectedItem().toString());
+
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_confirm_resources_pop_up);
+
+        String electricity = resources.get("Electricity");
+        TextView electricityTW = customDialog.findViewById(R.id.confirmElectricityPopUpTextView);
+        electricityTW.setText(electricity);
+
+        String gas = resources.get("Gas");
+        String water = resources.get("Water");
+        String spinnerText = resources.get("Spinner");
+
+        if (gas.compareTo("") == 0 || water.compareTo("") == 0 || electricity.compareTo("") == 0) {
+            pleaseInsertAllNeededData();
+        } else{
+
+            TextView gasTW = customDialog.findViewById(R.id.confirmGasPopUpTextView);
+            TextView waterTW = customDialog.findViewById(R.id.confirmWaterPopUpTextView);
+            TextView spinner2 = customDialog.findViewById(R.id.confirmPeoplePopUpTextView);
+
+            gasTW.setText(gas);
+            waterTW.setText(water);
+            spinner2.setText(spinnerText);
+
+            CardView yesCardView = customDialog.findViewById(R.id.yesConfirmPopUpCardView);
+
+            yesCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    initializeMap();
+                    customDialog.dismiss();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.content_frame, new FragmentHomeUser())
+                            .commit();
+                }
+            });
+
+            CardView noCardView = customDialog.findViewById(R.id.noConfirmPopUpCardView);
+            noCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    customDialog.dismiss();
+                }
+            });
+            Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            customDialog.show();
+        }
+    }
+
+    private void pleaseInsertAllNeededData(){
+        final Dialog customDialog = new Dialog(ActivityUser.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText("Make sure you've completed all the fields mentioned below:\t\tElectricity\t\tWater\t\tGas");
+        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
+    }
+
 }

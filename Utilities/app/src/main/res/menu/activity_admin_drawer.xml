@@ -9,6 +9,10 @@
                 android:id="@+id/nav_home_user"
                 android:icon="@drawable/ic_home"
                 android:title="@string/app_home_all_users" />
+            <item
+                android:id="@+id/nav_event_admin"
+                android:icon="@drawable/ic_event"
+                android:title="@string/events" />
         </menu>
     </item>
 
