@@ -67,10 +67,10 @@
         <EditText
             android:id="@+id/waterUserTextInput"
             android:layout_width="149dp"
-            android:layout_marginTop="232dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="127dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="232dp"
+            android:layout_toStartOf="@+id/gasUsedThisMonth"
             android:ems="10"
             android:inputType="numberDecimal"
             android:textColor="@color/white"
