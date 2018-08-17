@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_action_back_black"
+        android:focusable="true"
+        android:onClick="goBackToResource"
+        android:text="Back"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="52dp"
+        android:text="@string/prediction_of_resurces_future"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="473dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="30dp"
+            android:layout_height="33dp"
+            android:layout_alignStart="@+id/imageView4"
+            android:layout_alignTop="@+id/watertext"
+            app:srcCompat="@drawable/water" />
+
+        <TextView
+            android:id="@+id/watertext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="58dp"
+            android:layout_marginTop="39dp"
+            android:text="Water:"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/electricityPredictionTextView"
+            android:layout_width="67dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/gasPredictionTextView"
+            android:layout_alignTop="@+id/imageView3"
+            android:text="TBD"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/gasPredictionTextView"
+            android:layout_width="66dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/waterPredictionTextView"
+            android:layout_alignTop="@+id/imageView4"
+            android:text="TBD"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/waterPredictionTextView"
+            android:layout_width="67dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/imageView5"
+            android:layout_marginEnd="102dp"
+            android:text="TBD"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView5"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50dp"
+            android:text="@string/cubicMetter"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignStart="@+id/imageView3"
+            android:layout_alignTop="@+id/gastext"
+            app:srcCompat="@drawable/fire" />
+
+        <TextView
+            android:id="@+id/gastext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/watertext"
+            android:layout_marginTop="99dp"
+            android:text="Gas:"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/gastext"
+            android:layout_alignStart="@+id/textView14"
+            android:text="@string/cubicMetter"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="32dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/electricitytext"
+            android:layout_marginStart="18dp"
+            app:srcCompat="@drawable/electricity" />
+
+        <TextView
+            android:id="@+id/electricitytext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/watertext"
+            android:layout_marginTop="160dp"
+            android:text="Electricity"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView14"
+            android:layout_alignTop="@+id/electricityPredictionTextView"
+            android:text="@string/kw"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="infoAI"
+            app:backgroundTint="@color/white"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/ic_info" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="262dp"
+            android:layout_height="266dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            app:srcCompat="@drawable/omni" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

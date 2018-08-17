@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <group android:id="@+id/homeUser">
+        <item
+            android:id="@+id/nav_home_user"
+            android:icon="@drawable/ic_home"
+            android:title="@string/app_home_all_users" />
+        <item
+            android:id="@+id/nav_profile_user"
+            android:icon="@drawable/ic_person"
+            android:title="@string/profile" />
+    </group>
+
+
+    <group android:id="@+id/resourceUser">
+
+        <item
+            android:id="@+id/nav_payment_user"
+            android:icon="@drawable/ic_calendar"
+            android:title="@string/app_menu_resources_report_user" />
+
+    </group>
+
+
+    <group android:id="@+id/settingsUser">
+        <item
+            android:id="@+id/nav_settings_user"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/app_menu_settings_user" />
+
+        <item
+            android:id="@+id/nav_logoff_user"
+            android:icon="@drawable/ic_exit"
+            android:title="@string/app_menu_log_off" />
+    </group>
+
+</menu>
