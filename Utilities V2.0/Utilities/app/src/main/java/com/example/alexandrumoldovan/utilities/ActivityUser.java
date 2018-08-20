@@ -22,7 +22,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -54,8 +54,13 @@ public class ActivityUser extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view_user);
         navigationView.setNavigationItemSelectedListener(this);
+
+        String username = getIntent().getStringExtra("username");
+        LinearLayout linearLayout = ((NavigationView)(findViewById(R.id.nav_view_user))).getHeaderView(0).findViewById(R.id.userNavigation);
+        TextView usernameTW = linearLayout.findViewById(R.id.navHeaderUsernameUser);
+        usernameTW.setText(username);
     }
 
     private void initializeMap() {
@@ -288,14 +293,14 @@ public class ActivityUser extends AppCompatActivity
     public void goToHistoryFragment(View view) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
-                .replace(R.id.content_frame, new FragmentHistoryUser())
+                .replace(R.id.content_frame, new FragmentArchiveUser())
                 .commit();
     }
 
     public void goToHistoryFragmentV2(View view) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
-                .replace(R.id.content_frame, new FragmentHistoryUser())
+                .replace(R.id.content_frame, new FragmentArchiveUser())
                 .commit();
     }
 

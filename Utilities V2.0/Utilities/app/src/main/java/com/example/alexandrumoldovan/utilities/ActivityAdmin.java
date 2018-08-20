@@ -21,7 +21,9 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -30,6 +32,7 @@ import java.util.Objects;
 public class ActivityAdmin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Toast infoToast;
     private FragmentManager fragmentManager = getFragmentManager();
 
     @Override
@@ -49,8 +52,13 @@ public class ActivityAdmin extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view_admin);
         navigationView.setNavigationItemSelectedListener(this);
+
+        String username = getIntent().getStringExtra("username");
+        LinearLayout linearLayout = ((NavigationView) (findViewById(R.id.nav_view_admin))).getHeaderView(0).findViewById(R.id.adminNavigation);
+        TextView usernameEditText = linearLayout.findViewById(R.id.navHeaderUsernameAdmin);
+        usernameEditText.setText(username);
     }
 
     @Override
@@ -117,10 +125,6 @@ public class ActivityAdmin extends AppCompatActivity
         } else if (id == R.id.nav_payment_status_admin) {
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentResourcesAdmin())
-                    .commit();
-        } else if (id == R.id.nav_archive_admin) {
-            fragmentManager.beginTransaction().
-                    replace(R.id.content_frame, new FragmentArchiveAdmin())
                     .commit();
         } else if (id == R.id.nav_settings_admin) {
             fragmentManager.beginTransaction().
@@ -298,9 +302,11 @@ public class ActivityAdmin extends AppCompatActivity
         yesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: delete account and close popup
+                //TODO: delete account
                 customDialog.dismiss();
                 prev.dismiss();
+                infoToast = Toast.makeText(getBaseContext(), "Account deleted", Toast.LENGTH_LONG);
+                infoToast.show();
             }
         });
 
@@ -323,27 +329,6 @@ public class ActivityAdmin extends AppCompatActivity
                 .commit();
     }
 
-    public void goToAccountManagement(View view) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
-                .replace(R.id.content_frame, new FragmentAccountManagementAdmin())
-                .commit();
-    }
-
-    public void goToCreateAccountAdmin(View view) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
-                .replace(R.id.content_frame, new FragmentCreateAccountAdmin())
-                .commit();
-    }
-
-    private void goToAccountManagementAdmin() {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
-                .replace(R.id.content_frame, new FragmentAccountManagementAdmin())
-                .commit();
-    }
-
     private void goToSettingsAdmin() {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
@@ -360,9 +345,9 @@ public class ActivityAdmin extends AppCompatActivity
 
     public void createAccountAdmin(View view) {
         //TODO: check if the username it's available
-        EditText usernameET = findViewById(R.id.usernameTextInputCA);
-        EditText passwordET = findViewById(R.id.passwordTextInputCA);
-        EditText confirmPassET = findViewById(R.id.confirmPasswordTextInputCA);
+        EditText usernameET = findViewById(R.id.usernameTextInputAdmin);
+        EditText passwordET = findViewById(R.id.newPasswordTextInputAdmin);
+        EditText confirmPassET = findViewById(R.id.confirmPasswordTextInputUser);
         String username = usernameET.getText().toString();
         String pass = passwordET.getText().toString();
         String confirmPass = confirmPassET.getText().toString();
@@ -389,7 +374,6 @@ public class ActivityAdmin extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 customDialog.dismiss();
-                goToAccountManagementAdmin();
             }
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

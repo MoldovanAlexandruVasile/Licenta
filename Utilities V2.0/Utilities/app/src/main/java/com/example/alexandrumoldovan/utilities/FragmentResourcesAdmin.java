@@ -20,7 +20,7 @@ public class FragmentResourcesAdmin extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        resources = inflater.inflate(R.layout.layout_resources_admin, container, false);
+        resources = inflater.inflate(R.layout.layout_resources_main_admin, container, false);
         return resources;
     }
 

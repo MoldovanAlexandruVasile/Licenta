@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FragmentHistoryUser extends Fragment {
+public class FragmentArchiveUser extends Fragment {
 
     View history;
 
@@ -30,7 +30,7 @@ public class FragmentHistoryUser extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        history = inflater.inflate(R.layout.layout_history_user, container, false);
+        history = inflater.inflate(R.layout.layout_archive_user, container, false);
 
         final ListView listView = history.findViewById(R.id.monthsList);
 
@@ -89,15 +89,15 @@ public class FragmentHistoryUser extends Fragment {
     }
 
     private void sendToTheInfoFragment(String s) {
-        FragmentHistoryInfoUser fragmentHistoryInfoUser = new FragmentHistoryInfoUser();
+        FragmentArchiveInfoUser fragmentArchiveInfoUser = new FragmentArchiveInfoUser();
         Bundle args = new Bundle();
         args.putString("Month", s);
-        fragmentHistoryInfoUser.setArguments(args);
+        fragmentArchiveInfoUser.setArguments(args);
         getActivity().getFragmentManager().
                 beginTransaction().
                 setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right).
-                add(R.id.content_frame, fragmentHistoryInfoUser).
-                replace(R.id.content_frame, fragmentHistoryInfoUser).
+                add(R.id.content_frame, fragmentArchiveInfoUser).
+                replace(R.id.content_frame, fragmentArchiveInfoUser).
                 commit();
     }
 }

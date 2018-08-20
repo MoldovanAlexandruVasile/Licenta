@@ -40,9 +40,11 @@
     <string name="new_name">New name</string>
     <string name="edit_name">Edit name:</string>
     <string name="create_an_account">Create account</string>
-    <string name="delete_account">Delete account</string>
+    <string name="delete_account">Delete an account</string>
     <string name="username">Username</string>
     <string name="create_account">Create account</string>
     <string name="events">Events</string>
     <string name="profile">Profile</string>
+    <string name="password">Password</string>
+
 </resources>

@@ -71,10 +71,12 @@ public class ActivityLogIn extends Activity {
         if (username.compareTo("admin") == 0) {
             this.finish();
             Intent intent = new Intent(this, ActivityAdmin.class);
+            intent.putExtra("username", username);
             startActivity(intent);
         } else {
             this.finish();
             Intent intent = new Intent(this, ActivityUser.class);
+            intent.putExtra("username", username);
             startActivity(intent);
         }
         //TODO: InvalidCredentialsMessage !!!!!!!!!!

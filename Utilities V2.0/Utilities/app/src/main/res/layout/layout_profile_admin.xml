@@ -2,138 +2,179 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/familyNameTextViewUser"
+    android:id="@+id/familyNameTextViewAdmin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/gray">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+    <android.support.v7.widget.CardView
+        android:layout_width="359dp"
+        android:layout_height="64dp"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/address"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp">
 
-    <TextView
-        android:id="@+id/addressHomeTextViewAdmin"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/textView8"
-        android:layout_marginEnd="17dp"
-        android:text="TBD"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="25dp"
+                android:text="@string/address"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/addressHomeTextViewAdmin"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/textView8"
+                android:layout_marginEnd="17dp"
+                android:text="TBD"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="359dp"
+        android:layout_height="64dp"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView8"
-        android:layout_marginTop="92dp"
-        android:text="@string/apartment_number"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp">
 
-    <TextView
-        android:id="@+id/apartamentHomeTextViewAdmin"
-        android:layout_width="129dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textview"
-        android:layout_alignStart="@+id/addressHomeTextViewAdmin"
-        android:text="TBD"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="25dp"
+                android:text="@string/apartment_number"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/apartamentHomeTextViewAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="63dp"
+                android:text="TBD"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="359dp"
+        android:layout_height="64dp"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView8"
-        android:layout_marginTop="157dp"
-        android:text="Floor:"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="207dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp">
 
-    <TextView
-        android:id="@+id/floorHomeTextViewAdmin"
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView9"
-        android:layout_alignStart="@+id/addressHomeTextViewAdmin"
-        android:text="TBD"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView8"
-        android:layout_marginTop="220dp"
-        android:text="First name:"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="25dp"
+                android:text="Floor:"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/familyNameHomeTextViewAdmin"
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/addressHomeTextViewAdmin"
-        android:layout_alignTop="@+id/textView10"
-        android:text="TBD"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+            <TextView
+                android:id="@+id/floorHomeTextViewAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="109dp"
+                android:text="TBD"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView8"
-        android:layout_marginTop="279dp"
-        android:text="Reports received:"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
-    <TextView
-        android:id="@+id/reportsReceivedTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/addressHomeTextViewAdmin"
-        android:layout_alignTop="@+id/textView20"
-        android:text="TBD"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/textView20"
-        android:layout_marginEnd="55dp"
-        android:text="TBD"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+    <android.support.v7.widget.CardView
+        android:layout_width="359dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="137dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp">
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/textView20"
-        android:layout_marginEnd="97dp"
-        android:text="/"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="25dp"
+                android:text="Name:"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/familyNameHomeTextViewAdmin"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="17dp"
+                android:text="TBD"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

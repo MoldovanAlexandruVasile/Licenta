@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FragmentHistoryInfoUser extends Fragment {
+public class FragmentArchiveInfoUser extends Fragment {
 
     View historyInfo;
 
@@ -30,7 +30,7 @@ public class FragmentHistoryInfoUser extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        historyInfo = inflater.inflate(R.layout.layout_history_information_user, container, false);
+        historyInfo = inflater.inflate(R.layout.layout_archive_information_user, container, false);
 
         final ListView listView = historyInfo.findViewById(R.id.historyListView);
 

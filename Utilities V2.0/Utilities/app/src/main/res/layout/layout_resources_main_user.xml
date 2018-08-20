@@ -152,14 +152,14 @@
 
             <ImageView
                 android:layout_width="82dp"
-                android:layout_height="88dp"
+                android:layout_height="95dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/history_grid_icon" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Previous reports"
+                android:text="Archive"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="18dp"
