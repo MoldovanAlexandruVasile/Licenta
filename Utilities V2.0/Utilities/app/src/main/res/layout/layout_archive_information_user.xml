@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/gray">
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -29,7 +29,7 @@
             android:onClick="goToHistoryFragment"
             android:text="Back"
             android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
         <ListView
             android:id="@+id/historyListView"

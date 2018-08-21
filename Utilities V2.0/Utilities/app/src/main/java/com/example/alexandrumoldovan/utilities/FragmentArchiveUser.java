@@ -24,7 +24,7 @@ public class FragmentArchiveUser extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((ActivityUser) getActivity()).setActionBarTitle("History");
+        ((ActivityUser) getActivity()).setActionBarTitle("Archive");
     }
 
     @Nullable

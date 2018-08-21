@@ -3,6 +3,7 @@ package com.example.alexandrumoldovan.utilities;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,9 +21,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -41,6 +45,8 @@ public class ActivityUser extends AppCompatActivity
         setContentView(R.layout.activity_user);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         initializeMap();
 
@@ -491,23 +497,5 @@ public class ActivityUser extends AppCompatActivity
 
     }
 
-    private void pleaseInsertAllNeededData() {
-        final Dialog customDialog = new Dialog(ActivityUser.this);
-        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        customDialog.setCanceledOnTouchOutside(false);
-        customDialog.setContentView(R.layout.custom_pop_up);
-        TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("Make sure you've completed all the fields ");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
-
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customDialog.dismiss();
-            }
-        });
-        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        customDialog.show();
-    }
 
 }

@@ -18,7 +18,7 @@
         android:onClick="goToPredictFragment"
         android:text="Back"
         android:textColor="@android:color/black"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textView18"
