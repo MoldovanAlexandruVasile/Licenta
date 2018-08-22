@@ -16,13 +16,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.HashMap;
-
 public class FragmentHomeUser extends Fragment {
 
     private Integer countDown = 1;
     private View user;
-    private HashMap<String, Boolean> isDropped = new HashMap<>();
     private Integer noOfEvents = 3;
 
     @Override
@@ -75,10 +72,9 @@ public class FragmentHomeUser extends Fragment {
 
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
 
-            View viewEvent = layoutInflater.inflate(R.layout.layout_event_user, null);
+            View viewEvent = layoutInflater.inflate(R.layout.layout_event_notification_user, null);
 
             final String eventID = "eventID" + String.valueOf(countDown);
-            isDropped.put(eventID, false);
             countDown++;
 
             myView1 = viewEvent.findViewById(R.id.my_view1);
@@ -88,13 +84,12 @@ public class FragmentHomeUser extends Fragment {
             myView2.setVisibility(View.GONE);
             myView3.setVisibility(View.GONE);
 
-
             ImageView imageView = myView1.findViewById(R.id.action_image_menu);
 
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onSlideViewButtonClick(myView1, myView2, myView3, eventID);
+                    onSlideViewButtonClick(myView1, myView2, myView3);
                 }
             });
 
@@ -108,7 +103,7 @@ public class FragmentHomeUser extends Fragment {
                     TextView participationTV = myView1.findViewById(R.id.eventParticipationTextViewUser);
                     participationTV.setText("Participating");
                     participationTV.setTypeface(null, Typeface.BOLD);
-                    onSlideViewButtonClick(myView1, myView2, myView3, eventID);
+                    onSlideViewButtonClick(myView1, myView2, myView3);
                 }
             });
 
@@ -119,7 +114,7 @@ public class FragmentHomeUser extends Fragment {
                     TextView participationTV = myView1.findViewById(R.id.eventParticipationTextViewUser);
                     participationTV.setText("Declined");
                     participationTV.setTypeface(null, Typeface.BOLD);
-                    onSlideViewButtonClick(myView1, myView2, myView3, eventID);
+                    onSlideViewButtonClick(myView1, myView2, myView3);
                 }
             });
 
@@ -164,13 +159,12 @@ public class FragmentHomeUser extends Fragment {
                 }, 500);
     }
 
-    public void onSlideViewButtonClick(View myView1, View myView2, View myView3, String key) {
-        if (isDropped.get(key)) {
+    public void onSlideViewButtonClick(View myView1, View myView2, View myView3) {
+        if (myView2.getVisibility() == View.VISIBLE) {
             slideUp(myView1, myView2, myView3);
         } else {
             slideDown(myView1, myView2, myView3);
         }
-        isDropped.put(key, !isDropped.get(key));
     }
 
 }

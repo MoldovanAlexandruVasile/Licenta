@@ -47,7 +47,6 @@ public class ActivityUser extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
         initializeMap();
 
         fragmentManager.beginTransaction().
@@ -64,7 +63,7 @@ public class ActivityUser extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         String username = getIntent().getStringExtra("username");
-        LinearLayout linearLayout = ((NavigationView)(findViewById(R.id.nav_view_user))).getHeaderView(0).findViewById(R.id.userNavigation);
+        LinearLayout linearLayout = ((NavigationView) (findViewById(R.id.nav_view_user))).getHeaderView(0).findViewById(R.id.userNavigation);
         TextView usernameTW = linearLayout.findViewById(R.id.navHeaderUsernameUser);
         usernameTW.setText(username);
     }
@@ -316,6 +315,7 @@ public class ActivityUser extends AppCompatActivity
                 .replace(R.id.content_frame, new FragmentPredictUser())
                 .commit();
     }
+
 
     public void goToPredictFragmentV2(View view) {
         fragmentManager.beginTransaction()

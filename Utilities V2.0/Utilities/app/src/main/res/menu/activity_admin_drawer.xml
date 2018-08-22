@@ -17,10 +17,6 @@
 
 
     <group android:id="@+id/reportsAdmin">
-        <item
-            android:id="@+id/nav_payment_status_admin"
-            android:icon="@drawable/ic_calendar"
-            android:title="@string/app_menu_resource_reports_admin" />
 
         <item
             android:id="@+id/nav_account_management_admin"

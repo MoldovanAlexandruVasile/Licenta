@@ -122,10 +122,6 @@ public class ActivityAdmin extends AppCompatActivity
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentProfileAdmin())
                     .commit();
-        } else if (id == R.id.nav_payment_status_admin) {
-            fragmentManager.beginTransaction().
-                    replace(R.id.content_frame, new FragmentResourcesAdmin())
-                    .commit();
         } else if (id == R.id.nav_settings_admin) {
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentSettingsAdmin())
@@ -378,6 +374,27 @@ public class ActivityAdmin extends AppCompatActivity
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         customDialog.show();
+    }
+
+    public void goToArchiveAdmin(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentArchiveAdmin())
+                .commit();
+    }
+
+    public void goToHomeAdmin(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentHomeAdmin())
+                .commit();
+    }
+
+    public void goToCreateEventAdmin(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentCreateEventAdmin())
+                .commit();
     }
 }
 
