@@ -494,8 +494,5 @@ public class ActivityUser extends AppCompatActivity
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         customDialog.show();
-
     }
-
-
 }
