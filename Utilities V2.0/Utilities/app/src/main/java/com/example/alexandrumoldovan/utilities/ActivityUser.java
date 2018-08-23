@@ -472,6 +472,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_confirm_resources_pop_up);
 
 
+
         CardView yesCardView = customDialog.findViewById(R.id.yesConfirmPopUpCardView);
 
         yesCardView.setOnClickListener(new View.OnClickListener() {
