@@ -25,7 +25,6 @@ public class FragmentArchiveAdmin extends Fragment {
 
         ListView listView = archive.findViewById(R.id.apartmentsListArchive);
 
-
         CustomAdapter customAdapter = new CustomAdapter();
 
         listView.setAdapter(customAdapter);
@@ -56,6 +55,8 @@ public class FragmentArchiveAdmin extends Fragment {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
 
             View viewEvent = layoutInflater.inflate(R.layout.custom_row_apartment_admin, null);
+
+            viewEvent.setMinimumHeight(100);
 
             return viewEvent;
         }

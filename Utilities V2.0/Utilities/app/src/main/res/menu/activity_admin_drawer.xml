@@ -15,16 +15,6 @@
             android:title="@string/profile" />
     </group>
 
-
-    <group android:id="@+id/reportsAdmin">
-
-        <item
-            android:id="@+id/nav_account_management_admin"
-            android:icon="@drawable/ic_person"
-            android:title="@string/app_bar_accounts_management_admin" />
-
-    </group>
-
     <group android:id="@+id/settingsAdmin">
         <item
             android:id="@+id/nav_settings_admin"

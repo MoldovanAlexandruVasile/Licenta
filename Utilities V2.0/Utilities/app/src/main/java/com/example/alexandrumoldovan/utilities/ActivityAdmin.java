@@ -126,10 +126,6 @@ public class ActivityAdmin extends AppCompatActivity
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentSettingsAdmin())
                     .commit();
-        } else if (id == R.id.nav_account_management_admin) {
-            fragmentManager.beginTransaction().
-                    replace(R.id.content_frame, new FragmentAccountManagementAdmin())
-                    .commit();
         } else if (id == R.id.nav_logoff_admin) {
             confirmLogOut();
         }
@@ -401,6 +397,13 @@ public class ActivityAdmin extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.content_frame, new FragmentMonthReportsAdmin())
+                .commit();
+    }
+
+    public void goToAccountsManagementAdmin(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentAccountManagementAdmin())
                 .commit();
     }
 }
