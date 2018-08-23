@@ -396,5 +396,12 @@ public class ActivityAdmin extends AppCompatActivity
                 .replace(R.id.content_frame, new FragmentCreateEventAdmin())
                 .commit();
     }
+
+    public void goToMonthReportsAdmin(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentMonthReportsAdmin())
+                .commit();
+    }
 }
 

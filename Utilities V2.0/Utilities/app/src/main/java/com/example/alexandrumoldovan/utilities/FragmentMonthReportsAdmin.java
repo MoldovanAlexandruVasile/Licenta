@@ -9,21 +9,23 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-public class FragmentArchiveAdmin extends Fragment {
+
+public class FragmentMonthReportsAdmin extends Fragment {
     View archive;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle("Archive");
+        getActivity().setTitle("Month reports");
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        archive = inflater.inflate(R.layout.layout_archive_admin, container, false);
+        archive = inflater.inflate(R.layout.layout_months_reports_admin, container, false);
 
-        ListView listView = archive.findViewById(R.id.apartmentsListArchive);
+
+        ListView listView = archive.findViewById(R.id.apartmentsListCurrentMonth);
 
 
         CustomAdapter customAdapter = new CustomAdapter();
@@ -36,7 +38,7 @@ public class FragmentArchiveAdmin extends Fragment {
     class CustomAdapter extends BaseAdapter {
         @Override
         public int getCount() {
-            return 8;
+            return 9;
         }
 
         @Override
