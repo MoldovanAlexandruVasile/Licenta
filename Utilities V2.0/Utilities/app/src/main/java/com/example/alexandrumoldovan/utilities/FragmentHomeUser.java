@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 public class FragmentHomeUser extends Fragment {
 
-    private Integer countDown = 1;
     private View user;
     private Integer noOfEvents = 3;
 
@@ -73,9 +72,6 @@ public class FragmentHomeUser extends Fragment {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
 
             View viewEvent = layoutInflater.inflate(R.layout.layout_event_notification_user, null);
-
-            final String eventID = "eventID" + String.valueOf(countDown);
-            countDown++;
 
             myView1 = viewEvent.findViewById(R.id.my_view1);
             myView2 = viewEvent.findViewById(R.id.my_view2);
