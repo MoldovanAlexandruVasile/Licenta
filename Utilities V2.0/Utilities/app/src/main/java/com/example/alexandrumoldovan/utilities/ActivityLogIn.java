@@ -38,7 +38,7 @@ public class ActivityLogIn extends Activity {
 
         rellay1 = findViewById(R.id.rellay1);
 
-        handler.postDelayed(runnable, 2000); //2000 is the timeout for the splash
+        handler.postDelayed(runnable, 1500);
 
     }
 
