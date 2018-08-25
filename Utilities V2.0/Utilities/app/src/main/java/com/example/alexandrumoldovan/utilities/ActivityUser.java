@@ -61,11 +61,6 @@ public class ActivityUser extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view_user);
         navigationView.setNavigationItemSelectedListener(this);
-
-        String username = getIntent().getStringExtra("username");
-        LinearLayout linearLayout = ((NavigationView) (findViewById(R.id.nav_view_user))).getHeaderView(0).findViewById(R.id.userNavigation);
-        TextView usernameTW = linearLayout.findViewById(R.id.navHeaderUsernameUser);
-        usernameTW.setText(username);
     }
 
     private void initializeMap() {

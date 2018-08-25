@@ -54,11 +54,6 @@ public class ActivityAdmin extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view_admin);
         navigationView.setNavigationItemSelectedListener(this);
-
-        String username = getIntent().getStringExtra("username");
-        LinearLayout linearLayout = ((NavigationView) (findViewById(R.id.nav_view_admin))).getHeaderView(0).findViewById(R.id.adminNavigation);
-        TextView usernameEditText = linearLayout.findViewById(R.id.navHeaderUsernameAdmin);
-        usernameEditText.setText(username);
     }
 
     @Override
@@ -404,6 +399,13 @@ public class ActivityAdmin extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.content_frame, new FragmentAccountManagementAdmin())
+                .commit();
+    }
+
+    public void goToEventsReportsAdmin(View view){
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentEventsReportsAdmin())
                 .commit();
     }
 }

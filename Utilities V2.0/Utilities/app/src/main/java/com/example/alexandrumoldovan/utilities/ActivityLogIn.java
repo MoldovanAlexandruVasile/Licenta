@@ -6,23 +6,40 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Objects;
 
 public class ActivityLogIn extends Activity {
 
+    RelativeLayout rellay1;
+
+    Handler handler = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            rellay1.setVisibility(View.VISIBLE);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_log_in);
+
+        rellay1 = findViewById(R.id.rellay1);
+
+        handler.postDelayed(runnable, 2000); //2000 is the timeout for the splash
+
     }
 
     @Override
@@ -71,12 +88,10 @@ public class ActivityLogIn extends Activity {
         if (username.compareTo("admin") == 0) {
             this.finish();
             Intent intent = new Intent(this, ActivityAdmin.class);
-            intent.putExtra("username", username);
             startActivity(intent);
         } else {
             this.finish();
             Intent intent = new Intent(this, ActivityUser.class);
-            intent.putExtra("username", username);
             startActivity(intent);
         }
         //TODO: InvalidCredentialsMessage !!!!!!!!!!

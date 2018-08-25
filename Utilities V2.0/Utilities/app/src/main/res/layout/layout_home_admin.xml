@@ -137,7 +137,8 @@
         app:cardElevation="8dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:onClick="goToEventsReportsAdmin">
 
         <LinearLayout
             android:layout_width="wrap_content"
