@@ -71,7 +71,7 @@ public class FragmentHomeUser extends Fragment {
 
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
 
-            View viewEvent = layoutInflater.inflate(R.layout.layout_event_notification_user, null);
+            View viewEvent = layoutInflater.inflate(R.layout.custom_event_notification_user, null);
 
             myView1 = viewEvent.findViewById(R.id.my_view1);
             myView2 = viewEvent.findViewById(R.id.my_view2);
