@@ -22,13 +22,9 @@ public class FragmentArchiveAdmin extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         archive = inflater.inflate(R.layout.layout_archive_admin, container, false);
-
         ListView listView = archive.findViewById(R.id.apartmentsListArchive);
-
         CustomAdapter customAdapter = new CustomAdapter();
-
         listView.setAdapter(customAdapter);
-
         return archive;
     }
 

@@ -2,6 +2,7 @@ package com.example.alexandrumoldovan.utilities;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,11 +20,10 @@ import android.widget.TextView;
 import java.util.Objects;
 
 public class ActivityLogIn extends Activity {
+    private RelativeLayout rellay1;
 
-    RelativeLayout rellay1;
-
-    Handler handler = new Handler();
-    Runnable runnable = new Runnable() {
+    private Handler handler = new Handler();
+    private Runnable runnable = new Runnable() {
         @Override
         public void run() {
             rellay1.setVisibility(View.VISIBLE);
@@ -35,11 +35,8 @@ public class ActivityLogIn extends Activity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_log_in);
-
         rellay1 = findViewById(R.id.rellay1);
-
         handler.postDelayed(runnable, 1500);
-
     }
 
     @Override
@@ -86,14 +83,16 @@ public class ActivityLogIn extends Activity {
         String username = usernameET.getText().toString();
         String pass = passET.getText().toString();
         if (username.compareTo("admin") == 0) {
-            this.finish();
-            Intent intent = new Intent(this, ActivityAdmin.class);
+            Intent intent = new Intent(getApplicationContext(), ActivityAdmin.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            finish();
         } else {
-            this.finish();
-            Intent intent = new Intent(this, ActivityUser.class);
+            Intent intent = new Intent(getApplicationContext(), ActivityAssociationCode.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            finish();
         }
-        //TODO: InvalidCredentialsMessage !!!!!!!!!!
+        //TODO: InvalidCredentialsMessage
     }
 }

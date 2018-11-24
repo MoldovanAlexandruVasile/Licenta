@@ -39,12 +39,22 @@
     <string name="pass_admin_role">Pass admin role</string>
     <string name="new_name">New name</string>
     <string name="edit_name">Edit name:</string>
-    <string name="create_an_account">Create account</string>
     <string name="delete_account">Delete an account</string>
     <string name="username">Username</string>
     <string name="create_account">Create account</string>
     <string name="events">Events</string>
     <string name="profile">Profile</string>
     <string name="password">Password</string>
+    <string name="waiting">Waiting...</string>
+    <string name="do_you_have_a_private_contract_with_a_electricity_provider">Do you have a private contract with a electricity provider?</string>
+    <string name="do_you_have_a_private_contract_with_a_water_provider">Do you have a private contract with a water provider?</string>
+    <string name="do_you_have_a_private_contract_with_a_gas_provider">Do you have a private contract with a gas provider?</string>
+    <string name="garage_usage">Garage usage:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="are_you_at_home">Are you at home?</string>
+    <string name="save">Save</string>
+    <string name="please_enter_the_association_code_you_are_part_of">Please enter the association code you are part of:</string>
+    <string name="delete_account_text">Are you sure you want to delete the account?</string>
 
 </resources>

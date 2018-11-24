@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rellay1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/log_in_gradient">
+
+    <EditText
+        android:id="@+id/et_vfcode_digit1"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="233dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="8dp"
+        android:ems="1"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:inputType="numberPassword"
+        android:maxLength="1"
+        android:textColor="@color/white"
+        android:theme="@style/MyEditTextTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/et_vfcode_digit2"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.71"/>
+
+    <EditText
+        android:id="@+id/et_vfcode_digit2"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="233dp"
+        android:ems="1"
+        android:gravity="center"
+        android:inputType="numberPassword"
+        android:maxLength="1"
+        android:textColor="@color/white"
+        android:theme="@style/MyEditTextTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/et_vfcode_digit3"
+        app:layout_constraintStart_toEndOf="@+id/et_vfcode_digit1"
+        app:layout_constraintTop_toTopOf="@+id/et_vfcode_digit1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/et_vfcode_digit3"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="233dp"
+        android:ems="1"
+        android:gravity="center"
+        android:inputType="numberPassword"
+        android:maxLength="1"
+        android:textColor="@color/white"
+        android:theme="@style/MyEditTextTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/et_vfcode_digit4"
+        app:layout_constraintStart_toEndOf="@+id/et_vfcode_digit2"
+        app:layout_constraintTop_toTopOf="@+id/et_vfcode_digit2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/et_vfcode_digit4"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="233dp"
+        android:layout_marginEnd="51dp"
+        android:ems="1"
+        android:gravity="center"
+        android:inputType="numberPassword"
+        android:maxLength="1"
+        android:textColor="@color/white"
+        android:theme="@style/MyEditTextTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/et_vfcode_digit3"
+        app:layout_constraintTop_toTopOf="@+id/et_vfcode_digit3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="368dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/please_enter_the_association_code_you_are_part_of"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.471" />
+
+</android.support.constraint.ConstraintLayout>

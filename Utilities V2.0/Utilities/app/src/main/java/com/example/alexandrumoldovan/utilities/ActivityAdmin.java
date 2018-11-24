@@ -21,7 +21,6 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -164,7 +163,7 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("Please complete all the fields !");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,7 +182,7 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("The password was changed with success !");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,7 +202,7 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("Passwords do not match !");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,6 +245,7 @@ public class ActivityAdmin extends AppCompatActivity
     private void goToLogInScreen() {
         Intent intent = new Intent(this, ActivityLogIn.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     public void deleteAccountPopUp(View view) {
@@ -283,7 +283,7 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_exit_pop_up);
         TextView textView = customDialog.findViewById(R.id.exitPopupTextView);
-        textView.setText("Are you sure you want to delete the account?");
+        textView.setText(R.string.delete_account_text);
         CardView yesCardView = customDialog.findViewById(R.id.yesPopUpCardView);
 
         yesCardView.setOnClickListener(new View.OnClickListener() {
@@ -355,7 +355,7 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("The account has been created with success !");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override

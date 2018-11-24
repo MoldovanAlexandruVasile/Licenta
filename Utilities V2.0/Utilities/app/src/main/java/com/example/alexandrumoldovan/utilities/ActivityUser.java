@@ -3,7 +3,6 @@ package com.example.alexandrumoldovan.utilities;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,12 +20,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -45,12 +40,10 @@ public class ActivityUser extends AppCompatActivity
         setContentView(R.layout.activity_user);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         initializeMap();
-
-        fragmentManager.beginTransaction().
-                replace(R.id.content_frame, new FragmentHomeUser())
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, new FragmentHomeUser())
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .commit();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -199,6 +192,7 @@ public class ActivityUser extends AppCompatActivity
     private void goToLogInScreen() {
         Intent intent = new Intent(this, ActivityLogIn.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     public void showNoOfPplInfo(View view) {
@@ -208,7 +202,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("Please choose the number of people that lived in the house more than 20 days a month.");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,7 +222,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("You will be charged for keeping the garage clean if you are using a parking spot in it.");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,7 +242,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("You will be charged for the cleaning of the apartment building each month.");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,7 +261,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("You will be charged if the apartment building needs any reparations.");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -284,9 +278,9 @@ public class ActivityUser extends AppCompatActivity
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"qamytesting@yahoo.com"});
         intent.putExtra(Intent.EXTRA_SUBJECT, "Utilities");
-
         intent.setType("message/rfc822");
         startActivity(Intent.createChooser(intent, "Choose application"));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -351,7 +345,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("Please complete all the fields !");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -370,7 +364,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("The password was changed with success !");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -390,7 +384,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("Passwords do not match !");
-        CardView cardView = customDialog.findViewById(R.id.popupCardView);
+        CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -414,6 +408,9 @@ public class ActivityUser extends AppCompatActivity
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.content_frame, new FragmentChangePasswordUser())
                 .commit();
+    }
+
+    public void saveUserName(View view){
     }
 
     public void goToSettingsUser(View view) {
@@ -465,7 +462,6 @@ public class ActivityUser extends AppCompatActivity
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_confirm_resources_pop_up);
-
 
 
         CardView yesCardView = customDialog.findViewById(R.id.yesConfirmPopUpCardView);

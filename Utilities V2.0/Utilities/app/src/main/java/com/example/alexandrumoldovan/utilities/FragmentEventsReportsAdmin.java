@@ -22,14 +22,14 @@ public class FragmentEventsReportsAdmin extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         eventsReports = inflater.inflate(R.layout.layout_event_reports_admin, container, false);
-
-
         ListView listView = eventsReports.findViewById(R.id.eventsReportsListEventsReports);
-
-        CustomAdapter customAdapter = new CustomAdapter();
-
+        CustomAdapter customAdapter = new CustomAdapter() {
+            @Override
+            public boolean isEnabled(int position) {
+                return false;
+            }
+        };
         listView.setAdapter(customAdapter);
-
         return eventsReports;
     }
 

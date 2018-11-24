@@ -14,13 +14,13 @@ public class FragmentResourcesUser extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((ActivityUser) getActivity()).setActionBarTitle("Resources report");
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
         grid = inflater.inflate(R.layout.layout_resources_main_user, container, false);
+        ((ActivityUser) getActivity()).setActionBarTitle("Resources report");
         return grid;
     }
 }

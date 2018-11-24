@@ -15,10 +15,8 @@ public class FragmentResourcesWaterUser extends Fragment {
     View resources;
 
     public void FragmentResourcesWaterUser(String s) {
-
-            EditText editText = getActivity().findViewById(R.id.waterUserTextInput);
-            editText.setText(s);
-
+        EditText editText = getActivity().findViewById(R.id.waterUserTextInput);
+        editText.setText(s);
     }
 
     @Override
