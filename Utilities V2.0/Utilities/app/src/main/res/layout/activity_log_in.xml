@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/log_in_gradient"
-    tools:context=".ActivityLogIn"
-    android:onClick="hideKeyboardLogIn">
+    android:onClick="hideKeyboardLogIn"
+    tools:context=".ActivityLogIn">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -33,12 +33,10 @@
             android:layout_below="@+id/imgView_logo"
             android:visibility="gone">
 
-
             <LinearLayout
                 android:id="@+id/linlay1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_login"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
@@ -104,6 +102,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/logInBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_below="@+id/linlay1"
@@ -111,13 +110,37 @@
                 android:layout_marginTop="50dp"
                 android:background="@drawable/btn_bg"
                 android:fontFamily="sans-serif-medium"
+                android:onClick="checkLogInCredentials"
                 android:paddingLeft="70dp"
                 android:paddingRight="70dp"
                 android:text="Log in"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:onClick="checkLogInCredentials" />
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="134dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="34dp"
+                    android:text="@string/or_you_can_use"
+                    android:textColor="@color/white" />
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/sign_in_button"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+
         </RelativeLayout>
 
     </RelativeLayout>

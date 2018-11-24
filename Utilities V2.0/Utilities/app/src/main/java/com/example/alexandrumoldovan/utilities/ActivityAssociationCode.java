@@ -31,12 +31,21 @@ public class ActivityAssociationCode extends AppCompatActivity implements TextWa
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("Invalid association code !");
+        textView.setText(R.string.invalid_code);
         CardView cardView = customDialog.findViewById(R.id.okButton);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!et_digit1.getText().toString().isEmpty())
+                    et_digit1.setText("");
+                if (!et_digit2.getText().toString().isEmpty())
+                    et_digit2.setText("");
+                if (!et_digit3.getText().toString().isEmpty())
+                    et_digit3.setText("");
+                if (!et_digit4.getText().toString().isEmpty())
+                    et_digit4.setText("");
                 customDialog.dismiss();
+                et_digit1.requestFocus();
             }
         });
     }
@@ -106,12 +115,11 @@ public class ActivityAssociationCode extends AppCompatActivity implements TextWa
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                    } else
+                    } else {
                         customDialog.show();
+                    }
                 }
                 break;
-
-
             default:
                 break;
         }

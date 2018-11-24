@@ -3,7 +3,6 @@ package com.example.alexandrumoldovan.utilities;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;

@@ -56,5 +56,9 @@
     <string name="save">Save</string>
     <string name="please_enter_the_association_code_you_are_part_of">Please enter the association code you are part of:</string>
     <string name="delete_account_text">Are you sure you want to delete the account?</string>
+    <string name="google">Google</string>
+    <string name="or_you_can_use">Or you can use:</string>
+    <string name="invalid_code">Invalid association code !</string>
+    <string name="e_mail_address">E-Mail address:</string>
 
 </resources>

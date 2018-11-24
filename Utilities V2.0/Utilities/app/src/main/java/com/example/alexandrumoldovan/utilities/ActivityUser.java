@@ -23,6 +23,15 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +43,9 @@ public class ActivityUser extends AppCompatActivity
     private FragmentManager fragmentManager = getFragmentManager();
     private Map<String, String> resources = new HashMap<>();
 
+    public static GoogleSignInAccount acct;
+    private GoogleApiClient googleApiClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +53,7 @@ public class ActivityUser extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initializeMap();
+        acct = GoogleSignIn.getLastSignedInAccount(this);
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, new FragmentHomeUser())
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
@@ -54,6 +67,31 @@ public class ActivityUser extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view_user);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+        googleApiClient.connect();
+        super.onStart();
+    }
+
+    private void performLogOut() {
+        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                        Toast.makeText(getApplicationContext(), "You've been logged out.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), ActivityLogIn.class);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                        startActivity(intent);
+                    }
+                });
     }
 
     private void initializeMap() {
@@ -77,6 +115,12 @@ public class ActivityUser extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
+                Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
+                        new ResultCallback<Status>() {
+                            @Override
+                            public void onResult(Status status) {
+                            }
+                        });
             }
         });
 
@@ -173,8 +217,8 @@ public class ActivityUser extends AppCompatActivity
         yesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                performLogOut();
                 finish();
-                goToLogInScreen();
             }
         });
 
@@ -187,12 +231,6 @@ public class ActivityUser extends AppCompatActivity
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         customDialog.show();
-    }
-
-    private void goToLogInScreen() {
-        Intent intent = new Intent(this, ActivityLogIn.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     public void showNoOfPplInfo(View view) {
@@ -410,7 +448,7 @@ public class ActivityUser extends AppCompatActivity
                 .commit();
     }
 
-    public void saveUserName(View view){
+    public void saveUserName(View view) {
     }
 
     public void goToSettingsUser(View view) {
