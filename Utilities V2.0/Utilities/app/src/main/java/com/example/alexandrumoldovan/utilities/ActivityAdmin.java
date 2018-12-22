@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-
 //TODO: Based on how many apartments are registered on "Resource reports" and "Archive" screens, they will be displayed there for being selected
 public class ActivityAdmin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,7 +63,6 @@ public class ActivityAdmin extends AppCompatActivity
         TextView textView = customDialog.findViewById(R.id.exitPopupTextView);
         textView.setText("Are you sure you want to exit?");
         CardView yesCardView = customDialog.findViewById(R.id.yesPopUpCardView);
-
         yesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +79,6 @@ public class ActivityAdmin extends AppCompatActivity
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         customDialog.show();
-
     }
 
     @Override

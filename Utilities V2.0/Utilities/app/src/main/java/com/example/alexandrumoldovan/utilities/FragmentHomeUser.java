@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,6 @@ import android.widget.TextView;
 
 public class FragmentHomeUser extends Fragment {
 
-    private View user;
-    private Integer noOfEvents = 3;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +25,7 @@ public class FragmentHomeUser extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        user = inflater.inflate(R.layout.layout_home_user, container, false);
+        View user = inflater.inflate(R.layout.layout_home_user, container, false);
         ListView listView = user.findViewById(R.id.eventsListView);
         CustomAdapter customAdapter = new CustomAdapter() {
             @Override
@@ -42,7 +40,7 @@ public class FragmentHomeUser extends Fragment {
     class CustomAdapter extends BaseAdapter {
         @Override
         public int getCount() {
-            return noOfEvents;
+            return 3;
         }
 
         @Override
@@ -75,12 +73,18 @@ public class FragmentHomeUser extends Fragment {
                 @Override
                 public void onClick(View v) {
                     TextView participationTV = eventInfoCVUser.findViewById(R.id.eventParticipationTextViewUser);
-                    participationTV.setText("Participating");
-                    participationTV.setTypeface(null, Typeface.BOLD);
-                    LinearLayout linearLayout = optionsCVU.findViewById(R.id.confirmParticipationTextViewUser);
-                    linearLayout.setBackgroundColor(getResources().getColor(R.color.green));
-                    linearLayout = optionsCVU.findViewById(R.id.declineParticipationTextViewUser);
-                    linearLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                    if (participationTV.getText().equals("Waiting...") || participationTV.getText().equals("Decline")) {
+                        participationTV.setText("Participate");
+                        participationTV.setTypeface(null, Typeface.BOLD);
+                        LinearLayout linearLayout = optionsCVU.findViewById(R.id.confirmParticipationTextViewUser);
+                        linearLayout.setBackgroundColor(getResources().getColor(R.color.green));
+                        linearLayout = optionsCVU.findViewById(R.id.declineParticipationTextViewUser);
+                        linearLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                    } else {
+                        participationTV.setText("Waiting...");
+                        LinearLayout linearLayout = optionsCVU.findViewById(R.id.confirmParticipationTextViewUser);
+                        linearLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                    }
                 }
             });
 
@@ -89,12 +93,18 @@ public class FragmentHomeUser extends Fragment {
                 @Override
                 public void onClick(View v) {
                     TextView participationTV = eventInfoCVUser.findViewById(R.id.eventParticipationTextViewUser);
-                    participationTV.setText("Declined");
-                    participationTV.setTypeface(null, Typeface.BOLD);
-                    LinearLayout linearLayout = optionsCVU.findViewById(R.id.confirmParticipationTextViewUser);
-                    linearLayout.setBackgroundColor(getResources().getColor(R.color.white));
-                    linearLayout = optionsCVU.findViewById(R.id.declineParticipationTextViewUser);
-                    linearLayout.setBackgroundColor(getResources().getColor(R.color.red));
+                    if (participationTV.getText().equals("Waiting...") || participationTV.getText().equals("Participate")) {
+                        participationTV.setText("Decline");
+                        participationTV.setTypeface(null, Typeface.BOLD);
+                        LinearLayout linearLayout = optionsCVU.findViewById(R.id.confirmParticipationTextViewUser);
+                        linearLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                        linearLayout = optionsCVU.findViewById(R.id.declineParticipationTextViewUser);
+                        linearLayout.setBackgroundColor(getResources().getColor(R.color.red));
+                    } else {
+                        participationTV.setText("Waiting...");
+                        LinearLayout linearLayout = optionsCVU.findViewById(R.id.declineParticipationTextViewUser);
+                        linearLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                    }
                 }
             });
             return viewEvent;

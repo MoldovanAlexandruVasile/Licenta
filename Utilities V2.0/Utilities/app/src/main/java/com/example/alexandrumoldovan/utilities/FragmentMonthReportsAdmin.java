@@ -45,14 +45,10 @@ public class FragmentMonthReportsAdmin extends Fragment {
             return 0;
         }
 
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-
             View viewEvent = layoutInflater.inflate(R.layout.custom_row_apartment_admin, null);
-
             return viewEvent;
         }
     }

@@ -25,14 +25,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -43,8 +35,6 @@ public class ActivityUser extends AppCompatActivity
     private FragmentManager fragmentManager = getFragmentManager();
     private Map<String, String> resources = new HashMap<>();
 
-    public static GoogleSignInAccount acct;
-    private GoogleApiClient googleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +43,6 @@ public class ActivityUser extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initializeMap();
-        acct = GoogleSignIn.getLastSignedInAccount(this);
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, new FragmentHomeUser())
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
@@ -69,29 +58,12 @@ public class ActivityUser extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    @Override
-    protected void onStart() {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-        googleApiClient.connect();
-        super.onStart();
-    }
-
     private void performLogOut() {
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(Status status) {
-                        Toast.makeText(getApplicationContext(), "You've been logged out.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), ActivityLogIn.class);
-                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                        startActivity(intent);
-                    }
-                });
+        Toast.makeText(getApplicationContext(), "You've been logged out.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), ActivityLogIn.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        finish();
     }
 
     private void initializeMap() {
@@ -108,19 +80,13 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_exit_pop_up);
         TextView textView = customDialog.findViewById(R.id.exitPopupTextView);
-        textView.setText("Are you sure you want to exit?");
+        textView.setText(R.string.exit);
         CardView yesCardView = customDialog.findViewById(R.id.yesPopUpCardView);
 
         yesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
-                        new ResultCallback<Status>() {
-                            @Override
-                            public void onResult(Status status) {
-                            }
-                        });
+                performLogOut();
             }
         });
 
@@ -218,7 +184,6 @@ public class ActivityUser extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 performLogOut();
-                finish();
             }
         });
 
@@ -239,7 +204,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("Please choose the number of people that lived in the house more than 20 days a month.");
+        textView.setText(R.string.persons_lived_in_apartament);
         CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -259,7 +224,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("You will be charged for keeping the garage clean if you are using a parking spot in it.");
+        textView.setText(R.string.charged_for_park_spot);
         CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -279,7 +244,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("You will be charged for the cleaning of the apartment building each month.");
+        textView.setText(R.string.charged_for_cleaning);
         CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -298,7 +263,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("You will be charged if the apartment building needs any reparations.");
+        textView.setText(R.string.charged_for_reparations);
         CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -310,7 +275,6 @@ public class ActivityUser extends AppCompatActivity
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         customDialog.show();
     }
-
 
     public void redirectToMail(View view) {
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -342,7 +306,6 @@ public class ActivityUser extends AppCompatActivity
                 .replace(R.id.content_frame, new FragmentPredictUser())
                 .commit();
     }
-
 
     public void goToPredictFragmentV2(View view) {
         fragmentManager.beginTransaction()
@@ -382,7 +345,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("Please complete all the fields !");
+        textView.setText(R.string.complete_all_fields);
         CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -401,7 +364,7 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("The password was changed with success !");
+        textView.setText(R.string.password_changed);
         CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -421,9 +384,9 @@ public class ActivityUser extends AppCompatActivity
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("Passwords do not match !");
-        CardView cardView = customDialog.findViewById(R.id.okButton);
+        textView.setText(R.string.passwords_no_match);
 
+        CardView cardView = customDialog.findViewById(R.id.okButton);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -495,15 +458,12 @@ public class ActivityUser extends AppCompatActivity
 
 
     public void openConfirmPopUpForResources(View view) {
-
         final Dialog customDialog = new Dialog(ActivityUser.this);
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_confirm_resources_pop_up);
 
-
         CardView yesCardView = customDialog.findViewById(R.id.yesConfirmPopUpCardView);
-
         yesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

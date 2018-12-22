@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -28,11 +30,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import org.w3c.dom.Text;
+
 import java.util.Objects;
 
-public class ActivityLogIn extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-    private GoogleApiClient googleApiClient;
-    public static final int SIGN_IN_CODE = 1997;
+public class ActivityLogIn extends AppCompatActivity {
 
     private RelativeLayout rellay1;
     private Handler handler = new Handler();
@@ -52,37 +54,14 @@ public class ActivityLogIn extends AppCompatActivity implements GoogleApiClient.
         rellay1 = findViewById(R.id.rellay1);
         handler.postDelayed(runnable, 1500);
 
+        TextView textView = findViewById(R.id.signUpHere);
+        SpannableString content = new SpannableString("HERE");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        textView.setText(content);
+
         ConnectionDetector cd = new ConnectionDetector(this);
         if (!cd.isConnected())
             Toast.makeText(this, "No internet connection.", Toast.LENGTH_SHORT).show();
-
-        if (googleApiClient != null && googleApiClient.isConnected()) {
-            googleApiClient.clearDefaultAccountAndReconnect().setResultCallback(new ResultCallback<Status>() {
-                @Override
-                public void onResult(Status status) {
-                    googleApiClient.disconnect();
-                }
-            });
-        }
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-        SignInButton signInButton = findViewById(R.id.sign_in_button);
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent, SIGN_IN_CODE);
-
-            }
-        });
-
     }
 
     @Override
@@ -113,36 +92,6 @@ public class ActivityLogIn extends AppCompatActivity implements GoogleApiClient.
         customDialog.show();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SIGN_IN_CODE) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-
-    private void handleSignInResult(GoogleSignInResult result) {
-        if (result.isSuccess()) {
-            goToAssociationCodeScreen();
-        } else {
-            Toast.makeText(this, "Sign in not performed.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void goToAssociationCodeScreen() {
-        Intent intent = new Intent(this, ActivityAssociationCode.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        finish();
-    }
-
     public void hideKeyboardLogIn(View view) {
         try {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -153,7 +102,6 @@ public class ActivityLogIn extends AppCompatActivity implements GoogleApiClient.
     }
 
     public void checkLogInCredentials(View view) {
-        //TODO: must validate credentials
         EditText usernameET = findViewById(R.id.usernameEditTextLogIn);
         EditText passET = findViewById(R.id.passwordEditTextLogIn);
         String username = usernameET.getText().toString();
@@ -164,11 +112,18 @@ public class ActivityLogIn extends AppCompatActivity implements GoogleApiClient.
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             finish();
         } else {
-            Intent intent = new Intent(getApplicationContext(), ActivityAssociationCode.class);
+            Intent intent = new Intent(getApplicationContext(), ActivityUser.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             finish();
         }
         //TODO: InvalidCredentialsMessage
+    }
+
+    public void goToSignUp(View view) {
+        Intent intent = new Intent(getApplicationContext(), ActivitySignUp.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        finish();
     }
 }

@@ -130,15 +130,20 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="34dp"
+                    android:layout_marginStart="54dp"
                     android:text="@string/or_you_can_use"
                     android:textColor="@color/white" />
 
-                <com.google.android.gms.common.SignInButton
-                    android:id="@+id/sign_in_button"
-                    android:layout_width="200dp"
-                    android:layout_height="48dp"
-                    android:layout_centerInParent="true" />
+                <TextView
+                    android:id="@+id/signUpHere"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="180dp"
+                    android:onClick="goToSignUp"
+                    android:textColor="@color/white" />
+
             </RelativeLayout>
 
         </RelativeLayout>
