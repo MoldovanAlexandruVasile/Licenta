@@ -70,5 +70,7 @@
     <string name="charged_for_reparations">You will be charged if the apartment building needs any reparations.</string>
     <string name="charged_for_park_spot">You will be charged for keeping the garage clean if you are using a parking spot in it.</string>
     <string name="persons_lived_in_apartament">Please choose the number of people that lived in the house more than 20 days a month.</string>
+    <string name="delete_account_settings">Delete account</string>
+    <string name="profile_settings">Profile settings</string>
 
 </resources>

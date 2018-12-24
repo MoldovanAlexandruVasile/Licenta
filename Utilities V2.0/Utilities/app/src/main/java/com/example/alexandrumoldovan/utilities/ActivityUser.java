@@ -293,6 +293,13 @@ public class ActivityUser extends AppCompatActivity
                 .commit();
     }
 
+    public void goToSettingsUser(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentSettingsUser())
+                .commit();
+    }
+
     public void goToHistoryFragmentV2(View view) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
@@ -412,13 +419,6 @@ public class ActivityUser extends AppCompatActivity
     }
 
     public void saveUserName(View view) {
-    }
-
-    public void goToSettingsUser(View view) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
-                .replace(R.id.content_frame, new FragmentSettingsUser())
-                .commit();
     }
 
     public void goToElectricity(View view) {
