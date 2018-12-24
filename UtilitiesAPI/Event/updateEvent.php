@@ -8,9 +8,10 @@
         $ID = $_POST["ID"];
         $title = $_POST["title"];
         $details = $_POST["details"];
+        $status = $_POST["status"];
 
         $query = "UPDATE event
-                SET title = '$title', details = '$details'
+                SET title = '$title', details = '$details', status = '$status'
                 WHERE ID = $ID;";
 
         mysqli_query($connect, $query) or die (mysqli_error($connect));

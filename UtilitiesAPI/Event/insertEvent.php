@@ -7,8 +7,9 @@
         $connect = mysqli_connect('localhost', 'root', '', 'utilities');
         $title = $_POST["title"];
         $details = $_POST["details"];
+        $status = $_POST["status"];
 
-        $query = "INSERT INTO event(title, details) VALUES ('$title', '$details'));";
+        $query = "INSERT INTO event(title, details, status) VALUES ('$title', '$details', '$status'));";
         mysqli_query($connect, $query) or die (mysqli_error($connect));
         mysqli_close($connect); 
     }

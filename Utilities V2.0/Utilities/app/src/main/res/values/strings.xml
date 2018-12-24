@@ -72,5 +72,6 @@
     <string name="persons_lived_in_apartament">Please choose the number of people that lived in the house more than 20 days a month.</string>
     <string name="delete_account_settings">Delete account</string>
     <string name="profile_settings">Profile settings</string>
+    <string name="apartment_number_text">Apartment number</string>
 
 </resources>
