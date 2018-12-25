@@ -10,8 +10,7 @@
         $password = $_POST["password"];
         $name = $_POST["name"];
         $address = $_POST["address"];
-        $apartment = $_POST["apartment"];
-
+        $apartment = (int)$_POST["apartment"];
 
         $query = "UPDATE user
                 SET email = '$email', password = '$password', name = '$name', address = '$address', apartment = '$apartment'

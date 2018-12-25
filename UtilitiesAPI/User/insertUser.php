@@ -9,10 +9,10 @@
         $password = $_POST["password"];
         $name = $_POST["name"];
         $address = $_POST["address"];
-        $apartment = $_POST["apartment"];
+        $apartment = (int)$_POST["apartment"];
 
-        $query = "INSERT INTO user(email, password, name, address, apartament) VALUES
-                            ('$email', '$password', '$name', '$address', '$apartment'));";
+        $query = "INSERT INTO user (email, password, name, address, apartment) 
+                    VALUES ('$email', '$password', '$name', '$address', '$apartment');";
         mysqli_query($connect, $query) or die (mysqli_error($connect));
         mysqli_close($connect); 
     }

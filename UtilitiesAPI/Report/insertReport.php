@@ -10,8 +10,8 @@
         $quantity = (int)$_POST["quantity"];
         $month = $_POST["month"];
 
-        $query = "INSERT INTO report(user, utility, quantity, month) 
-        VALUES ($user, $utility, $quantity, '$month'));";
+        $query = "INSERT INTO report (user, utility, quantity, month) 
+                    VALUES ('$user', '$utility', '$quantity', '$month');";
         mysqli_query($connect, $query) or die (mysqli_error($connect));
         mysqli_close($connect); 
     }

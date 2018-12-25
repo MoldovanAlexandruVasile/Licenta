@@ -25,6 +25,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alexandrumoldovan.utilities.Domain.User;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -34,6 +36,7 @@ public class ActivityUser extends AppCompatActivity
 
     private FragmentManager fragmentManager = getFragmentManager();
     private Map<String, String> resources = new HashMap<>();
+    private static User user;
 
 
     @Override
@@ -43,6 +46,8 @@ public class ActivityUser extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initializeMap();
+        String email = getIntent().getStringExtra("email");
+
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, new FragmentHomeUser())
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)

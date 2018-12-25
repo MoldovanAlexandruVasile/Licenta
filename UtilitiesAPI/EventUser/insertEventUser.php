@@ -9,7 +9,7 @@
         $event = (int)$_POST["event"];
         $status = $_POST["status"];
 
-        $query = "INSERT INTO event_user(user, event, status) VALUES ($user, $event, '$status'));";
+        $query = "INSERT INTO event_user(user, event, status) VALUES ('$user', '$event', '$status');";
         mysqli_query($connect, $query) or die (mysqli_error($connect));
         mysqli_close($connect); 
     }

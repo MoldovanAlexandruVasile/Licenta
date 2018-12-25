@@ -12,7 +12,7 @@
         $electricity = $_POST["electricity"];
 
         $query = "UPDATE contracts
-                SET user = $user, water = '$water', gas = '$gas', electricity = '$electricity'
+                SET user = '$user', water = '$water', gas = '$gas', electricity = '$electricity'
                 WHERE ID = $ID;";
 
         mysqli_query($connect, $query) or die (mysqli_error($connect));

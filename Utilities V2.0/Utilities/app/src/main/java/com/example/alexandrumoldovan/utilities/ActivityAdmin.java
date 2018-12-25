@@ -39,6 +39,7 @@ public class ActivityAdmin extends AppCompatActivity
         setContentView(R.layout.activity_admin);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        String email = getIntent().getStringExtra("email");
 
         fragmentManager.beginTransaction().
                 replace(R.id.content_frame, new FragmentHomeAdmin())

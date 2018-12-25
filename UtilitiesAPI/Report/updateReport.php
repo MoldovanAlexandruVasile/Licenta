@@ -12,7 +12,7 @@
         $month = $_POST["month"];
 
         $query = "UPDATE report
-                SET user = $user, utility = $utility, quantity = $quantity, month = '$month'
+                SET user = '$user', utility = '$utility', quantity = '$quantity', month = '$month'
                 WHERE ID = $ID;";
 
         mysqli_query($connect, $query) or die (mysqli_error($connect));
