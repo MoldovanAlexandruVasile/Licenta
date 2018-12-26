@@ -42,6 +42,7 @@ import java.util.Objects;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.ADDRESS_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_USER_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.USER_URL;
 
 public class ActivityAddressList extends AppCompatActivity {
     private static List<Address> addressList;
@@ -112,8 +113,8 @@ public class ActivityAddressList extends AppCompatActivity {
                                     if (fromSignUp.equals("YES")) {
                                         Intent intent = new Intent(getApplicationContext(), ActivityUser.class);
                                         ActivitySignUp.user.setAddress(addressList.get(position).getAddress());
+                                        ActivityLogIn.user = ActivitySignUp.user;
                                         insertUserInDB();
-                                        intent.putExtra("email", ActivitySignUp.user.getEmail());
                                         startActivity(intent);
                                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                                         finish();
@@ -121,7 +122,6 @@ public class ActivityAddressList extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), ActivityUser.class);
                                         ActivityLogIn.user.setAddress(addressList.get(position).getAddress());
                                         updateUserInDB();
-                                        intent.putExtra("email", ActivityLogIn.user.getEmail());
                                         startActivity(intent);
                                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                                         finish();

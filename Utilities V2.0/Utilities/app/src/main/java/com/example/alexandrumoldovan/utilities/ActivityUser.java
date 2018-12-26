@@ -31,8 +31,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.alexandrumoldovan.utilities.Domain.Admin;
-import com.example.alexandrumoldovan.utilities.Domain.Event;
 import com.example.alexandrumoldovan.utilities.Domain.User;
 import com.google.gson.Gson;
 
@@ -42,12 +40,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.ADMIN_URL;
-import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.USER_URL;
 
 public class ActivityUser extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,7 +58,7 @@ public class ActivityUser extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initializeMap();
-
+        populateUsers();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, new FragmentHomeUser())
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
@@ -504,5 +500,36 @@ public class ActivityUser extends AppCompatActivity
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         customDialog.show();
+    }
+
+    private void populateUsers() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, USER_URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST USER", response.toString());
+                        try {
+                            JSONObject responseObject = new JSONObject(response.toString());
+                            JSONArray resultsArray = responseObject.getJSONArray("user");
+                            ActivityLogIn.users = new ArrayList<>();
+                            for (Integer i = 0; i < resultsArray.length(); i++) {
+                                User localUser = new Gson().fromJson(resultsArray.get(i).toString(), User.class);
+                                ActivityLogIn.users.add(localUser);
+                                if (localUser.getEmail().equals(ActivityLogIn.user.getEmail()))
+                                    ActivityLogIn.user.setID(localUser.getID());
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST USER Response", error.toString());
+                    }
+                });
+        requestQueue.add(objectRequest);
     }
 }

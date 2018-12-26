@@ -40,6 +40,7 @@ import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVE
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_EVENT_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_EVENT_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_USER_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.USER_URL;
 
 public class FragmentHomeUser extends Fragment {
     @Override
@@ -53,6 +54,7 @@ public class FragmentHomeUser extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         populateEvents();
         populateEventsUsers();
+        populateUsers();
         if (ActivityLogIn.events.size() == 0) {
             View user = inflater.inflate(R.layout.layout_empty_stuff, container, false);
             return user;
@@ -119,8 +121,7 @@ public class FragmentHomeUser extends Fragment {
                     participationTV.setTypeface(null, Typeface.BOLD);
                     LinearLayout myLinearLayout = confirmParticipation;
                     myLinearLayout.setBackgroundColor(getResources().getColor(R.color.green));
-                }
-                else {
+                } else {
                     TextView participationTV = eventInfoCVUser.findViewById(R.id.eventParticipationTextViewUser);
                     participationTV.setText("Decline");
                     participationTV.setTypeface(null, Typeface.BOLD);
@@ -288,6 +289,35 @@ public class FragmentHomeUser extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("REST EVENT_USER Resp", error.toString());
+                    }
+                });
+        requestQueue.add(objectRequest);
+    }
+
+    private void populateUsers() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, USER_URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST USER", response.toString());
+                        try {
+                            JSONObject responseObject = new JSONObject(response.toString());
+                            JSONArray resultsArray = responseObject.getJSONArray("user");
+                            ActivityLogIn.users = new ArrayList<>();
+                            for (Integer i = 0; i < resultsArray.length(); i++) {
+                                User localUser = new Gson().fromJson(resultsArray.get(i).toString(), User.class);
+                                ActivityLogIn.users.add(localUser);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST USER Response", error.toString());
                     }
                 });
         requestQueue.add(objectRequest);
