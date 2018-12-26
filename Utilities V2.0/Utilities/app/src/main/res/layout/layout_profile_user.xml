@@ -36,11 +36,13 @@
 
             <TextView
                 android:id="@+id/addressHomeTextViewUser"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
+                android:layout_width="185dp"
+                android:layout_height="46dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/textView8"
                 android:layout_marginEnd="17dp"
+                android:layout_marginTop="-11dp"
+                android:gravity="center"
                 android:text="TBD"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
@@ -77,13 +79,13 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/apartamentHomeTextViewUser"
-                android:layout_width="wrap_content"
+                android:id="@+id/apartmentHomeTextViewUser"
+                android:layout_width="67dp"
                 android:layout_height="wrap_content"
-
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="63dp"
+                android:layout_marginEnd="44dp"
+                android:gravity="center"
                 android:text="TBD"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
@@ -119,11 +121,12 @@
 
             <TextView
                 android:id="@+id/familyNameHomeTextViewUser"
-                android:layout_width="128dp"
-                android:layout_height="wrap_content"
+                android:layout_width="208dp"
+                android:layout_height="42dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="17dp"
+                android:gravity="center"
                 android:text="TBD"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
