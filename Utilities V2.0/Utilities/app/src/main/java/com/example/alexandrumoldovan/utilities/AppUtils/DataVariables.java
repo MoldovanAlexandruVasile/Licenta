@@ -13,4 +13,14 @@ public class DataVariables {
 
     //ADDRESS
     public static final String ADDRESS_URL = "http://192.168.1.104:8012/UtilitiesAPI/Address/addressescontroller.php?view=all";
+
+    //EVENT
+    public static final String EVENT_URL = "http://192.168.1.104:8012/UtilitiesAPI/Event/eventscontroller.php?view=all";
+    public static final String INSERT_EVENT_URL = "http://192.168.1.104:8012/UtilitiesAPI/Event/insertEvent.php";
+
+    //EVENT_USER
+    public static final String EVENT_USER_URL = "http://192.168.1.104:8012/UtilitiesAPI/EventUser/eventusercontroller.php?view=all";
+    public static final String INSERT_EVENT_USER_URL = "http://192.168.1.104:8012/UtilitiesAPI/EventUser/insertEventUser.php";
+    public static final String UPDATE_EVENT_USER_URL = "http://192.168.1.104:8012/UtilitiesAPI/EventUser/updateEventUser.php";
+    public static final String DELETE_EVENT_USER_URL = "http://192.168.1.104:8012/UtilitiesAPI/EventUser/deleteEventUser.php";
 }

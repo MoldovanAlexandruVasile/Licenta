@@ -25,11 +25,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.alexandrumoldovan.utilities.Domain.Admin;
+import com.example.alexandrumoldovan.utilities.Domain.Event;
 import com.example.alexandrumoldovan.utilities.Domain.User;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.ADMIN_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_URL;
 
 public class ActivityUser extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,7 +55,6 @@ public class ActivityUser extends AppCompatActivity
     private FragmentManager fragmentManager = getFragmentManager();
     private Map<String, String> resources = new HashMap<>();
     private static User user;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +64,7 @@ public class ActivityUser extends AppCompatActivity
         setSupportActionBar(toolbar);
         initializeMap();
         String email = getIntent().getStringExtra("email");
+        user = getUser(email);
 
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, new FragmentHomeUser())
@@ -489,5 +507,13 @@ public class ActivityUser extends AppCompatActivity
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         customDialog.show();
+    }
+
+    private User getUser(String email){
+        for (User user : ActivityLogIn.users){
+            if (user.getEmail().equals(email))
+                return user;
+        }
+        return null;
     }
 }

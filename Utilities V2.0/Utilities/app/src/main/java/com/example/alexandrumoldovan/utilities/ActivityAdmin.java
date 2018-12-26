@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.alexandrumoldovan.utilities.Domain.Admin;
 import com.example.alexandrumoldovan.utilities.Domain.User;
 
 import java.util.HashMap;
@@ -41,6 +42,7 @@ import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DEL
 public class ActivityAdmin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager = getFragmentManager();
+    private static Admin admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class ActivityAdmin extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         String email = getIntent().getStringExtra("email");
+        admin = getAdmin(email);
 
         fragmentManager.beginTransaction().
                 replace(R.id.content_frame, new FragmentHomeAdmin())
@@ -444,6 +447,14 @@ public class ActivityAdmin extends AppCompatActivity
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.content_frame, new FragmentEventsReportsAdmin())
                 .commit();
+    }
+
+    private Admin getAdmin(String email){
+        for (Admin admin : ActivityLogIn.admins){
+            if (admin.getEmail().equals(email))
+                return admin;
+        }
+        return null;
     }
 }
 

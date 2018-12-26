@@ -5,12 +5,10 @@ public class Event {
     private Integer ID;
     private String title;
     private String details;
-    private String status;
 
-    public Event(String title, String details, String status) {
+    public Event(String title, String details) {
         this.title = title;
         this.details = details;
-        this.status = status;
     }
 
     public Integer getID() {
@@ -37,21 +35,12 @@ public class Event {
         this.details = details;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
         return "Event{" +
                 "ID=" + ID +
                 ", title='" + title + '\'' +
                 ", details='" + details + '\'' +
-                ", status='" + status + '\'' +
                 '}';
     }
 }

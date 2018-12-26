@@ -27,6 +27,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Domain.Admin;
+import com.example.alexandrumoldovan.utilities.Domain.Event;
+import com.example.alexandrumoldovan.utilities.Domain.Event_User;
 import com.example.alexandrumoldovan.utilities.Domain.User;
 import com.google.gson.Gson;
 
@@ -39,6 +41,8 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.ADMIN_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.USER_URL;
 
 public class ActivityLogIn extends AppCompatActivity {
@@ -47,6 +51,8 @@ public class ActivityLogIn extends AppCompatActivity {
     public static User user;
     public static List<Admin> admins;
     public static List<User> users;
+    public static List<Event> events;
+    public static List<Event_User> events_users;
     private RequestQueue requestQueue;
     private RelativeLayout rellay1;
     private Handler handler = new Handler();
@@ -60,9 +66,13 @@ public class ActivityLogIn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         admins = new ArrayList<>();
-        users = new ArrayList<>();
         this.populateAdmins();
+        users = new ArrayList<>();
         this.populateUsers();
+        events = new ArrayList<>();
+        this.populateEvents();
+        events_users = new ArrayList<>();
+        this.populateEventsUsers();
         admin = null;
         user = null;
         super.onCreate(savedInstanceState);
@@ -267,6 +277,62 @@ public class ActivityLogIn extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("REST USER Response", error.toString());
+                    }
+                });
+        requestQueue.add(objectRequest);
+    }
+
+    private void populateEvents(){
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, EVENT_URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST EVENT USER", response.toString());
+                        try {
+                            JSONObject responseObject = new JSONObject(response.toString());
+                            JSONArray resultsArray = responseObject.getJSONArray("event");
+                            for (Integer i = 0; i < resultsArray.length(); i++) {
+                                Event localEvent = new Gson().fromJson(resultsArray.get(i).toString(), Event.class);
+                                events.add(localEvent);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST EVENT Response", error.toString());
+                    }
+                });
+        requestQueue.add(objectRequest);
+    }
+
+    private void populateEventsUsers() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, EVENT_USER_URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST EVENT_USER", response.toString());
+                        try {
+                            JSONObject responseObject = new JSONObject(response.toString());
+                            JSONArray resultsArray = responseObject.getJSONArray("event_user");
+                            for (Integer i = 0; i < resultsArray.length(); i++) {
+                                Event_User localEventUser = new Gson().fromJson(resultsArray.get(i).toString(), Event_User.class);
+                                events_users.add(localEventUser);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST EVENT_USER Resp", error.toString());
                     }
                 });
         requestQueue.add(objectRequest);
