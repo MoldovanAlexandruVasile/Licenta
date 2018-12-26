@@ -42,7 +42,6 @@ import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DEL
 public class ActivityAdmin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager = getFragmentManager();
-    private static Admin admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +49,6 @@ public class ActivityAdmin extends AppCompatActivity
         setContentView(R.layout.activity_admin);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        String email = getIntent().getStringExtra("email");
-        admin = getAdmin(email);
 
         fragmentManager.beginTransaction().
                 replace(R.id.content_frame, new FragmentHomeAdmin())

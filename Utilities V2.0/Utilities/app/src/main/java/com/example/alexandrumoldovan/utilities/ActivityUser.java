@@ -54,7 +54,6 @@ public class ActivityUser extends AppCompatActivity
 
     private FragmentManager fragmentManager = getFragmentManager();
     private Map<String, String> resources = new HashMap<>();
-    private static User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +62,6 @@ public class ActivityUser extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initializeMap();
-        String email = getIntent().getStringExtra("email");
-        user = getUser(email);
 
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, new FragmentHomeUser())
@@ -507,13 +504,5 @@ public class ActivityUser extends AppCompatActivity
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         customDialog.show();
-    }
-
-    private User getUser(String email){
-        for (User user : ActivityLogIn.users){
-            if (user.getEmail().equals(email))
-                return user;
-        }
-        return null;
     }
 }

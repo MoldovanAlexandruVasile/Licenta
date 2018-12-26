@@ -187,7 +187,6 @@ public class ActivityLogIn extends AppCompatActivity {
 
     private void goToAdmin() {
         Intent intent = new Intent(getApplicationContext(), ActivityAdmin.class);
-        intent.putExtra("email", admin.getEmail());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
@@ -195,7 +194,6 @@ public class ActivityLogIn extends AppCompatActivity {
 
     private void goToUser() {
         Intent intent = new Intent(getApplicationContext(), ActivityUser.class);
-        intent.putExtra("email", user.getEmail());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();
