@@ -41,14 +41,17 @@ import java.util.Objects;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.ADDRESS_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_USER_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_USER_URL;
 
 public class ActivityAddressList extends AppCompatActivity {
     private static List<Address> addressList;
+    private static String fromSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         addressList = new ArrayList<>();
         populateAddresses();
+        fromSignUp = getIntent().getStringExtra("SignUp");
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.layout_address_list);
@@ -106,13 +109,23 @@ public class ActivityAddressList extends AppCompatActivity {
                             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    Intent intent = new Intent(getApplicationContext(), ActivityUser.class);
-                                    ActivitySignUp.user.setAddress(addressList.get(position).getAddress());
-                                    insertUserInDB();
-                                    intent.putExtra("email", ActivitySignUp.user.getEmail());
-                                    startActivity(intent);
-                                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                                    finish();
+                                    if (fromSignUp.equals("YES")) {
+                                        Intent intent = new Intent(getApplicationContext(), ActivityUser.class);
+                                        ActivitySignUp.user.setAddress(addressList.get(position).getAddress());
+                                        insertUserInDB();
+                                        intent.putExtra("email", ActivitySignUp.user.getEmail());
+                                        startActivity(intent);
+                                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                        finish();
+                                    } else if (fromSignUp.equals("NO")) {
+                                        Intent intent = new Intent(getApplicationContext(), ActivityUser.class);
+                                        ActivityLogIn.user.setAddress(addressList.get(position).getAddress());
+                                        updateUserInDB();
+                                        intent.putExtra("email", ActivityLogIn.user.getEmail());
+                                        startActivity(intent);
+                                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                        finish();
+                                    }
                                 }
                             });
                         } catch (JSONException e) {
@@ -127,6 +140,33 @@ public class ActivityAddressList extends AppCompatActivity {
                     }
                 });
         requestQueue.add(objectRequest);
+    }
+
+    private void updateUserInDB() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, UPDATE_USER_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                User user = ActivityLogIn.user;
+                Map<String, String> parameters = new HashMap<>();
+                parameters.put("ID", String.valueOf(user.getID()));
+                parameters.put("email", user.getEmail());
+                parameters.put("password", user.getPassword());
+                parameters.put("name", user.getName());
+                parameters.put("address", user.getAddress());
+                parameters.put("apartment", String.valueOf(user.getApartment()));
+                return parameters;
+            }
+        };
+        requestQueue.add(request);
     }
 
     private void insertUserInDB() {

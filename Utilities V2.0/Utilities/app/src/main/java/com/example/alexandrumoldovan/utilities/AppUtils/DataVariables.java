@@ -8,6 +8,8 @@ public class DataVariables {
     //USER
     public static final String USER_URL = "http://192.168.1.104:8012/UtilitiesAPI/User/userscontroller.php?view=all";
     public static final String INSERT_USER_URL = "http://192.168.1.104:8012/UtilitiesAPI/User/insertUser.php";
+    public static final String UPDATE_USER_URL = "http://192.168.1.104:8012/UtilitiesAPI/User/updateUser.php";
+    public static final String DELETE_USER_URL = "http://192.168.1.104:8012/UtilitiesAPI/User/deleteUser.php";
 
     //ADDRESS
     public static final String ADDRESS_URL = "http://192.168.1.104:8012/UtilitiesAPI/Address/addressescontroller.php?view=all";

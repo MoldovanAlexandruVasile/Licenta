@@ -24,13 +24,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.alexandrumoldovan.utilities.Domain.User;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
-//TODO: Based on how many apartments are registered on "Resource reports" and "Archive" screens, they will be displayed there for being selected
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_USER_URL;
+
 public class ActivityAdmin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private Toast infoToast;
     private FragmentManager fragmentManager = getFragmentManager();
 
     @Override
@@ -266,16 +275,16 @@ public class ActivityAdmin extends AppCompatActivity
     private void checkFields(Dialog customDialog) {
         EditText usernameET = customDialog.findViewById(R.id.usernameEditTextCardView);
         EditText passwordET = customDialog.findViewById(R.id.passwordEditTextCardView);
-        String username = usernameET.getText().toString();
+        String email = usernameET.getText().toString();
         String pass = passwordET.getText().toString();
-        if (username.compareTo("") == 0 || pass.compareTo("") == 0) {
+        if (email.isEmpty() || pass.isEmpty()) {
             completeAllFields();
         } else {
-            confirmDeleteAccountPoUp(customDialog);
+            confirmDeleteAccountPoUp(customDialog, email, pass);
         }
     }
 
-    private void confirmDeleteAccountPoUp(final Dialog prev) {
+    private void confirmDeleteAccountPoUp(final Dialog prev, final String email, final String pass) {
         final Dialog customDialog = new Dialog(ActivityAdmin.this);
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         customDialog.setCanceledOnTouchOutside(false);
@@ -287,11 +296,11 @@ public class ActivityAdmin extends AppCompatActivity
         yesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: delete account
+                User user = getUserDetails(email, pass);
+                deleteUserFromDB(user);
                 customDialog.dismiss();
                 prev.dismiss();
-                infoToast = Toast.makeText(getBaseContext(), "Account deleted", Toast.LENGTH_LONG);
-                infoToast.show();
+                Toast.makeText(getBaseContext(), "Account deleted", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -306,6 +315,36 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.show();
     }
 
+    private void deleteUserFromDB(final User user) {
+        RequestQueue requestDeleteQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, DELETE_USER_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                String ID = String.valueOf(user.getID());
+                Log.e("REST DELETE USER ID ", ID);
+                parameters.put("ID", ID);
+                return parameters;
+            }
+        };
+        requestDeleteQueue.add(request);
+    }
+
+    private User getUserDetails(String email, String pass) {
+        for (User user : ActivityLogIn.users) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(pass))
+                return user;
+        }
+        return null;
+    }
 
     public void goToSettingsAdmin(View view) {
         fragmentManager.beginTransaction()
@@ -400,7 +439,7 @@ public class ActivityAdmin extends AppCompatActivity
                 .commit();
     }
 
-    public void goToEventsReportsAdmin(View view){
+    public void goToEventsReportsAdmin(View view) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.content_frame, new FragmentEventsReportsAdmin())

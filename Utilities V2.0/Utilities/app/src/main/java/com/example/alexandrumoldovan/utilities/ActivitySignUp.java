@@ -76,6 +76,7 @@ public class ActivitySignUp extends AppCompatActivity {
         if (pass.equals(repPass) && !email.isEmpty() && !pass.isEmpty() && !apartment.isEmpty() && !name.isEmpty()) {
             user = new User(email, pass, name, "", Integer.valueOf(apartment));
             Intent intent = new Intent(getApplicationContext(), ActivityAddressList.class);
+            intent.putExtra("SignUp", "YES");
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             finish();

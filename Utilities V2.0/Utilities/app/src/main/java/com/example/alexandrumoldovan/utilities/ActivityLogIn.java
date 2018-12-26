@@ -126,11 +126,21 @@ public class ActivityLogIn extends AppCompatActivity {
         String pass = passET.getText().toString();
         if (isAdmin(email, pass)) {
             goToAdmin();
-        } else if (isUser(email, pass)) {
+        } else if (isUser(email, pass) && !isUserWithoutAddress(email, pass)) {
             goToUser();
+        } else if (isUser(email, pass) && isUserWithoutAddress(email, pass)) {
+            goToPickAddress();
         } else {
             showOkPopUp("Invalid email or password. Please try again.");
         }
+    }
+
+    private void goToPickAddress() {
+        Intent intent = new Intent(getApplicationContext(), ActivityAddressList.class);
+        intent.putExtra("SignUp", "NO");
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        finish();
     }
 
     private Boolean isAdmin(String email, String pass) {
@@ -151,6 +161,16 @@ public class ActivityLogIn extends AppCompatActivity {
                 Log.e("REST USER FOUND ", user.toString());
                 return true;
             }
+        }
+        return false;
+    }
+
+    private Boolean isUserWithoutAddress(String email, String pass) {
+        for (User localUser : users) {
+            if (localUser.getEmail().equals(email) && localUser.getPassword().equals(pass))
+                if (localUser.getAddress().isEmpty()) {
+                    return true;
+                }
         }
         return false;
     }

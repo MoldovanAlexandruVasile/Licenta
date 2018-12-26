@@ -14,11 +14,6 @@ public class FragmentResourcesWaterUser extends Fragment {
 
     View resources;
 
-    public void FragmentResourcesWaterUser(String s) {
-        EditText editText = getActivity().findViewById(R.id.waterUserTextInput);
-        editText.setText(s);
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +24,13 @@ public class FragmentResourcesWaterUser extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         resources = inflater.inflate(R.layout.layout_resources_water_user, container, false);
+        String[] values = {"January", "February", "March", "April",
+                "May", "June", "July", "August",
+                "September", "October", "November", "December"};
+        Spinner spinner = resources.findViewById(R.id.monthSpinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, values);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(adapter);
         return resources;
     }
 
