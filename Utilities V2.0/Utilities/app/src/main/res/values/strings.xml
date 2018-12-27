@@ -28,9 +28,9 @@
     <string name="electricity">Electricity meter:</string>
     <string name="water">Water meter:</string>
     <string name="gas">Gas meter:</string>
-    <string name="omni_speech">\t\t\t\tOh, hello !\n\t\t\t\tIt looks like you need more information about what is going on here.\n\t\t\t\tWell, lets start. My name is Omni, cool name, right? Hehe, I knew it ! I am a robot programmed to predict your usage for the next month of water, gas and electricity based on how the weather will be in next month and the resources used by you in the past. If you do not have any past reports, I will predict the usage of the resources depending on the weather. \n\t\t\t\tHmmm...I think that is all. Thank you for dropping by. Have a nice day !</string>
+    <string name="omni_speech">\t\t\t\tOh, hello !\n\t\t\t\tIt looks like you need more information about what is going on here.\n\t\t\t\tWell, lets start. My name is Omni, cool name, right? Hehe, I knew it ! I am a robot programmed to predict your usage for the next date of water, gas and electricity based on how the weather will be in next date and the resources used by you in the past. If you do not have any past reports, I will predict the usage of the resources depending on the weather. \n\t\t\t\tHmmm...I think that is all. Thank you for dropping by. Have a nice day !</string>
     <string name="kw">kW</string>
-    <string name="prediction_of_resurces_future">\t\t\t\tPrediction of resources that will be used next month:</string>
+    <string name="prediction_of_resurces_future">\t\t\t\tPrediction of resources that will be used next date:</string>
     <string name="app_menu_log_off">Log out</string>
     <string name="old_password">Old password</string>
     <string name="new_password">New password</string>
@@ -66,10 +66,10 @@
     <string name="passwords_no_match">Passwords do not match !</string>
     <string name="password_changed">The password was changed with success !</string>
     <string name="complete_all_fields">Please complete all the fields !</string>
-    <string name="charged_for_cleaning">You will be charged for the cleaning of the apartment building each month.</string>
+    <string name="charged_for_cleaning">You will be charged for the cleaning of the apartment building each date.</string>
     <string name="charged_for_reparations">You will be charged if the apartment building needs any reparations.</string>
     <string name="charged_for_park_spot">You will be charged for keeping the garage clean if you are using a parking spot in it.</string>
-    <string name="persons_lived_in_apartament">Please choose the number of people that lived in the house more than 20 days a month.</string>
+    <string name="persons_lived_in_apartament">Please choose the number of people that lived in the house more than 20 days a date.</string>
     <string name="delete_account_settings">Delete account</string>
     <string name="profile_settings">Profile settings</string>
     <string name="apartment_number_text">Apartment number</string>

@@ -7,12 +7,14 @@ public class Report {
     private String utility;
     private Integer quantity;
     private String month;
+    private String date;
 
-    public Report(Integer user, String utility, Integer quantity, String month) {
+    public Report(Integer user, String utility, Integer quantity, String month, String date) {
         this.user = user;
         this.utility = utility;
         this.quantity = quantity;
         this.month = month;
+        this.date = date;
     }
 
     public Integer getID() {
@@ -55,6 +57,14 @@ public class Report {
         this.month = month;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "Report{" +
@@ -63,6 +73,7 @@ public class Report {
                 ", utility='" + utility + '\'' +
                 ", quantity=" + quantity +
                 ", month='" + month + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

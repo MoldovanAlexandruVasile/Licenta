@@ -44,7 +44,7 @@
                 android:layout_marginStart="12dp"
                 android:text="Last month:"
                 android:textColor="@android:color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/lastMonthGasTextView"
@@ -55,7 +55,7 @@
                 android:layout_marginEnd="76dp"
                 android:text="TBD"
                 android:textColor="@android:color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView23"
@@ -184,7 +184,7 @@
                 android:layout_marginStart="20dp"
                 android:text="Used this month:"
                 android:textColor="@android:color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/gasUsedThisMonth"
@@ -193,9 +193,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="18dp"
-                android:text="TBD"
+                android:text="N/A"
                 android:textColor="@android:color/black"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
@@ -208,7 +208,6 @@
         android:layout_centerHorizontal="true"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="openConfirmPopUpForResources"
         app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp">

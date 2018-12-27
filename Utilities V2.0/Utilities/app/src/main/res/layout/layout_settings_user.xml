@@ -52,7 +52,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/togglesCardView"
         android:layout_width="333dp"
-        android:layout_height="249dp"
+        android:layout_height="230dp"
         android:layout_centerInParent="true"
         android:clickable="true"
         android:focusable="true"
@@ -72,16 +72,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-                    <Switch
-                        android:id="@+id/homeStatusUserSwitch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="@string/are_you_at_home"
-                        android:textColor="@color/black"
-                        android:textOff="@string/no"
-                        android:textOn="@string/yes" />
 
                     <Switch
                         android:id="@+id/garageUsageUserSwitch"

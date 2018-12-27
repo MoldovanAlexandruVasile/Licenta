@@ -9,35 +9,66 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="325dp"
-        android:layout_height="237dp"
+        android:layout_height="322dp"
         android:layout_centerInParent="true"
         app:cardBackgroundColor="#2A3c58"
         app:cardCornerRadius="15dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="197dp"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="25dp">
-
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView33"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/resourceTypeConfirmSendingPopUpTextViewUser"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
                 android:text="Send the following data?"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/resourceTypeConfirmSendingPopUpTextViewUser"
+                android:id="@+id/utilityTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/resourceTypeConfirmSendingPopUpTextViewUser"
+                android:layout_alignStart="@+id/yesConfirmPopUpCardView"
+                android:text="Utility:"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/consumptionTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignStart="@+id/yesConfirmPopUpCardView"
-                android:layout_marginTop="54dp"
+                android:layout_marginTop="118dp"
+                android:text="Consumption:"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/monthTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/yesConfirmPopUpCardView"
+                android:layout_marginBottom="118dp"
+                android:text="Month:"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/resourceTypeConfirmSendingPopUpTextViewUser"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="42dp"
+                android:layout_marginTop="71dp"
                 android:text="TBD"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
@@ -46,8 +77,8 @@
                 android:id="@+id/resourceMetterPopUpTextViewUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/noConfirmPopUpCardView"
-                android:layout_alignTop="@+id/resourceTypeConfirmSendingPopUpTextViewUser"
+                android:layout_alignStart="@+id/resourceTypeConfirmSendingPopUpTextViewUser"
+                android:layout_alignTop="@+id/consumptionTV"
                 android:text="TBD"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
@@ -56,12 +87,22 @@
                 android:id="@+id/resourceMetterUnitPopUpTextViewUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/noConfirmPopUpCardView"
-                android:layout_alignTop="@+id/resourceTypeConfirmSendingPopUpTextViewUser"
+                android:layout_alignTop="@+id/resourceMetterPopUpTextViewUser"
+                android:layout_toEndOf="@+id/title"
                 android:text="TBD"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
+
+            <TextView
+                android:id="@+id/monthPopUpTextViewUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/resourceTypeConfirmSendingPopUpTextViewUser"
+                android:layout_alignTop="@+id/monthTV"
+                android:text="TBD"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/yesConfirmPopUpCardView"

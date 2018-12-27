@@ -1,9 +1,9 @@
 <?php 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
-        insertReport();
+        updateReport();
     }
 
-    function insertReport(){
+    function updateReport(){
         $connect = mysqli_connect('localhost', 'root', '', 'utilities');
         $user = (int)$_POST["user"];
         $utility = $_POST["utility"];
@@ -11,8 +11,10 @@
         $month = $_POST["month"];
         $date = $_POST["date"];
 
-        $query = "INSERT INTO report (user, utility, quantity, month, date) 
-                    VALUES ('$user', '$utility', '$quantity', '$month', '$date');";
+        $query = "UPDATE report
+                SET quantity = '$quantity', date = '$date'
+                WHERE user = '$user' AND utility = '$utility' AND month = '$month'";
+
         mysqli_query($connect, $query) or die (mysqli_error($connect));
         mysqli_close($connect); 
     }

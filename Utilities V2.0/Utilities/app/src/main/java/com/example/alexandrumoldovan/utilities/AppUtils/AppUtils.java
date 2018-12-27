@@ -1,0 +1,147 @@
+package com.example.alexandrumoldovan.utilities.AppUtils;
+
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import com.example.alexandrumoldovan.utilities.ActivityLogIn;
+import com.example.alexandrumoldovan.utilities.Domain.Report;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+public class AppUtils {
+
+    public static Report getLastReport(List<Report> reports, String utility) {
+        String month = getCurrentMonth(false);
+        if (month.equals("01")) {
+            month = "12";
+        } else month = String.valueOf(Integer.valueOf(month) - 1);
+        month = getMonthString(month);
+        for (Integer i = reports.size() - 1; i >= 0; i--) {
+            Report localReport = reports.get(i);
+            if (localReport.getMonth().startsWith(month) &&
+                    localReport.getUtility().equals(utility) &&
+                    localReport.getUser().equals(ActivityLogIn.user.getID())) {
+                Log.e("REPORT FOUND", localReport.toString());
+                return localReport;
+            }
+        }
+        return null;
+    }
+
+    public static void setSpinnerCurrentDate(ArrayAdapter<String> adapter, Spinner spinner) {
+        Integer spinnerPosition = adapter.getPosition(getCurrentMonth(true));
+        spinner.setSelection(spinnerPosition);
+    }
+
+    public static String getDate(){
+        Date now = new Date();
+        return new SimpleDateFormat("yyyy-MM-dd").format(now);
+    }
+
+    public static String getCurrentMonth(Boolean toString) {
+        Date now = new Date();
+        String nowAsString = new SimpleDateFormat("yyyy-MM-dd").format(now);
+        if (toString)
+            return getMonthString(nowAsString.substring(5, 7));
+        return nowAsString.substring(5, 7);
+    }
+
+    public static String getCurrentYear() {
+        Date now = new Date();
+        String nowAsString = new SimpleDateFormat("yyyy-MM-dd").format(now);
+        return nowAsString.substring(0, 4);
+    }
+
+    public static String getCurrentDay() {
+        Date now = new Date();
+        String nowAsString = new SimpleDateFormat("yyyy-MM-dd").format(now);
+        return nowAsString.substring(8);
+    }
+
+    private static String getMonthString(String month) {
+        switch (month) {
+            case "01": {
+                return "January";
+            }
+            case "02": {
+                return "February";
+            }
+            case "03": {
+                return "March";
+            }
+            case "04": {
+                return "April";
+            }
+            case "05": {
+                return "May";
+            }
+            case "06": {
+                return "June";
+            }
+            case "07": {
+                return "July";
+            }
+            case "08": {
+                return "August";
+            }
+            case "09": {
+                return "September";
+            }
+            case "10": {
+                return "October";
+            }
+            case "11": {
+                return "November";
+            }
+            case "12": {
+                return "December";
+            }
+        }
+        return null;
+    }
+
+    public static String getMonthNumber(String month) {
+        switch (month) {
+            case "January": {
+                return "01";
+            }
+            case "February": {
+                return "02";
+            }
+            case "March": {
+                return "03";
+            }
+            case "April": {
+                return "04";
+            }
+            case "May": {
+                return "05";
+            }
+            case "June": {
+                return "06";
+            }
+            case "July": {
+                return "07";
+            }
+            case "August": {
+                return "08";
+            }
+            case "September": {
+                return "09";
+            }
+            case "October": {
+                return "10";
+            }
+            case "November": {
+                return "11";
+            }
+            case "December": {
+                return "12";
+            }
+        }
+        return null;
+    }
+}

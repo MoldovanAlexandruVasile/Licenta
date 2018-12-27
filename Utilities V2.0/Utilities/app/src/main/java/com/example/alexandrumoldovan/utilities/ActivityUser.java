@@ -49,7 +49,6 @@ public class ActivityUser extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentManager fragmentManager = getFragmentManager();
-    private Map<String, String> resources = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +56,6 @@ public class ActivityUser extends AppCompatActivity
         setContentView(R.layout.activity_user);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        initializeMap();
         populateUsers();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, new FragmentHomeUser())
@@ -80,13 +78,6 @@ public class ActivityUser extends AppCompatActivity
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         finish();
-    }
-
-    private void initializeMap() {
-        resources.put("Electricity", "");
-        resources.put("Gas", "");
-        resources.put("Water", "");
-        resources.put("Spinner", "");
     }
 
     @Override
@@ -470,36 +461,6 @@ public class ActivityUser extends AppCompatActivity
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.content_frame, new FragmentResourcesPeopleUser())
                 .commit();
-    }
-
-
-    public void openConfirmPopUpForResources(View view) {
-        final Dialog customDialog = new Dialog(ActivityUser.this);
-        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        customDialog.setCanceledOnTouchOutside(false);
-        customDialog.setContentView(R.layout.custom_confirm_resources_pop_up);
-
-        CardView yesCardView = customDialog.findViewById(R.id.yesConfirmPopUpCardView);
-        yesCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initializeMap();
-                customDialog.dismiss();
-                fragmentManager.beginTransaction().
-                        replace(R.id.content_frame, new FragmentHomeUser())
-                        .commit();
-            }
-        });
-
-        CardView noCardView = customDialog.findViewById(R.id.noConfirmPopUpCardView);
-        noCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customDialog.dismiss();
-            }
-        });
-        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        customDialog.show();
     }
 
     private void populateUsers() {

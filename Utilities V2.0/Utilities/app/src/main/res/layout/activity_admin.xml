@@ -10,7 +10,8 @@
     android:background="@color/white"
     android:clickable="true"
     android:focusableInTouchMode="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:onClick="hideKeyboard">
 
     <include
         layout="@layout/app_activity_bar_admin"
