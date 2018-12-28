@@ -159,6 +159,10 @@ public class FragmentResourcesGasUser extends Fragment {
                     insertReportInDB(utility, quantity, spinnerText);
                 else updateReportInDB(utility, quantity, spinnerText);
                 customDialog.dismiss();
+                getActivity().getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                        .replace(R.id.content_frame, new FragmentResourcesUser())
+                        .commit();
             }
         });
 

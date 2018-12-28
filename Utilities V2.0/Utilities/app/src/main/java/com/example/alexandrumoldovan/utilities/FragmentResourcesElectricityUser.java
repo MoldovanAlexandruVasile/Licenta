@@ -25,11 +25,18 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Domain.Report;
 import com.example.alexandrumoldovan.utilities.Domain.User;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -42,6 +49,7 @@ import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getLastR
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getMonthNumber;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.setSpinnerCurrentDate;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_REPORT_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.REPORT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_QUANTITY_REPORT_URL;
 
 public class FragmentResourcesElectricityUser extends Fragment {
@@ -161,6 +169,10 @@ public class FragmentResourcesElectricityUser extends Fragment {
                     insertReportInDB(utility, quantity, spinnerText);
                 else updateReportInDB(utility, quantity, spinnerText);
                 customDialog.dismiss();
+                getActivity().getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                        .replace(R.id.content_frame, new FragmentResourcesUser())
+                        .commit();
             }
         });
 

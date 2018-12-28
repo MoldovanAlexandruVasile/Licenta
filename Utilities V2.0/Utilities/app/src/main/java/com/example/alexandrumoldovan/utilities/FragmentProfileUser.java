@@ -27,6 +27,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_CONTRACT_BY_USER;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_EVENT_USER_USER_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_REPORT_BY_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_USER_URL;
 
 public class FragmentProfileUser extends Fragment {
@@ -61,31 +64,6 @@ public class FragmentProfileUser extends Fragment {
         return profile;
     }
 
-    private void deleteUserFromDB() {
-        RequestQueue requestDeleteQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        StringRequest request = new StringRequest(Request.Method.POST, DELETE_USER_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> parameters = new HashMap<>();
-                String ID = String.valueOf(ActivityLogIn.user.getID());
-                Log.e("REST DELETE USER ID ", ID);
-                parameters.put("ID", ID);
-                return parameters;
-            }
-        };
-        requestDeleteQueue.add(request);
-        Toast.makeText(getActivity(), "Your account has been deleted.", Toast.LENGTH_SHORT).show();
-        performLogOut();
-    }
-
     private void performLogOut() {
         Intent intent = new Intent(getActivity().getApplicationContext(), ActivityLogIn.class);
         startActivity(intent);
@@ -118,5 +96,102 @@ public class FragmentProfileUser extends Fragment {
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         customDialog.show();
+    }
+
+    private void deleteUserFromDB() {
+        RequestQueue requestDeleteQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, DELETE_USER_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                String ID = String.valueOf(ActivityLogIn.user.getID());
+                Log.e("REST DELETE USER ID ", ID);
+                parameters.put("ID", ID);
+                return parameters;
+            }
+        };
+        requestDeleteQueue.add(request);
+        Toast.makeText(getActivity(), "Your account has been deleted.", Toast.LENGTH_SHORT).show();
+        deleteReportByUser();
+        performLogOut();
+    }
+
+    private void deleteReportByUser() {
+        RequestQueue requestDeleteQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, DELETE_REPORT_BY_USER_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                String ID = String.valueOf(ActivityLogIn.user.getID());
+                Log.e("REST DELETE REPORT ID ", ID);
+                parameters.put("user", ID);
+                return parameters;
+            }
+        };
+        requestDeleteQueue.add(request);
+        deleteEventUserByUser();
+    }
+
+    private void deleteEventUserByUser() {
+        RequestQueue requestDeleteQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, DELETE_EVENT_USER_USER_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                String ID = String.valueOf(ActivityLogIn.user.getID());
+                Log.e("REST DELETE USER ID ", ID);
+                parameters.put("user", ID);
+                return parameters;
+            }
+        };
+        requestDeleteQueue.add(request);
+        deleteContractsByUser();
+    }
+
+    private void deleteContractsByUser() {
+        RequestQueue requestDeleteQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, DELETE_CONTRACT_BY_USER, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                String ID = String.valueOf(ActivityLogIn.user.getID());
+                Log.e("REST DELETE USER ID ", ID);
+                parameters.put("user", ID);
+                return parameters;
+            }
+        };
+        requestDeleteQueue.add(request);
     }
 }

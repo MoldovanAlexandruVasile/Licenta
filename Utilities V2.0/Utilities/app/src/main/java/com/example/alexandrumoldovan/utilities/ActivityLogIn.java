@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Domain.Admin;
+import com.example.alexandrumoldovan.utilities.Domain.Contract;
 import com.example.alexandrumoldovan.utilities.Domain.Event;
 import com.example.alexandrumoldovan.utilities.Domain.Event_User;
 import com.example.alexandrumoldovan.utilities.Domain.Report;
@@ -42,6 +43,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.ADMIN_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.CONTRACT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.REPORT_URL;
@@ -56,6 +58,7 @@ public class ActivityLogIn extends AppCompatActivity {
     public static List<Event> events;
     public static List<Event_User> events_users;
     public static List<Report> reports;
+    public static List<Contract> contracts;
     private RequestQueue requestQueue;
     private RelativeLayout rellay1;
     private Handler handler = new Handler();
@@ -68,18 +71,7 @@ public class ActivityLogIn extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        admins = new ArrayList<>();
-        this.populateAdmins();
-        users = new ArrayList<>();
-        this.populateUsers();
-        events = new ArrayList<>();
-        this.populateEvents();
-        events_users = new ArrayList<>();
-        this.populateEventsUsers();
-        reports = new ArrayList<>();
-        this.populateReports();
-        admin = null;
-        user = null;
+        populateListsWithDBData();
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_log_in);
@@ -95,6 +87,23 @@ public class ActivityLogIn extends AppCompatActivity {
         ConnectionDetector cd = new ConnectionDetector(this);
         if (!cd.isConnected())
             Toast.makeText(this, "No internet connection.", Toast.LENGTH_SHORT).show();
+    }
+
+    private void populateListsWithDBData() {
+        admins = new ArrayList<>();
+        this.populateAdmins();
+        users = new ArrayList<>();
+        this.populateUsers();
+        events = new ArrayList<>();
+        this.populateEvents();
+        events_users = new ArrayList<>();
+        this.populateEventsUsers();
+        reports = new ArrayList<>();
+        this.populateReports();
+        contracts = new ArrayList<>();
+        this.populateContracts();
+        admin = null;
+        user = null;
     }
 
     @Override
@@ -364,6 +373,34 @@ public class ActivityLogIn extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("REST REPORT Response", error.toString());
+                    }
+                });
+        requestQueue.add(objectRequest);
+    }
+
+    private void populateContracts() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, CONTRACT_URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST CONTRACT", response.toString());
+                        try {
+                            JSONObject responseObject = new JSONObject(response.toString());
+                            JSONArray resultsArray = responseObject.getJSONArray("contract");
+                            for (Integer i = 0; i < resultsArray.length(); i++) {
+                                Contract localContract = new Gson().fromJson(resultsArray.get(i).toString(), Contract.class);
+                                contracts.add(localContract);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST CONTRACT Response", error.toString());
                     }
                 });
         requestQueue.add(objectRequest);

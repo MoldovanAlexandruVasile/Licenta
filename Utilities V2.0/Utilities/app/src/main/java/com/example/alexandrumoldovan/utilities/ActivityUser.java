@@ -30,7 +30,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.alexandrumoldovan.utilities.Domain.Contract;
 import com.example.alexandrumoldovan.utilities.Domain.User;
 import com.google.gson.Gson;
 
@@ -43,6 +45,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.CONTRACT_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_CONTRACT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.USER_URL;
 
 public class ActivityUser extends AppCompatActivity
@@ -57,6 +61,7 @@ public class ActivityUser extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         populateUsers();
+
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, new FragmentHomeUser())
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
@@ -70,6 +75,14 @@ public class ActivityUser extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view_user);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private Boolean isUserInContracts(Integer id) {
+        for (Contract contract : ActivityLogIn.contracts) {
+            if (contract.getUser().equals(id))
+                return true;
+        }
+        return false;
     }
 
     private void performLogOut() {
@@ -335,89 +348,6 @@ public class ActivityUser extends AppCompatActivity
                 .commit();
     }
 
-    public void checkPasswords(View view) {
-        //TODO: check if the old password it's correct too
-        EditText newPassEditText = findViewById(R.id.newPasswordTextInputUser);
-        EditText confirmPassEditText = findViewById(R.id.confirmPasswordTextInputUser);
-        String newPass = newPassEditText.getText().toString();
-        String confirmPass = confirmPassEditText.getText().toString();
-        //TODO: Old Password field must be filled
-        if (newPass.compareTo("") == 0 || confirmPass.compareTo("") == 0) {
-            this.completePasswordFields();
-        } else {
-            if (newPass.compareTo(confirmPass) == 0) {
-                this.changePasswordSuccess();
-            } else {
-                this.changePasswordFailed();
-            }
-        }
-    }
-
-    private void completePasswordFields() {
-        final Dialog customDialog = new Dialog(ActivityUser.this);
-        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        customDialog.setCanceledOnTouchOutside(false);
-        customDialog.setContentView(R.layout.custom_pop_up);
-        TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText(R.string.complete_all_fields);
-        CardView cardView = customDialog.findViewById(R.id.okButton);
-
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customDialog.dismiss();
-            }
-        });
-        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        customDialog.show();
-    }
-
-    private void changePasswordSuccess() {
-        final Dialog customDialog = new Dialog(ActivityUser.this);
-        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        customDialog.setCanceledOnTouchOutside(false);
-        customDialog.setContentView(R.layout.custom_pop_up);
-        TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText(R.string.password_changed);
-        CardView cardView = customDialog.findViewById(R.id.okButton);
-
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customDialog.dismiss();
-                goToSettings();
-            }
-        });
-        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        customDialog.show();
-    }
-
-    private void changePasswordFailed() {
-        final Dialog customDialog = new Dialog(ActivityUser.this);
-        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        customDialog.setCanceledOnTouchOutside(false);
-        customDialog.setContentView(R.layout.custom_pop_up);
-        TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText(R.string.passwords_no_match);
-
-        CardView cardView = customDialog.findViewById(R.id.okButton);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customDialog.dismiss();
-            }
-        });
-        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        customDialog.show();
-    }
-
-    public void goToSettings() {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
-                .replace(R.id.content_frame, new FragmentSettingsUser())
-                .commit();
-    }
-
     public void goToChangePassFragment(View view) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
@@ -477,8 +407,12 @@ public class ActivityUser extends AppCompatActivity
                             for (Integer i = 0; i < resultsArray.length(); i++) {
                                 User localUser = new Gson().fromJson(resultsArray.get(i).toString(), User.class);
                                 ActivityLogIn.users.add(localUser);
-                                if (localUser.getEmail().equals(ActivityLogIn.user.getEmail()))
+                                if (localUser.getEmail().equals(ActivityLogIn.user.getEmail())) {
                                     ActivityLogIn.user.setID(localUser.getID());
+                                    if (!isUserInContracts(localUser.getID())) {
+                                        insertUserInContracts(localUser.getID());
+                                    }
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -492,5 +426,33 @@ public class ActivityUser extends AppCompatActivity
                     }
                 });
         requestQueue.add(objectRequest);
+    }
+
+    private void insertUserInContracts(final Integer id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, INSERT_CONTRACT_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                Contract contract = new Contract(id, "false", "false", "false", "false");
+                ActivityLogIn.contracts.add(contract);
+                Log.e("REST INSERT CONTRACT", String.valueOf(id));
+                parameters.put("user", String.valueOf(id));
+                parameters.put("water", "false");
+                parameters.put("gas", "false");
+                parameters.put("electricity", "false");
+                parameters.put("garage", "false");
+                return parameters;
+            }
+        };
+        requestQueue.add(request);
     }
 }

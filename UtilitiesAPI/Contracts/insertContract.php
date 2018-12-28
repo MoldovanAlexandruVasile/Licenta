@@ -9,8 +9,10 @@
         $water = $_POST["water"];
         $gas = $_POST["gas"];
         $electricity = $_POST["electricity"];
+        $garage = $_POST["garage"];
 
-        $query = "INSERT INTO contracts (user, water, gas, electricity) VALUES ('$user', '$water', '$gas', '$electricity');";
+        $query = "INSERT INTO contracts (user, water, gas, electricity, garage)
+                  VALUES ('$user', '$water', '$gas', '$electricity', '$garage');";
         mysqli_query($connect, $query) or die (mysqli_error($connect));
         mysqli_close($connect); 
     }

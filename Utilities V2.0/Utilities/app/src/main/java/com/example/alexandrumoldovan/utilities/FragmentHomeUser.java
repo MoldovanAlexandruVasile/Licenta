@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.alexandrumoldovan.utilities.Domain.Contract;
 import com.example.alexandrumoldovan.utilities.Domain.Event;
 import com.example.alexandrumoldovan.utilities.Domain.Event_User;
 import com.example.alexandrumoldovan.utilities.Domain.User;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.CONTRACT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_USER_URL;
@@ -55,6 +57,8 @@ public class FragmentHomeUser extends Fragment {
         populateEvents();
         populateEventsUsers();
         populateUsers();
+        populateContracts();
+
         if (ActivityLogIn.events.size() == 0) {
             View user = inflater.inflate(R.layout.layout_empty_stuff, container, false);
             return user;
@@ -318,6 +322,35 @@ public class FragmentHomeUser extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("REST USER Response", error.toString());
+                    }
+                });
+        requestQueue.add(objectRequest);
+    }
+
+    private void populateContracts() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, CONTRACT_URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST CONTRACT", response.toString());
+                        try {
+                            JSONObject responseObject = new JSONObject(response.toString());
+                            JSONArray resultsArray = responseObject.getJSONArray("contract");
+                            ActivityLogIn.contracts = new ArrayList<>();
+                            for (Integer i = 0; i < resultsArray.length(); i++) {
+                                Contract localContract = new Gson().fromJson(resultsArray.get(i).toString(), Contract.class);
+                                ActivityLogIn.contracts.add(localContract);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST CONTRACT Response", error.toString());
                     }
                 });
         requestQueue.add(objectRequest);

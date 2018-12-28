@@ -37,6 +37,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_CONTRACT_BY_USER;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_EVENT_USER_USER_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_REPORT_BY_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_USER_URL;
 
 public class ActivityAdmin extends AppCompatActivity
@@ -145,24 +148,6 @@ public class ActivityAdmin extends AppCompatActivity
         }
     }
 
-    public void checkPasswordsAdmin(View view) {
-        //TODO: check if the old password it's correct too
-        EditText newPassEditText = findViewById(R.id.newPasswordTextInputAdmin);
-        EditText confirmPassEditText = findViewById(R.id.confirmPasswordTextInputAdmin);
-        String newPass = newPassEditText.getText().toString();
-        String confirmPass = confirmPassEditText.getText().toString();
-        //TODO: Old Password field must be filled
-        if (newPass.compareTo("") == 0 || confirmPass.compareTo("") == 0) {
-            completeAllFields();
-        } else {
-            if (newPass.compareTo(confirmPass) == 0) {
-                changePasswordSuccess();
-            } else {
-                changePasswordFailed();
-            }
-        }
-    }
-
     private void completeAllFields() {
         final Dialog customDialog = new Dialog(ActivityAdmin.this);
         customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -176,26 +161,6 @@ public class ActivityAdmin extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 customDialog.dismiss();
-            }
-        });
-        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        customDialog.show();
-    }
-
-    private void changePasswordSuccess() {
-        final Dialog customDialog = new Dialog(ActivityAdmin.this);
-        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        customDialog.setCanceledOnTouchOutside(false);
-        customDialog.setContentView(R.layout.custom_pop_up);
-        TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("The password was changed with success !");
-        CardView cardView = customDialog.findViewById(R.id.okButton);
-
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customDialog.dismiss();
-                goToSettingsAdmin();
             }
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -336,6 +301,78 @@ public class ActivityAdmin extends AppCompatActivity
             }
         };
         requestDeleteQueue.add(request);
+        deleteReportByUser(user);
+    }
+
+    private void deleteReportByUser(final User user){
+        RequestQueue requestDeleteQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, DELETE_REPORT_BY_USER_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                String ID = String.valueOf(user.getID());
+                Log.e("REST DELETE REPORT ID ", ID);
+                parameters.put("user", ID);
+                return parameters;
+            }
+        };
+        requestDeleteQueue.add(request);
+        deleteEventUserByUser(user);
+    }
+
+    private void deleteEventUserByUser(final User user){
+        RequestQueue requestDeleteQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, DELETE_EVENT_USER_USER_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                String ID = String.valueOf(user.getID());
+                Log.e("REST DELETE USER ID ", ID);
+                parameters.put("user", ID);
+                return parameters;
+            }
+        };
+        requestDeleteQueue.add(request);
+        deleteContractsByUser(user);
+    }
+
+    private void deleteContractsByUser(final User user){
+        RequestQueue requestDeleteQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, DELETE_CONTRACT_BY_USER, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                String ID = String.valueOf(user.getID());
+                Log.e("REST DELETE USER ID ", ID);
+                parameters.put("user", ID);
+                return parameters;
+            }
+        };
+        requestDeleteQueue.add(request);
     }
 
     private User getUserDetails(String email, String pass) {
@@ -347,13 +384,6 @@ public class ActivityAdmin extends AppCompatActivity
     }
 
     public void goToSettingsAdmin(View view) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
-                .replace(R.id.content_frame, new FragmentSettingsAdmin())
-                .commit();
-    }
-
-    private void goToSettingsAdmin() {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
                 .replace(R.id.content_frame, new FragmentSettingsAdmin())
@@ -444,14 +474,6 @@ public class ActivityAdmin extends AppCompatActivity
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.content_frame, new FragmentEventsReportsAdmin())
                 .commit();
-    }
-
-    private Admin getAdmin(String email){
-        for (Admin admin : ActivityLogIn.admins){
-            if (admin.getEmail().equals(email))
-                return admin;
-        }
-        return null;
     }
 }
 
