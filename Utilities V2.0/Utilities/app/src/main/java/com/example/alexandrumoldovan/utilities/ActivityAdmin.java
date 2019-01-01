@@ -262,10 +262,16 @@ public class ActivityAdmin extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 User user = getUserDetails(email, pass);
-                deleteUserFromDB(user);
                 customDialog.dismiss();
-                prev.dismiss();
-                Toast.makeText(getBaseContext(), "Account deleted", Toast.LENGTH_LONG).show();
+                if (user == null)
+                    Toast.makeText(getBaseContext(), "Such user does not exist.", Toast.LENGTH_LONG).show();
+                else if (user.getAddress().equals(ActivityLogIn.admin.getAddress())) {
+                    prev.dismiss();
+                    deleteUserFromDB(user);
+                    Toast.makeText(getBaseContext(), "Account deleted", Toast.LENGTH_LONG).show();
+                } else
+                    Toast.makeText(getBaseContext(), "Account cannot be deleted. " +
+                            "This account is not registered to one of the apartments in this block.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -304,7 +310,7 @@ public class ActivityAdmin extends AppCompatActivity
         deleteReportByUser(user);
     }
 
-    private void deleteReportByUser(final User user){
+    private void deleteReportByUser(final User user) {
         RequestQueue requestDeleteQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest request = new StringRequest(Request.Method.POST, DELETE_REPORT_BY_USER_URL, new Response.Listener<String>() {
             @Override
@@ -328,7 +334,7 @@ public class ActivityAdmin extends AppCompatActivity
         deleteEventUserByUser(user);
     }
 
-    private void deleteEventUserByUser(final User user){
+    private void deleteEventUserByUser(final User user) {
         RequestQueue requestDeleteQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest request = new StringRequest(Request.Method.POST, DELETE_EVENT_USER_USER_URL, new Response.Listener<String>() {
             @Override
@@ -352,7 +358,7 @@ public class ActivityAdmin extends AppCompatActivity
         deleteContractsByUser(user);
     }
 
-    private void deleteContractsByUser(final User user){
+    private void deleteContractsByUser(final User user) {
         RequestQueue requestDeleteQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest request = new StringRequest(Request.Method.POST, DELETE_CONTRACT_BY_USER, new Response.Listener<String>() {
             @Override

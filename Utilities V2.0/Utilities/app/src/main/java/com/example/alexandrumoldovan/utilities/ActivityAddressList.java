@@ -40,19 +40,18 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.ADDRESS_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.USER_URL;
 
 public class ActivityAddressList extends AppCompatActivity {
     private static List<Address> addressList;
-    private static String fromSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         addressList = new ArrayList<>();
         populateAddresses();
-        fromSignUp = getIntent().getStringExtra("SignUp");
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.layout_address_list);
@@ -110,22 +109,18 @@ public class ActivityAddressList extends AppCompatActivity {
                             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    if (fromSignUp.equals("YES")) {
-                                        Intent intent = new Intent(getApplicationContext(), ActivityUser.class);
-                                        ActivitySignUp.user.setAddress(addressList.get(position).getAddress());
-                                        ActivityLogIn.user = ActivitySignUp.user;
+                                    Intent intent = new Intent(getApplicationContext(), ActivityUser.class);
+                                    ActivitySignUp.user.setAddress(addressList.get(position).getAddress());
+                                    ActivityLogIn.user = ActivitySignUp.user;
+                                    if (isAddressValid(ActivityLogIn.user)) {
                                         insertUserInDB();
                                         startActivity(intent);
                                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                                         finish();
-                                    } else if (fromSignUp.equals("NO")) {
-                                        Intent intent = new Intent(getApplicationContext(), ActivityUser.class);
-                                        ActivityLogIn.user.setAddress(addressList.get(position).getAddress());
-                                        updateUserInDB();
-                                        startActivity(intent);
-                                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                                        finish();
-                                    }
+                                    } else
+                                        showOkPopUpAndRedirectToSignUp(
+                                                "This apartment number is already registered for that address. " +
+                                                        "Please register with valid data.");
                                 }
                             });
                         } catch (JSONException e) {
@@ -142,31 +137,13 @@ public class ActivityAddressList extends AppCompatActivity {
         requestQueue.add(objectRequest);
     }
 
-    private void updateUserInDB() {
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest request = new StringRequest(Request.Method.POST, UPDATE_USER_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                User user = ActivityLogIn.user;
-                Map<String, String> parameters = new HashMap<>();
-                parameters.put("ID", String.valueOf(user.getID()));
-                parameters.put("email", user.getEmail());
-                parameters.put("password", user.getPassword());
-                parameters.put("name", user.getName());
-                parameters.put("address", user.getAddress());
-                parameters.put("apartment", String.valueOf(user.getApartment()));
-                return parameters;
-            }
-        };
-        requestQueue.add(request);
+    private Boolean isAddressValid(User user) {
+        for (User localUser : ActivityLogIn.users) {
+            if (localUser.getAddress().equals(user.getAddress())
+                    && localUser.getApartment().equals(user.getApartment()))
+                return false;
+        }
+        return true;
     }
 
     private void insertUserInDB() {
@@ -193,6 +170,28 @@ public class ActivityAddressList extends AppCompatActivity {
             }
         };
         requestQueue.add(request);
+    }
+
+    private void showOkPopUpAndRedirectToSignUp(String message) {
+        final Dialog customDialog = new Dialog(ActivityAddressList.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText(message);
+        CardView yesCardView = customDialog.findViewById(R.id.okButton);
+        yesCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+                Intent intent = new Intent(getApplicationContext(), ActivitySignUp.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                finish();
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
     }
 
     class CustomAdapter extends BaseAdapter {

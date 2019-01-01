@@ -161,7 +161,6 @@ public class ActivityLogIn extends AppCompatActivity {
 
     private void goToPickAddress() {
         Intent intent = new Intent(getApplicationContext(), ActivityAddressList.class);
-        intent.putExtra("SignUp", "NO");
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish();

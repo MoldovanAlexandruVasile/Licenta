@@ -56,8 +56,12 @@ public class FragmentAccountManagementAdmin extends Fragment {
                     Integer apartment = Integer.valueOf(apartmentET.getText().toString());
                     EditText nameET = accManagement.findViewById(R.id.nameTextInputUser);
                     String name = nameET.getText().toString();
+                    User user = new User(email, pass, name, ActivityLogIn.admin.getAddress(), apartment);
                     if (pass.equals(confPass) && !email.isEmpty() && !String.valueOf(apartment).isEmpty() && !name.isEmpty()) {
-                        createUser(email, pass, name, "", apartment);
+                        if (isAddressValid(user))
+                            createUser(user);
+                        else showOkPopUp("This apartment number is already registered for this address." +
+                                "Please register with valid data.");
                     } else showOkPopUp("Check all fields to be filled correctly.");
                 } catch (Exception ex){
                     showOkPopUp("Check all fields to be filled correctly.");
@@ -67,7 +71,16 @@ public class FragmentAccountManagementAdmin extends Fragment {
         return accManagement;
     }
 
-    private void createUser(final String email, final String pass, final String name, final String address, final Integer apartment){
+    private Boolean isAddressValid(User user) {
+        for (User localUser : ActivityLogIn.users) {
+            if (localUser.getAddress().equals(user.getAddress())
+                    && localUser.getApartment().equals(user.getApartment()))
+                return false;
+        }
+        return true;
+    }
+
+    private void createUser(final User user){
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         StringRequest request = new StringRequest(Request.Method.POST, INSERT_USER_URL, new Response.Listener<String>() {
             @Override
@@ -80,7 +93,6 @@ public class FragmentAccountManagementAdmin extends Fragment {
         }) {
             @Override
             protected Map<String, String> getParams() {
-                User user = new User(email, pass, name, address, apartment);
                 Map<String, String> parameters = new HashMap<>();
                 parameters.put("email", user.getEmail());
                 parameters.put("password", user.getPassword());
