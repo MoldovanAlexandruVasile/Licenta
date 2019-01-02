@@ -14,8 +14,14 @@ import com.example.alexandrumoldovan.utilities.Domain.Event;
 import com.example.alexandrumoldovan.utilities.Domain.Event_User;
 import com.example.alexandrumoldovan.utilities.Domain.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getEventByID;
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getUserByID;
+
 public class FragmentEventsReportsAdmin extends Fragment {
-    View eventsReports;
+    private View eventsReports;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +32,7 @@ public class FragmentEventsReportsAdmin extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        if (ActivityLogIn.events_users.size() > 0) {
+        if (ActivityAdmin.myEventReports.size() > 0) {
             eventsReports = inflater.inflate(R.layout.layout_event_reports_admin, container, false);
             ListView listView = eventsReports.findViewById(R.id.eventsReportsListEventsReports);
             CustomAdapter customAdapter = new CustomAdapter() {
@@ -43,24 +49,10 @@ public class FragmentEventsReportsAdmin extends Fragment {
         }
     }
 
-    private Event getEventByID(Integer eventID) {
-        for (Event localEvent : ActivityLogIn.events)
-            if (localEvent.getID().equals(eventID))
-                return localEvent;
-        return null;
-    }
-
-    private User getUserByID(Integer userID) {
-        for (User localUser : ActivityLogIn.users)
-            if (localUser.getID().equals(userID))
-                return localUser;
-        return null;
-    }
-
     class CustomAdapter extends BaseAdapter {
         @Override
         public int getCount() {
-            return ActivityLogIn.events_users.size();
+            return ActivityAdmin.myEventReports.size();
         }
 
         @Override
@@ -77,8 +69,7 @@ public class FragmentEventsReportsAdmin extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             View viewEvent = layoutInflater.inflate(R.layout.custom_row_event_reports_admin, null);
-            viewEvent.setMinimumHeight(100);
-            Event_User event_user = ActivityLogIn.events_users.get(position);
+            Event_User event_user = ActivityAdmin.myEventReports.get(position);
             User user = getUserByID(event_user.getUser());
             Event event = getEventByID(event_user.getEvent());
             assert user != null;

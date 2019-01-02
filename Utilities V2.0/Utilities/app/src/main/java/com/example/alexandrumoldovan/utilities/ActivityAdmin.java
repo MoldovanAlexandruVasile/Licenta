@@ -30,13 +30,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.alexandrumoldovan.utilities.Domain.Admin;
+import com.example.alexandrumoldovan.utilities.Domain.Event;
+import com.example.alexandrumoldovan.utilities.Domain.Event_User;
 import com.example.alexandrumoldovan.utilities.Domain.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getEventByID;
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getUserByID;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_CONTRACT_BY_USER;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_EVENT_USER_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_REPORT_BY_USER_URL;
@@ -45,9 +50,14 @@ import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DEL
 public class ActivityAdmin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager = getFragmentManager();
+    public static List<Event_User> myEventReports;
+    public static List<User> myUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        fillMyEventReports();
+        fillMyUsers();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -65,6 +75,26 @@ public class ActivityAdmin extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view_admin);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void fillMyUsers() {
+        myUsers = new ArrayList<>();
+        for (User user : ActivityLogIn.users)
+            if (user.getAddress().equals(ActivityLogIn.admin.getAddress())
+                    && !myUsers.contains(user))
+                myUsers.add(user);
+    }
+
+    private static void fillMyEventReports() {
+        myEventReports = new ArrayList<>();
+        for (Event_User event_user : ActivityLogIn.events_users) {
+            Event event = getEventByID(event_user.getEvent());
+            User user = getUserByID(event_user.getUser());
+            if (event.getAddress().equals(ActivityLogIn.admin.getAddress())
+                    && user.getAddress().equals(ActivityLogIn.admin.getAddress())
+                    && !myEventReports.contains(event_user))
+                myEventReports.add(event_user);
+        }
     }
 
     @Override
@@ -479,6 +509,13 @@ public class ActivityAdmin extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.content_frame, new FragmentEventsReportsAdmin())
+                .commit();
+    }
+
+    public void goBackToMonthReports(View view){
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentMonthReportsAdmin())
                 .commit();
     }
 }

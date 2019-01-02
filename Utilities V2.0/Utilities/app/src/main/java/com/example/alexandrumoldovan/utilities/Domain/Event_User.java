@@ -7,7 +7,7 @@ public class Event_User {
     private Integer event;
     private String status;
 
-    public Event_User(Integer user, Integer event, String Status) {
+    public Event_User(Integer user, Integer event, String status) {
         this.user = user;
         this.event = event;
         this.status = status;

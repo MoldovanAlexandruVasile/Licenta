@@ -80,6 +80,7 @@ public class FragmentCreateEventAdmin extends Fragment {
                 Map<String, String> parameters = new HashMap<>();
                 parameters.put("title", title);
                 parameters.put("details", details);
+                parameters.put("address", ActivityLogIn.admin.getAddress());
                 return parameters;
             }
 

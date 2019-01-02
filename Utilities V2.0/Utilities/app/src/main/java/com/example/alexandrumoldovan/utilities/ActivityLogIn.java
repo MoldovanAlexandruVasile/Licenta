@@ -59,6 +59,7 @@ public class ActivityLogIn extends AppCompatActivity {
     public static List<Event_User> events_users;
     public static List<Report> reports;
     public static List<Contract> contracts;
+    public static List<Integer> apartment;
     private RequestQueue requestQueue;
     private RelativeLayout rellay1;
     private Handler handler = new Handler();

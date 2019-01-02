@@ -5,13 +5,29 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.alexandrumoldovan.utilities.ActivityLogIn;
+import com.example.alexandrumoldovan.utilities.Domain.Event;
 import com.example.alexandrumoldovan.utilities.Domain.Report;
+import com.example.alexandrumoldovan.utilities.Domain.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class AppUtils {
+
+    public static Event getEventByID(Integer eventID) {
+        for (Event localEvent : ActivityLogIn.events)
+            if (localEvent.getID().equals(eventID))
+                return localEvent;
+        return null;
+    }
+
+    public static User getUserByID(Integer userID) {
+        for (User localUser : ActivityLogIn.users)
+            if (localUser.getID().equals(userID))
+                return localUser;
+        return null;
+    }
 
     public static Report getLastReport(List<Report> reports, String utility) {
         String month = getCurrentMonth(false);

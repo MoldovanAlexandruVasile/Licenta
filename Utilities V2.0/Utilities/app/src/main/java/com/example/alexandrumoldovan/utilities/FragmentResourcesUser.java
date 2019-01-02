@@ -37,9 +37,9 @@ public class FragmentResourcesUser extends Fragment {
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
-        populateReports();
         grid = inflater.inflate(R.layout.layout_resources_main_user, container, false);
         ((ActivityUser) getActivity()).setActionBarTitle("Resources report");
+        populateReports();
         return grid;
     }
 

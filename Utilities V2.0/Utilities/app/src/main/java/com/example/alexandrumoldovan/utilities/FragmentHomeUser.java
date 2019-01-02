@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Domain.Contract;
 import com.example.alexandrumoldovan.utilities.Domain.Event;
 import com.example.alexandrumoldovan.utilities.Domain.Event_User;
+import com.example.alexandrumoldovan.utilities.Domain.Report;
 import com.example.alexandrumoldovan.utilities.Domain.User;
 import com.google.gson.Gson;
 
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.CONTRACT_URL;
@@ -45,6 +47,7 @@ import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPD
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.USER_URL;
 
 public class FragmentHomeUser extends Fragment {
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
