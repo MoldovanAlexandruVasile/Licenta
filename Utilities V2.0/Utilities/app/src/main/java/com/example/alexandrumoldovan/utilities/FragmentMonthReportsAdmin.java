@@ -1,12 +1,17 @@
 package com.example.alexandrumoldovan.utilities;
 
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -20,6 +25,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getCurrentMonth;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getDate;
@@ -46,10 +52,14 @@ public class FragmentMonthReportsAdmin extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     populateUserReports(position);
-                    getActivity().getFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
-                            .replace(R.id.content_frame, new FragmentMonthReportsDetailsAdmin())
-                            .commit();
+                    if (reports.size() > 0)
+                        getActivity().getFragmentManager().beginTransaction()
+                                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                                .replace(R.id.content_frame, new FragmentMonthReportsDetailsAdmin())
+                                .commit();
+                    else
+                        showOkPopUp("The user from apartment " + ActivityAdmin.myUsers.get(position).getApartment() +
+                                " didn't sent any reports yet.");
                 }
             });
             return archive;
@@ -68,6 +78,24 @@ public class FragmentMonthReportsAdmin extends Fragment {
                     && localReport.getMonth().equals(currentMonth))
                 reports.add(localReport);
         }
+    }
+
+    private void showOkPopUp(String message) {
+        final Dialog customDialog = new Dialog(getActivity());
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.setContentView(R.layout.custom_pop_up);
+        TextView textView = customDialog.findViewById(R.id.popupTextView);
+        textView.setText(message);
+        CardView yesCardView = customDialog.findViewById(R.id.okButton);
+        yesCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+            }
+        });
+        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.show();
     }
 
     class CustomAdapter extends BaseAdapter {

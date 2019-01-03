@@ -16,7 +16,7 @@ import com.example.alexandrumoldovan.utilities.Domain.Report;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentArchiveInfoUser extends Fragment {
+public class FragmentArchiveDetailsUser extends Fragment {
     private String value;
     private List<Report> myReports;
 

@@ -57,7 +57,7 @@ public class FragmentHomeUser extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        populateEvents();
+        //populateEvents();
         populateEventsUsers();
         populateUsers();
         populateContracts();

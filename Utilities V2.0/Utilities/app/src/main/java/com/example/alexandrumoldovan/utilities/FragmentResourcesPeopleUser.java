@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.alexandrumoldovan.utilities.Domain.Contract;
 import com.example.alexandrumoldovan.utilities.Domain.Report;
 
 import java.util.HashMap;
@@ -73,11 +74,26 @@ public class FragmentResourcesPeopleUser extends Fragment {
             }
         });
 
+        if (isUsingGarage()) {
+            TextView garage = resources.findViewById(R.id.garageCostUser);
+            garage.setText("50 RON");
+        }
+
         if (isAlreadyReported()) {
             showOkPopUp("You have already reported the number of people ! But you can update your report by sending it again.");
         }
 
         return resources;
+    }
+
+    private Boolean isUsingGarage() {
+        for (Contract contract : ActivityLogIn.contracts)
+            if (contract.getUser().equals(ActivityLogIn.user.getID())) {
+                if (contract.getGarage().equals("true"))
+                    return true;
+                else return false;
+            }
+        return false;
     }
 
     private Boolean isAlreadyReported() {

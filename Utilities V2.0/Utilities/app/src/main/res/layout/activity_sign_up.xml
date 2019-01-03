@@ -8,16 +8,33 @@
     android:background="@drawable/log_in_gradient"
     android:onClick="hideKeyboard">
 
+    <TextView
+        android:id="@+id/backBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:clickable="true"
+        android:drawableLeft="@drawable/ic_action_arrow_white"
+        android:focusable="true"
+        android:onClick="goToLogIn"
+        android:text="Back"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="262dp"
-        android:layout_height="match_parent"
+        android:layout_height="540dp"
         android:layout_marginEnd="60dp"
         android:layout_marginStart="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/backBtn">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -36,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:text="Email"
+                android:text="Username"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="15sp" />

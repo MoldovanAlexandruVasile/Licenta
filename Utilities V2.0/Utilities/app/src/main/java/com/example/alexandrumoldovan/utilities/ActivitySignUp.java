@@ -84,6 +84,13 @@ public class ActivitySignUp extends AppCompatActivity {
         } else showOkPopUp("Make sure all fields are completed");
     }
 
+    public void goToLogIn(View view){
+        Intent intent = new Intent(getApplicationContext(), ActivityLogIn.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        finish();
+    }
+
     @Override
     public void onBackPressed() {
         final Dialog customDialog = new Dialog(ActivitySignUp.this);

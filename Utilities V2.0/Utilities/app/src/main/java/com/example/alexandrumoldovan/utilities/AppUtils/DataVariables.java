@@ -8,6 +8,8 @@ public class DataVariables {
     //ADMIN
     public static final String ADMIN_URL = "http://" + IP + ":8012/UtilitiesAPI/Admin/adminscontroller.php?view=all";
     public static final String INSERT_ADMIM_URL = "http://" + IP + ":8012/UtilitiesAPI/Admin/insertAdmin.php";
+    public static final String UPDATE_ADMIN_NAME_URL = "http://" + IP + ":8012/UtilitiesAPI/Admin/updateAdminName.php";
+    public static final String UPDATE_ADMIN_PASS_URL = "http://" + IP + ":8012/UtilitiesAPI/Admin/updateAdminPassword.php";
 
     //USER
     public static final String USER_URL = "http://" + IP + ":8012/UtilitiesAPI/User/userscontroller.php?view=all";

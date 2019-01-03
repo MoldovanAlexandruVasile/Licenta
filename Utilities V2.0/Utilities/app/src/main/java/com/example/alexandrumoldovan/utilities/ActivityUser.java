@@ -33,6 +33,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Domain.Contract;
+import com.example.alexandrumoldovan.utilities.Domain.Event;
 import com.example.alexandrumoldovan.utilities.Domain.User;
 import com.google.gson.Gson;
 
@@ -42,6 +43,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -56,6 +58,8 @@ public class ActivityUser extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ActivityLogIn.events = getEventsFromUserAddress();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -75,6 +79,14 @@ public class ActivityUser extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view_user);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private List<Event> getEventsFromUserAddress() {
+        List<Event> myEvents = new ArrayList<>();
+        for (Event localEvent: ActivityLogIn.events)
+            if (localEvent.getAddress().equals(ActivityLogIn.user.getAddress()))
+                myEvents.add(localEvent);
+        return myEvents;
     }
 
     private Boolean isUserInContracts(Integer id) {

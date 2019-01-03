@@ -9,9 +9,9 @@
         $user = (int)$_POST["user"];
         $event = (int)$_POST["event"];
         $status = $_POST["status"];
-
+    
         $query = "UPDATE event_user
-                SET user = '$user', event = '$event', status = '$status'
+                SET user = '$user', event = '$event', status = '$status';
                 WHERE ID = $ID;";
 
         mysqli_query($connect, $query) or die (mysqli_error($connect));

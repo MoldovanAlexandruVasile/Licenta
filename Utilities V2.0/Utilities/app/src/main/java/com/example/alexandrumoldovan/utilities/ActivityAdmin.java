@@ -477,6 +477,20 @@ public class ActivityAdmin extends AppCompatActivity
                 .commit();
     }
 
+    public void goBackToMonthsArchive(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentArchiveMonthsAdmin())
+                .commit();
+    }
+
+    public void goBackToArchive(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentArchiveAdmin())
+                .commit();
+    }
+
     public void goToHomeAdmin(View view) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)

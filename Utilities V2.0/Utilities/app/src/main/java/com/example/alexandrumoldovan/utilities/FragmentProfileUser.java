@@ -77,7 +77,7 @@ public class FragmentProfileUser extends Fragment {
         customDialog.setCanceledOnTouchOutside(false);
         customDialog.setContentView(R.layout.custom_exit_pop_up);
         TextView textView = customDialog.findViewById(R.id.exitPopupTextView);
-        textView.setText("Are you sure you want to delete this account?");
+        textView.setText("Are you sure you want to delete your account?");
         CardView yesCardView = customDialog.findViewById(R.id.yesPopUpCardView);
 
         yesCardView.setOnClickListener(new View.OnClickListener() {

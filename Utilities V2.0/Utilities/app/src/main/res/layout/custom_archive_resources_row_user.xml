@@ -27,7 +27,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignStart="@+id/utilityTV"
                 android:layout_marginTop="19dp"
-                android:text="Date:"
+                android:text="Sent on:"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 

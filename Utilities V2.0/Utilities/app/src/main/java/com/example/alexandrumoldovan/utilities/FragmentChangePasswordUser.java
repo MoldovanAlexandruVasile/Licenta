@@ -63,6 +63,8 @@ public class FragmentChangePasswordUser extends Fragment {
                     showOkPopUp("Incorrect old password !", false);
                 else if (!newP.equals(confirmNewP))
                     showOkPopUp("The new passwords does not match !", false);
+                else if (oldP.equals(newP))
+                    showOkPopUp("Your new password cannot be the same as the old one.", false);
                 else updatePasswordInDB(newP);
             }
         });
