@@ -8,12 +8,16 @@
         $ID = $_POST["ID"];
         $title = $_POST["title"];
         $details = $_POST["details"];
-        $status = $_POST["status"];
+        $date = $_POST["date"];
+        $hour = $_POST["hour"];
+        $minute = $_POST["minute"];
         $address = $_POST["address"];
 
         $query = "UPDATE event
-                SET title = '$title', details = '$details', status = '$status', address = '$address'
-                WHERE ID = $ID;";
+                  SET title = '$title', details = '$details',
+                      date = '$date', hour = '$hour', minute = '$minute', 
+                      address = '$address'
+                  WHERE ID = '$ID';";
 
         mysqli_query($connect, $query) or die (mysqli_error($connect));
         mysqli_close($connect); 
