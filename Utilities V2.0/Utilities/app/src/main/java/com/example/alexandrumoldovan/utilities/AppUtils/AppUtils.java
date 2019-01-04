@@ -47,12 +47,31 @@ public class AppUtils {
         return null;
     }
 
+    public static Boolean wasInPast(String localDate) {
+        String currentDate = getDate();
+        String[] splitedLocal = localDate.split("-");
+        String[] splitedCurrent = currentDate.split("-");
+        Integer yearC = Integer.valueOf(splitedCurrent[0]);
+        Integer yearL = Integer.valueOf(splitedLocal[0]);
+        Integer monthC = Integer.valueOf(splitedCurrent[1]);
+        Integer monthL = Integer.valueOf(splitedLocal[1]);
+        Integer dayC = Integer.valueOf(splitedCurrent[2]);
+        Integer dayL = Integer.valueOf(splitedLocal[2]);
+        if (yearC > yearL)
+            return true;
+        else if (monthC > monthL && yearC >= yearL)
+            return true;
+        else if (dayC > dayL && monthC >= monthL && yearC >= yearL)
+            return true;
+        return false;
+    }
+
     public static void setSpinnerCurrentDate(ArrayAdapter<String> adapter, Spinner spinner) {
         Integer spinnerPosition = adapter.getPosition(getCurrentMonth(true));
         spinner.setSelection(spinnerPosition);
     }
 
-    public static String getDate(){
+    public static String getDate() {
         Date now = new Date();
         return new SimpleDateFormat("yyyy-MM-dd").format(now);
     }

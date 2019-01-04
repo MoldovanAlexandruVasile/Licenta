@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:clickable="true"
-        android:drawableLeft="@drawable/ic_action_back_black"
+        android:drawableStart="@drawable/ic_action_back_black"
         android:focusable="true"
-        android:onClick="goToHomeAdmin"
+        android:onClick="goBackToEventsManagementAdmin"
         android:text="Back"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
@@ -23,7 +23,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/eventInfoCardViewUser"
         android:layout_width="333dp"
-        android:layout_height="482dp"
+        android:layout_height="540dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:clickable="true"
@@ -36,14 +36,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <TextView
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="121dp"
-                android:layout_marginStart="10dp"
+                android:layout_alignStart="@+id/eventTextViewUser"
+                android:layout_marginBottom="207dp"
                 android:text="Date:"
                 android:textColor="@color/black" />
 
@@ -147,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignStart="@+id/textView28"
-                android:layout_marginBottom="85dp"
+                android:layout_marginBottom="159dp"
                 android:text="Time:"
                 android:textColor="@color/black" />
 
@@ -204,11 +203,12 @@
 
 
             <android.support.v7.widget.CardView
-                android:id="@+id/createEventCardView"
+                android:id="@+id/editEventCardView"
                 android:layout_width="255dp"
                 android:layout_height="41dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="70dp"
                 android:clickable="true"
                 android:focusable="true"
                 app:cardBackgroundColor="@color/colorPrimaryDark"
@@ -220,11 +220,39 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView18"
+                        android:id="@+id/editEvent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="Create event"
+                        android:text="@string/saveChanges"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/deleteEventCardView"
+                android:layout_width="255dp"
+                android:layout_height="41dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="13dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/colorPrimaryDark"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="Delete event"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
                 </RelativeLayout>
@@ -232,8 +260,4 @@
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
-
-
-
-
 </RelativeLayout>

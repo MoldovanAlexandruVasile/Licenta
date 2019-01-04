@@ -47,6 +47,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getDate;
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.wasInPast;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.CONTRACT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_CONTRACT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.USER_URL;
@@ -85,7 +87,8 @@ public class ActivityUser extends AppCompatActivity
         List<Event> myEvents = new ArrayList<>();
         for (Event localEvent: ActivityLogIn.events)
             if (localEvent.getAddress().equals(ActivityLogIn.user.getAddress()))
-                myEvents.add(localEvent);
+                if (!wasInPast(localEvent.getDate()))
+                    myEvents.add(localEvent);
         return myEvents;
     }
 

@@ -40,8 +40,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getDate;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getEventByID;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getUserByID;
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.wasInPast;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_CONTRACT_BY_USER;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_EVENT_USER_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_REPORT_BY_USER_URL;
@@ -51,12 +53,14 @@ public class ActivityAdmin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager = getFragmentManager();
     public static List<Event_User> myEventReports;
+    public static List<Event> myEvents;
     public static List<User> myUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         fillMyEventReports();
         fillMyUsers();
+        fillMyEvents();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
@@ -77,6 +81,15 @@ public class ActivityAdmin extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void fillMyEvents() {
+        myEvents = new ArrayList<>();
+        for (Event event : ActivityLogIn.events)
+            if (event.getAddress().equals(ActivityLogIn.admin.getAddress())
+                    && !myEvents.contains(event))
+                if (!wasInPast(event.getDate()))
+                    myEvents.add(event);
+    }
+
     private void fillMyUsers() {
         myUsers = new ArrayList<>();
         for (User user : ActivityLogIn.users)
@@ -93,7 +106,8 @@ public class ActivityAdmin extends AppCompatActivity
             if (event.getAddress().equals(ActivityLogIn.admin.getAddress())
                     && user.getAddress().equals(ActivityLogIn.admin.getAddress())
                     && !myEventReports.contains(event_user))
-                myEventReports.add(event_user);
+                if (!wasInPast(event.getDate()))
+                    myEventReports.add(event_user);
         }
     }
 
@@ -519,6 +533,20 @@ public class ActivityAdmin extends AppCompatActivity
                 .commit();
     }
 
+    public void goToEventsManagementAdmin(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
+                .replace(R.id.content_frame, new FragmentEventsManagementAdmin())
+                .commit();
+    }
+
+    public void goBackToEventsManagementAdmin(View view){
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentEventsManagementAdmin())
+                .commit();
+    }
+
     public void goToEventsReportsAdmin(View view) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
@@ -526,7 +554,7 @@ public class ActivityAdmin extends AppCompatActivity
                 .commit();
     }
 
-    public void goBackToMonthReports(View view){
+    public void goBackToMonthReports(View view) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
                 .replace(R.id.content_frame, new FragmentMonthReportsAdmin())

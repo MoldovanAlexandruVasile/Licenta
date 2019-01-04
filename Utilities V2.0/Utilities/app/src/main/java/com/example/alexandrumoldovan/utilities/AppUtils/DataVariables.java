@@ -3,7 +3,7 @@ package com.example.alexandrumoldovan.utilities.AppUtils;
 public class DataVariables {
     
     //IP ADDRESS
-    private static final String IP = "192.168.100.22";
+    private static final String IP = "192.168.0.102";
     
     //ADMIN
     public static final String ADMIN_URL = "http://" + IP + ":8012/UtilitiesAPI/Admin/adminscontroller.php?view=all";
@@ -25,6 +25,8 @@ public class DataVariables {
     //EVENT
     public static final String EVENT_URL = "http://" + IP + ":8012/UtilitiesAPI/Event/eventscontroller.php?view=all";
     public static final String INSERT_EVENT_URL = "http://" + IP + ":8012/UtilitiesAPI/Event/insertEvent.php";
+    public static final String UPDATE_EVENT_URL = "http://" + IP + ":8012/UtilitiesAPI/Event/updateEvent.php";
+    public static final String DELETE_EVENT_URL = "http://" + IP + ":8012/UtilitiesAPI/Event/deleteEvent.php";
 
     //EVENT_USER
     public static final String EVENT_USER_URL = "http://" + IP + ":8012/UtilitiesAPI/EventUser/eventusercontroller.php?view=all";

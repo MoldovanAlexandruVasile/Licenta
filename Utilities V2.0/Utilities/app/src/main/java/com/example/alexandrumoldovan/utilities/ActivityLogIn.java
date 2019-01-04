@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getDate;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.ADMIN_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.CONTRACT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_URL;
@@ -294,7 +295,7 @@ public class ActivityLogIn extends AppCompatActivity {
         requestQueue.add(objectRequest);
     }
 
-    private void populateEvents(){
+    private void populateEvents() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, EVENT_URL, null,
                 new Response.Listener<JSONObject>() {

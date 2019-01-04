@@ -57,7 +57,6 @@ public class FragmentHomeUser extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        //populateEvents();
         populateEventsUsers();
         populateUsers();
         populateContracts();
@@ -105,6 +104,11 @@ public class FragmentHomeUser extends Fragment {
             title.setText(ActivityLogIn.events.get(position).getTitle());
             TextView details = viewEvent.findViewById(R.id.eventTextViewUser);
             details.setText(ActivityLogIn.events.get(position).getDetails());
+            TextView date = viewEvent.findViewById(R.id.date);
+            date.setText(ActivityLogIn.events.get(position).getDate());
+            TextView time = viewEvent.findViewById(R.id.time);
+            String timeComputed = ActivityLogIn.events.get(position).getHour() + ":" + ActivityLogIn.events.get(position).getMinute();
+            time.setText(timeComputed);
 
             String status = null;
             for (Event_User event_user : ActivityLogIn.events_users) {
