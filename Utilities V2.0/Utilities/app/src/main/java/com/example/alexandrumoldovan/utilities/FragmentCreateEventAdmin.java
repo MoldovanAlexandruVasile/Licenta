@@ -22,27 +22,16 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Domain.Event;
-import com.example.alexandrumoldovan.utilities.Domain.User;
-import com.google.gson.Gson;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getCurrentYear;
-import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.wasInPast;
-import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_EVENT_URL;
-import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_USER_URL;
 
 public class FragmentCreateEventAdmin extends Fragment {
     View createEvent;

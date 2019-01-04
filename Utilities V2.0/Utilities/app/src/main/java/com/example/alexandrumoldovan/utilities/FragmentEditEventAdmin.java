@@ -2,7 +2,6 @@ package com.example.alexandrumoldovan.utilities;
 
 import android.app.Dialog;
 import android.app.Fragment;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -33,7 +32,6 @@ import java.util.Objects;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getCurrentYear;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DELETE_EVENT_URL;
-import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_EVENT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_EVENT_URL;
 
 public class FragmentEditEventAdmin extends Fragment {
@@ -77,7 +75,6 @@ public class FragmentEditEventAdmin extends Fragment {
                             + daySpinner.getSelectedItem();
                     Event event = new Event(title, details, date, (String) hourSpinner.getSelectedItem(),
                             (String) minuteSpinner.getSelectedItem(), ActivityLogIn.admin.getAddress());
-                    updateEventLocally(event);
                     updateEventInDB(event);
                     goBackToEventsManagement();
                 }
@@ -110,6 +107,7 @@ public class FragmentEditEventAdmin extends Fragment {
     private void deleteEventLocally(Integer ID) {
         for (Event localEvent : ActivityAdmin.myEvents) {
             if (localEvent.getID().equals(ID)){
+                Log.e("REST DELETE LOCAL", String.valueOf(ID));
                 ActivityAdmin.myEvents.remove(localEvent);
                 break;
             }
@@ -117,6 +115,7 @@ public class FragmentEditEventAdmin extends Fragment {
     }
 
     private void deleteEventInDB(final Integer ID) {
+        deleteEventLocally(FragmentEventsManagementAdmin.pickedEvent.getID());
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         StringRequest request = new StringRequest(Request.Method.POST, DELETE_EVENT_URL, new Response.Listener<String>() {
             @Override
@@ -140,6 +139,7 @@ public class FragmentEditEventAdmin extends Fragment {
     }
 
     private void updateEventInDB(final Event event) {
+        updateEventLocally(event);
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         StringRequest request = new StringRequest(Request.Method.POST, UPDATE_EVENT_URL, new Response.Listener<String>() {
             @Override
@@ -280,7 +280,6 @@ public class FragmentEditEventAdmin extends Fragment {
         yesCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteEventLocally(FragmentEventsManagementAdmin.pickedEvent.getID());
                 deleteEventInDB(FragmentEventsManagementAdmin.pickedEvent.getID());
                 goBackToEventsManagement();
                 customDialog.dismiss();
