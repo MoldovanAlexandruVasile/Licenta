@@ -40,7 +40,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getDate;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getEventByID;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getUserByID;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.wasInPast;
@@ -52,13 +51,11 @@ import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.DEL
 public class ActivityAdmin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fragmentManager = getFragmentManager();
-    public static List<Event_User> myEventReports;
     public static List<Event> myEvents;
     public static List<User> myUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        fillMyEventReports();
         fillMyUsers();
         fillMyEvents();
 
@@ -96,19 +93,6 @@ public class ActivityAdmin extends AppCompatActivity
             if (user.getAddress().equals(ActivityLogIn.admin.getAddress())
                     && !myUsers.contains(user))
                 myUsers.add(user);
-    }
-
-    private static void fillMyEventReports() {
-        myEventReports = new ArrayList<>();
-        for (Event_User event_user : ActivityLogIn.events_users) {
-            Event event = getEventByID(event_user.getEvent());
-            User user = getUserByID(event_user.getUser());
-            if (event.getAddress().equals(ActivityLogIn.admin.getAddress())
-                    && user.getAddress().equals(ActivityLogIn.admin.getAddress())
-                    && !myEventReports.contains(event_user))
-                if (!wasInPast(event.getDate()))
-                    myEventReports.add(event_user);
-        }
     }
 
     @Override
@@ -509,6 +493,13 @@ public class ActivityAdmin extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
                 .replace(R.id.content_frame, new FragmentHomeAdmin())
+                .commit();
+    }
+
+    public void goToEventsList(View view) {
+        fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
+                .replace(R.id.content_frame, new FragmentEventsReportsAdmin())
                 .commit();
     }
 
