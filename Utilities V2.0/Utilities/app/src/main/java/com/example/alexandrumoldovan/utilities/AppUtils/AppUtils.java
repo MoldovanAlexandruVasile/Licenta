@@ -4,10 +4,10 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.alexandrumoldovan.utilities.ActivityLogIn;
-import com.example.alexandrumoldovan.utilities.Domain.Event;
-import com.example.alexandrumoldovan.utilities.Domain.Report;
-import com.example.alexandrumoldovan.utilities.Domain.User;
+import com.example.alexandrumoldovan.utilities.Common.ActivityLogIn;
+import com.example.alexandrumoldovan.utilities.Models.Event;
+import com.example.alexandrumoldovan.utilities.Models.Report;
+import com.example.alexandrumoldovan.utilities.Models.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,12 +31,18 @@ public class AppUtils {
 
     public static Report getLastReport(List<Report> reports, String utility) {
         String month = getCurrentMonth(false);
+        Log.e("REPORT", month);
         if (month.equals("01")) {
             month = "12";
         } else month = String.valueOf(Integer.valueOf(month) - 1);
+        Log.e("REPORT", month);
         month = getMonthString(month);
+        Log.e("REPORT", month);
         for (Integer i = reports.size() - 1; i >= 0; i--) {
             Report localReport = reports.get(i);
+            Log.e("REPORT", localReport.toString());
+            Log.e("REPORT", month);
+            Log.e("REPORT", String.valueOf(localReport.getMonth().startsWith(month)));
             if (localReport.getMonth().startsWith(month) &&
                     localReport.getUtility().equals(utility) &&
                     localReport.getUser().equals(ActivityLogIn.user.getID())) {
@@ -98,31 +104,31 @@ public class AppUtils {
 
     private static String getMonthString(String month) {
         switch (month) {
-            case "01": {
+            case "1": {
                 return "January";
             }
-            case "02": {
+            case "2": {
                 return "February";
             }
-            case "03": {
+            case "3": {
                 return "March";
             }
-            case "04": {
+            case "4": {
                 return "April";
             }
-            case "05": {
+            case "5": {
                 return "May";
             }
-            case "06": {
+            case "6": {
                 return "June";
             }
-            case "07": {
+            case "7": {
                 return "July";
             }
-            case "08": {
+            case "8": {
                 return "August";
             }
-            case "09": {
+            case "9": {
                 return "September";
             }
             case "10": {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/log_in_gradient"
     android:onClick="hideKeyboardLogIn"
-    tools:context=".ActivityLogIn">
+    tools:context=".Common.ActivityLogIn">
 
     <RelativeLayout
         android:layout_width="wrap_content"
