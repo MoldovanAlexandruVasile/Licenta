@@ -30,8 +30,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.alexandrumoldovan.utilities.Admin.Fragments.FragmentChargesAdmin;
 import com.example.alexandrumoldovan.utilities.Common.ActivityLogIn;
 import com.example.alexandrumoldovan.utilities.Common.FragmentAboutAllUsers;
+import com.example.alexandrumoldovan.utilities.Models.Admin;
+import com.example.alexandrumoldovan.utilities.Models.Charges;
 import com.example.alexandrumoldovan.utilities.Models.Event;
 import com.example.alexandrumoldovan.utilities.Models.User;
 import com.example.alexandrumoldovan.utilities.Admin.Fragments.FragmentAccountManagementAdmin;
@@ -165,6 +168,10 @@ public class ActivityAdmin extends AppCompatActivity
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentProfileAdmin())
                     .commit();
+        } else if (id == R.id.nav_charges_admin) {
+            fragmentManager.beginTransaction().
+                    replace(R.id.content_frame, new FragmentChargesAdmin())
+                    .commit();
         } else if (id == R.id.nav_settings_admin) {
             fragmentManager.beginTransaction().
                     replace(R.id.content_frame, new FragmentSettingsAdmin())
@@ -194,25 +201,6 @@ public class ActivityAdmin extends AppCompatActivity
         customDialog.setContentView(R.layout.custom_pop_up);
         TextView textView = customDialog.findViewById(R.id.popupTextView);
         textView.setText("Please complete all the fields !");
-        CardView cardView = customDialog.findViewById(R.id.okButton);
-
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customDialog.dismiss();
-            }
-        });
-        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        customDialog.show();
-    }
-
-    private void changePasswordFailed() {
-        final Dialog customDialog = new Dialog(ActivityAdmin.this);
-        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        customDialog.setCanceledOnTouchOutside(false);
-        customDialog.setContentView(R.layout.custom_pop_up);
-        TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("Passwords do not match !");
         CardView cardView = customDialog.findViewById(R.id.okButton);
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -440,43 +428,6 @@ public class ActivityAdmin extends AppCompatActivity
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right)
                 .replace(R.id.content_frame, new FragmentChangePasswordAdmin())
                 .commit();
-    }
-
-    public void createAccountAdmin(View view) {
-        //TODO: check if the username it's available
-        EditText usernameET = findViewById(R.id.usernameTextInputAdmin);
-        EditText passwordET = findViewById(R.id.newPasswordTextInputAdmin);
-        EditText confirmPassET = findViewById(R.id.confirmPasswordTextInputUser);
-        String username = usernameET.getText().toString();
-        String pass = passwordET.getText().toString();
-        String confirmPass = confirmPassET.getText().toString();
-
-        if (username.compareTo("") == 0 || confirmPass.compareTo("") == 0 || pass.compareTo("") == 0) {
-            completeAllFields();
-        } else if (pass.compareTo(confirmPass) != 0) {
-            changePasswordFailed();
-        } else {
-            accountCreatedWithSuccess();
-        }
-    }
-
-    private void accountCreatedWithSuccess() {
-        final Dialog customDialog = new Dialog(ActivityAdmin.this);
-        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        customDialog.setCanceledOnTouchOutside(false);
-        customDialog.setContentView(R.layout.custom_pop_up);
-        TextView textView = customDialog.findViewById(R.id.popupTextView);
-        textView.setText("The account has been created with success !");
-        CardView cardView = customDialog.findViewById(R.id.okButton);
-
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customDialog.dismiss();
-            }
-        });
-        Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        customDialog.show();
     }
 
     public void goToArchiveAdmin(View view) {

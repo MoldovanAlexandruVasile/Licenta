@@ -60,12 +60,15 @@ public class FragmentAccountManagementAdmin extends Fragment {
                     String name = nameET.getText().toString();
                     User user = new User(email, pass, name, ActivityLogIn.admin.getAddress(), apartment);
                     if (pass.equals(confPass) && !email.isEmpty() && !String.valueOf(apartment).isEmpty() && !name.isEmpty()) {
-                        if (isAddressValid(user))
-                            createUser(user);
-                        else showOkPopUp("This apartment number is already registered for this address." +
-                                "Please register with valid data.");
+                        if (isEmailValid(user))
+                            if (isAddressValid(user))
+                                createUser(user);
+                            else
+                                showOkPopUp("This apartment number is already registered for this address." +
+                                        "Please register with valid data.");
+                        else showOkPopUp("Email already in use.");
                     } else showOkPopUp("Check all fields to be filled correctly.");
-                } catch (Exception ex){
+                } catch (Exception ex) {
                     showOkPopUp("Check all fields to be filled correctly.");
                 }
             }
@@ -82,7 +85,15 @@ public class FragmentAccountManagementAdmin extends Fragment {
         return true;
     }
 
-    private void createUser(final User user){
+    private Boolean isEmailValid(User user) {
+        for (User localUser : ActivityLogIn.users) {
+            if (localUser.getEmail().equals(user.getEmail()))
+                return false;
+        }
+        return true;
+    }
+
+    private void createUser(final User user) {
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         StringRequest request = new StringRequest(Request.Method.POST, INSERT_USER_URL, new Response.Listener<String>() {
             @Override

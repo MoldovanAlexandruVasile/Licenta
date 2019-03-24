@@ -57,10 +57,6 @@ public class ActivitySignUp extends AppCompatActivity {
         for(User user : users)
             if (user.getEmail().equals(email))
                 return false;
-
-        for(Admin admin : admins)
-            if (admin.getEmail().equals(email))
-                return false;
         return true;
     }
 

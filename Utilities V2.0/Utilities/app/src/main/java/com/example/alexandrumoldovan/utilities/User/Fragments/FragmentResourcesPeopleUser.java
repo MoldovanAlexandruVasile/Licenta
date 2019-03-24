@@ -1,5 +1,6 @@
 package com.example.alexandrumoldovan.utilities.User.Fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.graphics.Color;
@@ -23,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Common.ActivityLogIn;
+import com.example.alexandrumoldovan.utilities.Models.Charges;
 import com.example.alexandrumoldovan.utilities.Models.Contract;
 import com.example.alexandrumoldovan.utilities.Models.Report;
 import com.example.alexandrumoldovan.utilities.R;
@@ -33,7 +35,9 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getCurrentMonth;
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getCurrentYear;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getDate;
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getMonthNumber;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.setSpinnerCurrentDate;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_REPORT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_QUANTITY_REPORT_URL;
@@ -48,6 +52,7 @@ public class FragmentResourcesPeopleUser extends Fragment {
         ((ActivityUser) getActivity()).setActionBarTitle("People in apartment");
     }
 
+    @SuppressLint("SetTextI18n")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -77,9 +82,30 @@ public class FragmentResourcesPeopleUser extends Fragment {
             }
         });
 
-        if (isUsingGarage()) {
-            TextView garage = resources.findViewById(R.id.garageCostUser);
-            garage.setText("50 RON");
+        TextView garage = resources.findViewById(R.id.garageCostUser);
+        TextView reparations = resources.findViewById(R.id.reparationCostUser);
+        TextView cleaning = resources.findViewById(R.id.cleaningCostUser);
+
+        Charges charges = getCurrentMonthCharges();
+        if (charges != null) {
+            garage.setText(charges.getGarage() + " RON");
+            reparations.setText(charges.getReparations() + " RON");
+            cleaning.setText(charges.getCleaning() + " RON");
+        } else if (isUsingGarage()) {
+            Charges myCharge = getLastChargesDeployed();
+            if (myCharge != null) {
+                garage.setText(myCharge.getGarage() + " RON");
+                reparations.setText(R.string.ZERO_RON);
+                cleaning.setText(R.string.ZERO_RON);
+            } else {
+                garage.setText(R.string.ZERO_RON);
+                reparations.setText(R.string.ZERO_RON);
+                cleaning.setText(R.string.ZERO_RON);
+            }
+        } else {
+            garage.setText(R.string.ZERO_RON);
+            reparations.setText(R.string.ZERO_RON);
+            cleaning.setText(R.string.ZERO_RON);
         }
 
         if (isAlreadyReported()) {
@@ -87,6 +113,14 @@ public class FragmentResourcesPeopleUser extends Fragment {
         }
 
         return resources;
+    }
+
+    private Charges getCurrentMonthCharges() {
+        int size = ActivityLogIn.charges.size();
+        for (int i = size - 1; i >= 0; i--)
+            if (ActivityLogIn.charges.get(i).getMonth().equals(getCurrentMonth(true) + " " + getCurrentYear()))
+                return ActivityLogIn.charges.get(i);
+        return null;
     }
 
     private Boolean isUsingGarage() {
@@ -101,9 +135,13 @@ public class FragmentResourcesPeopleUser extends Fragment {
 
     private Boolean isAlreadyReported() {
         for (Report report : ActivityLogIn.reports) {
+            Integer monthNumber = Integer.valueOf(getMonthNumber(report.getMonth()));
+            Integer dateMonth = Integer.valueOf(report.getDate().substring(4, 6));
             if (report.getUser().equals(ActivityLogIn.user.getID())
                     && report.getUtility().equals("People")
-                    && report.getMonth().equals(getCurrentMonth(true)))
+                    && report.getMonth().equals(getCurrentMonth(true))
+                    && report.getDate().startsWith(getCurrentYear())
+                    && monthNumber >= dateMonth)
                 return true;
         }
         return false;
@@ -220,5 +258,13 @@ public class FragmentResourcesPeopleUser extends Fragment {
         });
         Objects.requireNonNull(customDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         customDialog.show();
+    }
+
+    private Charges getLastChargesDeployed() {
+        int size = ActivityLogIn.charges.size();
+        for (int i = size - 1; i >= 0; i--)
+            if (ActivityLogIn.charges.get(i).getAddress().equals(ActivityLogIn.user.getAddress()))
+                return ActivityLogIn.charges.get(i);
+        return null;
     }
 }

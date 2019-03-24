@@ -74,5 +74,11 @@
     <string name="profile_settings">Profile settings</string>
     <string name="apartment_number_text">Apartment number</string>
     <string name="saveChanges">Save changes</string>
+    <string name="charges">Charges</string>
+    <string name="garage_fee">Garage fee:</string>
+    <string name="fee">Fee</string>
+    <string name="reparations_fee">Reparations fee:</string>
+    <string name="cleaning_fee">Cleaning fee:</string>
+    <string name="ZERO_RON">0 RON</string>
 
 </resources>

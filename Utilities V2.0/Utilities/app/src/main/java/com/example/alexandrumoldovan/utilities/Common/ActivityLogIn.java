@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Admin.Activities.ActivityAdmin;
+import com.example.alexandrumoldovan.utilities.Models.Charges;
 import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
 import com.example.alexandrumoldovan.utilities.AppUtils.ConnectionDetector;
 import com.example.alexandrumoldovan.utilities.Models.Admin;
@@ -47,6 +48,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.ADMIN_URL;
+import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.CHARGES_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.CONTRACT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.EVENT_USER_URL;
@@ -63,6 +65,7 @@ public class ActivityLogIn extends AppCompatActivity {
     public static List<Event_User> events_users;
     public static List<Report> reports;
     public static List<Contract> contracts;
+    public static List<Charges> charges;
     public static List<Integer> apartment;
     private RequestQueue requestQueue;
     private RelativeLayout rellay1;
@@ -107,6 +110,8 @@ public class ActivityLogIn extends AppCompatActivity {
         this.populateReports();
         contracts = new ArrayList<>();
         this.populateContracts();
+        charges = new ArrayList<>();
+        this.populateCharges();
         admin = null;
         user = null;
     }
@@ -405,6 +410,34 @@ public class ActivityLogIn extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("REST CONTRACT Response", error.toString());
+                    }
+                });
+        requestQueue.add(objectRequest);
+    }
+
+    private void populateCharges() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, CHARGES_URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("REST CHARGES", response.toString());
+                        try {
+                            JSONObject responseObject = new JSONObject(response.toString());
+                            JSONArray resultsArray = responseObject.getJSONArray("charges");
+                            for (Integer i = 0; i < resultsArray.length(); i++) {
+                                Charges localCharge = new Gson().fromJson(resultsArray.get(i).toString(), Charges.class);
+                                charges.add(localCharge);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("REST CHARGES Response", error.toString());
                     }
                 });
         requestQueue.add(objectRequest);

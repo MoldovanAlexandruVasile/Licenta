@@ -17,6 +17,11 @@
 
     <group android:id="@+id/settingsAdmin">
         <item
+            android:id="@+id/nav_charges_admin"
+            android:icon="@drawable/ic_money_black_24dp"
+            android:title="@string/charges" />
+
+        <item
             android:id="@+id/nav_settings_admin"
             android:icon="@drawable/ic_settings"
             android:title="@string/app_menu_settings_user" />

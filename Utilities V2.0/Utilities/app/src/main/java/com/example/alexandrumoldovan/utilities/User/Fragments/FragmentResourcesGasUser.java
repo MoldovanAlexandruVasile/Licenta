@@ -37,8 +37,10 @@ import java.util.Map;
 import java.util.Objects;
 
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getCurrentMonth;
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getCurrentYear;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getDate;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getLastReport;
+import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getMonthNumber;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.setSpinnerCurrentDate;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_REPORT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_QUANTITY_REPORT_URL;
@@ -150,9 +152,13 @@ public class FragmentResourcesGasUser extends Fragment {
 
     private Boolean isAlreadyReported() {
         for (Report report : ActivityLogIn.reports) {
+            Integer monthNumber = Integer.valueOf(getMonthNumber(report.getMonth()));
+            Integer dateMonth = Integer.valueOf(report.getDate().substring(4, 6));
             if (report.getUser().equals(ActivityLogIn.user.getID())
                     && report.getUtility().equals("Gas")
-                    && report.getMonth().equals(getCurrentMonth(true)))
+                    && report.getMonth().equals(getCurrentMonth(true))
+                    && report.getDate().startsWith(getCurrentYear())
+                    && monthNumber >= dateMonth)
                 return true;
         }
         return false;

@@ -14,7 +14,6 @@ public class DataVariables {
     //USER
     public static final String USER_URL = "http://" + IP + ":8012/UtilitiesAPI/User/userscontroller.php?view=all";
     public static final String INSERT_USER_URL = "http://" + IP + ":8012/UtilitiesAPI/User/insertUser.php";
-    public static final String UPDATE_USER_URL = "http://" + IP + ":8012/UtilitiesAPI/User/updateUser.php";
     public static final String UPDATE_USER_NAME_URL = "http://" + IP + ":8012/UtilitiesAPI/User/updateUserName.php";
     public static final String UPDATE_USER_PASS_URL = "http://" + IP + ":8012/UtilitiesAPI/User/updateUserPassword.php";
     public static final String DELETE_USER_URL = "http://" + IP + ":8012/UtilitiesAPI/User/deleteUser.php";
@@ -32,7 +31,6 @@ public class DataVariables {
     public static final String EVENT_USER_URL = "http://" + IP + ":8012/UtilitiesAPI/EventUser/eventusercontroller.php?view=all";
     public static final String INSERT_EVENT_USER_URL = "http://" + IP + ":8012/UtilitiesAPI/EventUser/insertEventUser.php";
     public static final String UPDATE_EVENT_USER_URL = "http://" + IP + ":8012/UtilitiesAPI/EventUser/updateEventUser.php";
-    public static final String DELETE_EVENT_USER_URL = "http://" + IP + ":8012/UtilitiesAPI/EventUser/deleteEventUser.php";
     public static final String DELETE_EVENT_USER_USER_URL = "http://" + IP + ":8012/UtilitiesAPI/EventUser/deleteEventUserByUser.php";
 
     //REPORT
@@ -46,4 +44,9 @@ public class DataVariables {
     public static final String INSERT_CONTRACT_URL = "http://" + IP + ":8012/UtilitiesAPI/Contracts/insertContract.php";
     public static final String UPDATE_CONTRACT_URL = "http://" + IP + ":8012/UtilitiesAPI/Contracts/updateContract.php";
     public static final String DELETE_CONTRACT_BY_USER = "http://" + IP + ":8012/UtilitiesAPI/Contracts/deleteContractByUser.php";
+
+    //Charges
+    public static final String CHARGES_URL = "http://" + IP + ":8012/UtilitiesAPI/Charges/chargescontroller.php?view=all";
+    public static final String INSERT_CHARGES_URL = "http://" + IP + ":8012/UtilitiesAPI/Charges/insertCharge.php";
+    public static final String UPDATE_CHARGE_URL = "http://" + IP + ":8012/UtilitiesAPI/Charges/updateCharge.php";
 }
