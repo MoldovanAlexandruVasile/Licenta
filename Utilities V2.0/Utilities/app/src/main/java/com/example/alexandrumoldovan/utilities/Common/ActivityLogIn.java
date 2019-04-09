@@ -28,7 +28,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Admin.Activities.ActivityAdmin;
 import com.example.alexandrumoldovan.utilities.Models.Charges;
-import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
+import com.example.alexandrumoldovan.utilities.Resident.Activities.ActivityUser;
 import com.example.alexandrumoldovan.utilities.AppUtils.ConnectionDetector;
 import com.example.alexandrumoldovan.utilities.Models.Admin;
 import com.example.alexandrumoldovan.utilities.Models.Contract;

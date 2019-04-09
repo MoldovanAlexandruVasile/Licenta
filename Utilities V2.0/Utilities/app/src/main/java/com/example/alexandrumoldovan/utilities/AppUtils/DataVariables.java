@@ -3,7 +3,7 @@ package com.example.alexandrumoldovan.utilities.AppUtils;
 public class DataVariables {
     
     //IP ADDRESS
-    private static final String IP = "192.168.0.102";
+    private static final String IP = "192.168.0.100";
     
     //ADMIN
     public static final String ADMIN_URL = "http://" + IP + ":8012/UtilitiesAPI/Admin/adminscontroller.php?view=all";

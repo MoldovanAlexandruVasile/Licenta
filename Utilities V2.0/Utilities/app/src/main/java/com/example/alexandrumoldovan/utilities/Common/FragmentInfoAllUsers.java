@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
+import com.example.alexandrumoldovan.utilities.Resident.Activities.ActivityUser;
 import com.example.alexandrumoldovan.utilities.R;
 
 public class FragmentInfoAllUsers extends Fragment {

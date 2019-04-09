@@ -20,12 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.alexandrumoldovan.utilities.Admin.Activities.ActivityAdmin;
 import com.example.alexandrumoldovan.utilities.Common.ActivityLogIn;
 import com.example.alexandrumoldovan.utilities.Models.Charges;
-import com.example.alexandrumoldovan.utilities.Models.User;
 import com.example.alexandrumoldovan.utilities.R;
-import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -35,12 +32,10 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getCurrentMonth;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.getCurrentYear;
 import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.setSpinnerCurrentDate;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.CHARGES_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_CHARGES_URL;
-import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_USER_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_CHARGE_URL;
 
 public class FragmentChargesAdmin extends Fragment {

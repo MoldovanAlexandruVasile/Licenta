@@ -1,4 +1,4 @@
-package com.example.alexandrumoldovan.utilities.User.Fragments;
+package com.example.alexandrumoldovan.utilities.Resident.Fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
@@ -27,7 +27,7 @@ import com.example.alexandrumoldovan.utilities.Models.Event;
 import com.example.alexandrumoldovan.utilities.Models.Event_User;
 import com.example.alexandrumoldovan.utilities.Models.User;
 import com.example.alexandrumoldovan.utilities.R;
-import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
+import com.example.alexandrumoldovan.utilities.Resident.Activities.ActivityUser;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;

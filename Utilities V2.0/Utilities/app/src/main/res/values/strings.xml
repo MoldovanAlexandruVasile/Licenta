@@ -80,5 +80,6 @@
     <string name="reparations_fee">Reparations fee:</string>
     <string name="cleaning_fee">Cleaning fee:</string>
     <string name="ZERO_RON">0 RON</string>
+    <string name="administrator">Administrator:</string>
 
 </resources>

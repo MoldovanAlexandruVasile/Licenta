@@ -1,4 +1,4 @@
-package com.example.alexandrumoldovan.utilities.User.Fragments;
+package com.example.alexandrumoldovan.utilities.Resident.Fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -28,7 +28,7 @@ import com.example.alexandrumoldovan.utilities.Models.Charges;
 import com.example.alexandrumoldovan.utilities.Models.Contract;
 import com.example.alexandrumoldovan.utilities.Models.Report;
 import com.example.alexandrumoldovan.utilities.R;
-import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
+import com.example.alexandrumoldovan.utilities.Resident.Activities.ActivityUser;
 
 import java.util.HashMap;
 import java.util.Map;

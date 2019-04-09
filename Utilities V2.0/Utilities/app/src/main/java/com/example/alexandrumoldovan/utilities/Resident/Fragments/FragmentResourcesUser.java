@@ -1,4 +1,4 @@
-package com.example.alexandrumoldovan.utilities.User.Fragments;
+package com.example.alexandrumoldovan.utilities.Resident.Fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Common.ActivityLogIn;
 import com.example.alexandrumoldovan.utilities.Models.Report;
 import com.example.alexandrumoldovan.utilities.R;
-import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
+import com.example.alexandrumoldovan.utilities.Resident.Activities.ActivityUser;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;

@@ -1,4 +1,4 @@
-package com.example.alexandrumoldovan.utilities.User.Fragments;
+package com.example.alexandrumoldovan.utilities.Resident.Fragments;
 
 import android.app.Dialog;
 import android.app.Fragment;
@@ -24,7 +24,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Common.ActivityLogIn;
 import com.example.alexandrumoldovan.utilities.R;
-import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
+import com.example.alexandrumoldovan.utilities.Resident.Activities.ActivityUser;
 
 import java.util.HashMap;
 import java.util.Map;

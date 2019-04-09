@@ -1,4 +1,4 @@
-package com.example.alexandrumoldovan.utilities.User.Fragments;
+package com.example.alexandrumoldovan.utilities.Resident.Fragments;
 
 import android.app.Dialog;
 import android.app.Fragment;
@@ -9,12 +9,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -30,7 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Common.ActivityLogIn;
 import com.example.alexandrumoldovan.utilities.Models.Report;
 import com.example.alexandrumoldovan.utilities.R;
-import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
+import com.example.alexandrumoldovan.utilities.Resident.Activities.ActivityUser;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,19 +43,19 @@ import static com.example.alexandrumoldovan.utilities.AppUtils.AppUtils.setSpinn
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.INSERT_REPORT_URL;
 import static com.example.alexandrumoldovan.utilities.AppUtils.DataVariables.UPDATE_QUANTITY_REPORT_URL;
 
-public class FragmentResourcesGasUser extends Fragment {
+public class FragmentResourcesWaterUser extends Fragment {
     View resources;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((ActivityUser) getActivity()).setActionBarTitle("Gas");
+        ((ActivityUser) getActivity()).setActionBarTitle("Water");
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        resources = inflater.inflate(R.layout.layout_resources_gas_user, container, false);
+        resources = inflater.inflate(R.layout.layout_resources_water_user, container, false);
         String[] values = {"January", "February", "March", "April",
                 "May", "June", "July", "August",
                 "September", "October", "November", "December"};
@@ -67,22 +65,22 @@ public class FragmentResourcesGasUser extends Fragment {
         spinner.setAdapter(adapter);
         setSpinnerCurrentDate(adapter, spinner);
 
-        TextView lastMonth = resources.findViewById(R.id.lastMonthGasTextView);
-        final Report lastGasReport = getLastReport(ActivityLogIn.reports, "Gas");
-        if (lastGasReport != null) {
-            Integer quantityLastMonth = lastGasReport.getQuantity();
+        TextView lastMonth = resources.findViewById(R.id.lastMonthWaterTextView);
+        final Report lastWaterReport = getLastReport(ActivityLogIn.reports, "Water");
+        if (lastWaterReport != null) {
+            Integer quantityLastMonth = lastWaterReport.getQuantity();
             lastMonth.setText(String.valueOf(quantityLastMonth));
         } else lastMonth.setText("N/A");
 
-        final EditText thisReport = resources.findViewById(R.id.gasUserTextInput);
+        final EditText thisReport = resources.findViewById(R.id.waterUserTextInput);
         thisReport.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 try {
-                    TextView usedNow = resources.findViewById(R.id.gasUsedThisMonth);
-                    usedNow.setText(String.valueOf(lastGasReport.getQuantity().toString()));
+                    TextView usedNow = resources.findViewById(R.id.waterUsedThisMonth);
+                    usedNow.setText(String.valueOf(lastWaterReport.getQuantity().toString()));
                 } catch (NullPointerException ex) {
-                    TextView usedNow = resources.findViewById(R.id.gasUsedThisMonth);
+                    TextView usedNow = resources.findViewById(R.id.waterUsedThisMonth);
                     usedNow.setText(String.valueOf("0"));
                 }
             }
@@ -90,20 +88,20 @@ public class FragmentResourcesGasUser extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 try {
-                    Integer quantityLastMonth = lastGasReport.getQuantity();
+                    Integer quantityLastMonth = lastWaterReport.getQuantity();
                     Integer currentMonth = Integer.valueOf(thisReport.getText().toString());
                     Integer minus = currentMonth - quantityLastMonth;
-                    TextView usedNow = resources.findViewById(R.id.gasUsedThisMonth);
+                    TextView usedNow = resources.findViewById(R.id.waterUsedThisMonth);
                     usedNow.setText(String.valueOf(minus));
                 } catch (NullPointerException ex) {
                     try {
                         Integer currentMonth = Integer.valueOf(thisReport.getText().toString());
-                        TextView usedNow = resources.findViewById(R.id.gasUsedThisMonth);
+                        TextView usedNow = resources.findViewById(R.id.waterUsedThisMonth);
                         usedNow.setText(String.valueOf(currentMonth));
                     } catch (NumberFormatException ex2) {
                     }
                 } catch (NumberFormatException ex) {
-                    TextView usedNow = resources.findViewById(R.id.gasUsedThisMonth);
+                    TextView usedNow = resources.findViewById(R.id.waterUsedThisMonth);
                     usedNow.setText(String.valueOf("0"));
                 }
             }
@@ -111,20 +109,21 @@ public class FragmentResourcesGasUser extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 try {
-                    Integer quantityLastMonth = lastGasReport.getQuantity();
+                    Integer quantityLastMonth = lastWaterReport.getQuantity();
                     Integer currentMonth = Integer.valueOf(thisReport.getText().toString());
                     Integer minus = currentMonth - quantityLastMonth;
-                    TextView usedNow = resources.findViewById(R.id.gasUsedThisMonth);
+
+                    TextView usedNow = resources.findViewById(R.id.waterUsedThisMonth);
                     usedNow.setText(String.valueOf(minus));
                 } catch (NullPointerException ex) {
                     try {
                         Integer currentMonth = Integer.valueOf(thisReport.getText().toString());
-                        TextView usedNow = resources.findViewById(R.id.gasUsedThisMonth);
+                        TextView usedNow = resources.findViewById(R.id.waterUsedThisMonth);
                         usedNow.setText(String.valueOf(currentMonth));
                     } catch (NumberFormatException ex2) {
                     }
                 } catch (NumberFormatException ex) {
-                    TextView usedNow = resources.findViewById(R.id.gasUsedThisMonth);
+                    TextView usedNow = resources.findViewById(R.id.waterUsedThisMonth);
                     usedNow.setText(String.valueOf("0"));
                 }
             }
@@ -134,10 +133,10 @@ public class FragmentResourcesGasUser extends Fragment {
         sendReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView usedNow = resources.findViewById(R.id.gasUsedThisMonth);
-                EditText editText = resources.findViewById(R.id.gasUserTextInput);
+                TextView usedNow = resources.findViewById(R.id.waterUsedThisMonth);
+                EditText editText = resources.findViewById(R.id.waterUserTextInput);
                 if (!editText.getText().toString().isEmpty() && Integer.valueOf(usedNow.getText().toString()) >= 0)
-                    openConfirmPopUpForResources("Gas", editText.getText().toString(), "kW", spinner.getSelectedItem().toString());
+                    openConfirmPopUpForResources("Water", editText.getText().toString(), "m³", spinner.getSelectedItem().toString());
                 else
                     Toast.makeText(getActivity(), "Please complete the consumption.", Toast.LENGTH_SHORT).show();
             }
@@ -155,7 +154,7 @@ public class FragmentResourcesGasUser extends Fragment {
             Integer monthNumber = Integer.valueOf(getMonthNumber(report.getMonth()));
             Integer dateMonth = Integer.valueOf(report.getDate().substring(4, 6));
             if (report.getUser().equals(ActivityLogIn.user.getID())
-                    && report.getUtility().equals("Gas")
+                    && report.getUtility().equals("Water")
                     && report.getMonth().equals(getCurrentMonth(true))
                     && report.getDate().startsWith(getCurrentYear())
                     && monthNumber >= dateMonth)

@@ -1,4 +1,4 @@
-package com.example.alexandrumoldovan.utilities.User.Fragments;
+package com.example.alexandrumoldovan.utilities.Resident.Fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,22 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.alexandrumoldovan.utilities.R;
-import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
+import com.example.alexandrumoldovan.utilities.Resident.Activities.ActivityUser;
 
-public class FragmentInfoOmniUser extends Fragment {
+public class FragmentPredictUser extends Fragment {
 
-    View omni;
+    View predict;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((ActivityUser) getActivity()).setActionBarTitle("Omni");
+        ((ActivityUser) getActivity()).setActionBarTitle("Predict");
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        omni = inflater.inflate(R.layout.layout_information_omni_user, container, false);
-        return omni;
+        predict = inflater.inflate(R.layout.layout_predict_user, container, false);
+        return predict;
     }
 }

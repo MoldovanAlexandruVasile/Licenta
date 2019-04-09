@@ -25,7 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.alexandrumoldovan.utilities.User.Activities.ActivityUser;
+import com.example.alexandrumoldovan.utilities.Resident.Activities.ActivityUser;
 import com.example.alexandrumoldovan.utilities.Models.Address;
 import com.example.alexandrumoldovan.utilities.Models.User;
 import com.example.alexandrumoldovan.utilities.R;

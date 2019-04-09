@@ -1,4 +1,4 @@
-package com.example.alexandrumoldovan.utilities.User.Activities;
+package com.example.alexandrumoldovan.utilities.Resident.Activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -34,21 +34,22 @@ import com.android.volley.toolbox.Volley;
 import com.example.alexandrumoldovan.utilities.Common.ActivityLogIn;
 import com.example.alexandrumoldovan.utilities.Common.FragmentAboutAllUsers;
 import com.example.alexandrumoldovan.utilities.Common.FragmentInfoAllUsers;
+import com.example.alexandrumoldovan.utilities.Models.Admin;
 import com.example.alexandrumoldovan.utilities.Models.Contract;
 import com.example.alexandrumoldovan.utilities.Models.Event;
 import com.example.alexandrumoldovan.utilities.Models.User;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentArchiveUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentChangePasswordUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentHomeUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentInfoOmniUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentPredictUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentProfileUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentResourcesElectricityUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentResourcesGasUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentResourcesPeopleUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentResourcesUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentResourcesWaterUser;
-import com.example.alexandrumoldovan.utilities.User.Fragments.FragmentSettingsUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentArchiveUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentChangePasswordUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentHomeUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentInfoOmniUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentPredictUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentProfileUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentResourcesElectricityUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentResourcesGasUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentResourcesPeopleUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentResourcesUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentResourcesWaterUser;
+import com.example.alexandrumoldovan.utilities.Resident.Fragments.FragmentSettingsUser;
 import com.example.alexandrumoldovan.utilities.R;
 import com.google.gson.Gson;
 
@@ -94,11 +95,19 @@ public class ActivityUser extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view_user);
         navigationView.setNavigationItemSelectedListener(this);
+
+        String address = ActivityLogIn.user.getAddress();
+        for (Admin admin : ActivityLogIn.admins)
+            if (admin.getAddress().equals(address)) {
+                TextView administrator = findViewById(R.id.nameAdministrator);
+                administrator.setText(admin.getName());
+                break;
+            }
     }
 
     private List<Event> getEventsFromUserAddress() {
         List<Event> myEvents = new ArrayList<>();
-        for (Event localEvent: ActivityLogIn.events)
+        for (Event localEvent : ActivityLogIn.events)
             if (localEvent.getAddress().equals(ActivityLogIn.user.getAddress()))
                 if (!wasInPast(localEvent.getDate()))
                     myEvents.add(localEvent);
