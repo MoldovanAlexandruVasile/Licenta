@@ -318,10 +318,12 @@ public class ActivityAdmin extends AppCompatActivity
         StringRequest request = new StringRequest(Request.Method.POST, DELETE_USER_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("REST RESPONSE", response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("REST ERROR", error.toString());
             }
         }) {
             @Override
@@ -493,7 +495,7 @@ public class ActivityAdmin extends AppCompatActivity
                 .commit();
     }
 
-    public void goBackToEventsManagementAdmin(View view){
+    public void goBackToEventsManagementAdmin(View view) {
         fragmentManager.beginTransaction()
                 .setCustomAnimations(R.animator.slide_out_left, R.animator.slide_in_right)
                 .replace(R.id.content_frame, new FragmentEventsManagementAdmin())
